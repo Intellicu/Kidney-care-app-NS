@@ -17,6 +17,8 @@ import { EducationScreen } from "./screens/education-screen"
 import { DailyHealthLogScreen } from "./screens/daily-health-log-screen"
 import { NephroticDiaryScreen } from "./screens/nephrotic-diary-screen"
 import { HealthTrendScreen } from "./screens/health-trend-screen"
+import { ComplianceScreen } from "./screens/compliance-screen"
+import { ClinicianDashboardScreen } from "./screens/clinician-dashboard-screen"
 
 function AppContent() {
   const { currentScreen } = useApp()
@@ -36,6 +38,8 @@ function AppContent() {
     "daily-health-log": <DailyHealthLogScreen />,
     "nephrotic-diary": <NephroticDiaryScreen />,
     "health-trend": <HealthTrendScreen />,
+    "compliance": <ComplianceScreen />,
+    "clinician-dashboard": <ClinicianDashboardScreen />,
   }
 
   return (

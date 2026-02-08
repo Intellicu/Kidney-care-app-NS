@@ -6,6 +6,8 @@ import { FloatingAssistant } from "../floating-assistant"
 import { TopHeaderBar } from "../top-header-bar"
 import { SettingsSidebar } from "../settings-sidebar"
 import { calculateAllMetrics, formatPercentile, getPercentileColor, getBPCategoryColor } from "@/lib/medical-calculations"
+import { analyzeRelapseStatus, generateAlerts } from "@/lib/relapse-detection"
+import { calculateComplianceMetrics } from "@/lib/compliance-tracking"
 import {
   HeartPulse,
   TestTube,
@@ -27,8 +29,13 @@ import {
   TrendingUp,
   Edit3,
   ChevronRight,
+  Stethoscope,
+  Target,
+  BarChart3,
 } from "lucide-react"
 import { AssistantAvatar } from "../assistant-avatar"
+import { AlertBanner } from "../alert-banner"
+import { RelapseStatusCard } from "../relapse-status-card"
 
 // Voice language mapping
 const voiceLanguageMap: Record<string, string> = {
@@ -48,7 +55,9 @@ export function DashboardScreen() {
     medications, 
     dailyCheckIns,
     healthData,
-    updatePatientProfile
+    updatePatientProfile,
+    urineTests,
+    symptomEntries,
   } = useApp()
   const t = getTranslations(language)
   const [isSpeaking, setIsSpeaking] = useState(false)
@@ -60,6 +69,12 @@ export function DashboardScreen() {
   const today = new Date().toISOString().split('T')[0]
   const todayCheckIn = dailyCheckIns.find(c => c.date === today)
   const hasDoneCheckInToday = todayCheckIn?.urineTestCompleted || todayCheckIn?.medicationCheckCompleted
+
+  // Relapse detection and alerts
+  const relapseStatus = analyzeRelapseStatus(urineTests)
+  const clinicalAlerts = generateAlerts(urineTests, symptomEntries, healthData, dailyCheckIns.length, 30)
+  const compliance = calculateComplianceMetrics(dailyCheckIns, urineTests, medications, 30)
+  const [dismissedAlerts, setDismissedAlerts] = useState<Set<string>>(new Set())
 
   // Get latest BP from health data
   const latestHealthData = healthData.length > 0 ? healthData[healthData.length - 1] : null
@@ -367,6 +382,27 @@ export function DashboardScreen() {
           </div>
         )}
 
+        {/* Clinical Alerts */}
+        {clinicalAlerts.length > 0 && (
+          <div className="px-5 mb-4">
+            <AlertBanner
+              alerts={clinicalAlerts.map(a => ({
+                ...a,
+                dismissed: dismissedAlerts.has(a.id),
+              }))}
+              language={language}
+              onDismiss={(id) => setDismissedAlerts(prev => new Set([...prev, id]))}
+            />
+          </div>
+        )}
+
+        {/* Relapse Status Card */}
+        {urineTests.length > 0 && (
+          <div className="px-5 mb-4">
+            <RelapseStatusCard relapseStatus={relapseStatus} language={language} />
+          </div>
+        )}
+
         {/* Weight Update Modal */}
         {showWeightUpdate && (
           <div className="fixed inset-0 bg-foreground/50 backdrop-blur-sm z-50 flex items-center justify-center p-5">
@@ -517,6 +553,41 @@ export function DashboardScreen() {
               </div>
               <p className="text-sm font-medium text-foreground text-center">
                 {language === "en" ? "Health Trend" : "स्वास्थ्य रुझान"}
+              </p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                if (isVoiceEnabled) speak(language === "en" ? "Compliance Tracker" : "अनुपालन ट्रैकर")
+                setCurrentScreen("compliance")
+              }}
+              className="bg-card rounded-xl p-4 border border-border flex flex-col items-center gap-3 hover:border-primary/30 active:scale-[0.98] transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center">
+                <Target className="w-6 h-6 text-blue-600" />
+              </div>
+              <p className="text-sm font-medium text-foreground text-center">
+                {language === "en" ? "Compliance" : "अनुपालन"}
+                {compliance.overallScore > 0 && (
+                  <span className="block text-xs text-muted-foreground">({compliance.overallScore}%)</span>
+                )}
+              </p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                if (isVoiceEnabled) speak(language === "en" ? "Clinician Dashboard" : "चिकित्सक डैशबोर्ड")
+                setCurrentScreen("clinician-dashboard")
+              }}
+              className="bg-card rounded-xl p-4 border border-border flex flex-col items-center gap-3 hover:border-primary/30 active:scale-[0.98] transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center">
+                <Stethoscope className="w-6 h-6 text-teal-600" />
+              </div>
+              <p className="text-sm font-medium text-foreground text-center">
+                {language === "en" ? "For Doctor" : "डॉक्टर के लिए"}
               </p>
             </button>
           </div>

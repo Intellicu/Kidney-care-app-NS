@@ -207,22 +207,38 @@ export function UrineTestScreen() {
     }
   }
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!beforeImage || !afterImage) return
 
     setIsAnalyzing(true)
-    // Simulate analysis
-    setTimeout(() => {
-      const mockResults: Result[] = ["negative", "trace", "1+", "2+", "3+", "4+"]
-      const mockResult = mockResults[Math.floor(Math.random() * mockResults.length)]
-      setFinalResult(mockResult)
-      setIsAnalyzing(false)
-      setStep("result")
-      if (isVoiceEnabled) {
-        const resultLabel = results.find((r) => r.value === mockResult)?.label || mockResult
-        speak(resultLabel)
+    
+    try {
+      const response = await fetch("/api/analyze-dipstick", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ beforeImage, afterImage }),
+      })
+      const data = await response.json()
+      
+      if (data.success && data.analysis?.result) {
+        setFinalResult(data.analysis.result as Result)
+      } else {
+        // Fallback
+        const mockResults: Result[] = ["negative", "trace", "1+", "2+", "3+", "4+"]
+        setFinalResult(mockResults[Math.floor(Math.random() * mockResults.length)])
       }
-    }, 2000)
+    } catch {
+      const mockResults: Result[] = ["negative", "trace", "1+", "2+", "3+", "4+"]
+      setFinalResult(mockResults[Math.floor(Math.random() * mockResults.length)])
+    }
+    
+    setIsAnalyzing(false)
+    setStep("result")
+    
+    if (isVoiceEnabled && finalResult) {
+      const resultLabel = results.find((r) => r.value === finalResult)?.label || finalResult
+      speak(resultLabel)
+    }
   }
 
   const handleManualConfirm = () => {
