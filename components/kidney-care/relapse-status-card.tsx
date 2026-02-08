@@ -94,8 +94,8 @@ export function RelapseStatusCard({
           <p className="text-[10px] text-muted-foreground leading-tight">
             {relapseStatus.status === "relapse"
               ? isEn
-                ? "Days 2+"
-                : "दिन 2+"
+                ? "Days 3+"
+                : "दिन 3+"
               : isEn
                 ? "Days Clear"
                 : "दिन स्वच्छ"}

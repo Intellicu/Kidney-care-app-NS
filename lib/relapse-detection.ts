@@ -1,13 +1,24 @@
 /**
  * Relapse / Remission Detection Engine
  * 
- * Based on ISPN (Indian Society of Pediatric Nephrology) guidelines:
- * - RELAPSE: Urine protein ≥ 2+ (or ≥ 100mg/dL) for 3 consecutive days
+ * Based on AIIMS / ISPN (Indian Society of Pediatric Nephrology) clinical protocols:
+ * - RELAPSE: Urine protein ≥ 3+ for 3 consecutive days
+ *   (AIIMS handbook: "proteinuria may continue at 3+ or 4+... such an episode
+ *    (relapse) will need treatment with prednisolone")
  * - REMISSION: Urine protein negative or trace for 3 consecutive days
+ *   (AIIMS handbook: "Once the urine shows nil or trace protein, the child
+ *    is said to have achieved remission")
+ * 
+ * NOTE: 1+ or 2+ for a few days is NOT a relapse — the AIIMS handbook states:
+ * "Urine may show 1+ or 2+ reaction for a few days and then gradually become
+ *  nil. No treatment is necessary for such a short spell of mild proteinuria."
  * 
  * Additional alert thresholds:
- * - WARNING: Urine protein ≥ 2+ for 2 consecutive days (early warning)
+ * - WARNING: Urine protein ≥ 3+ for 2 consecutive days (early warning)
+ * - WATCH: Urine protein at 2+ for 3+ days (may progress, not yet relapse)
  * - CLINICAL ALERT: Symptoms (edema, weight gain >2%) alongside rising protein
+ * - RED FLAGS (per strategic framework): Abdominal pain, cold extremities,
+ *   rapid breathing, exposure to chickenpox/measles while on steroids
  */
 
 import type { UrineTestResult, SymptomEntry, HealthData } from "./app-context"
@@ -71,11 +82,22 @@ function getSortedTests(tests: UrineTestResult[]): UrineTestResult[] {
 }
 
 /**
- * Check if a result is clinically positive (≥ 2+)
+ * Check if a result is clinically positive for relapse (≥ 3+)
+ * Per AIIMS protocol: only 3+ or 4+ triggers relapse concern.
+ * 1+ or 2+ is "mild proteinuria" and does NOT indicate relapse.
  */
 function isPositive(result: string | null | undefined): boolean {
   if (!result) return false
-  return (proteinSeverity[result] ?? 0) >= 3 // 2+ or higher
+  return (proteinSeverity[result] ?? 0) >= 4 // 3+ or higher (relapse threshold)
+}
+
+/**
+ * Check if a result is elevated but sub-relapse (2+)
+ * Per AIIMS: "1+ or 2+" is mild, no treatment needed, but worth monitoring
+ */
+function isElevated(result: string | null | undefined): boolean {
+  if (!result) return false
+  return (proteinSeverity[result] ?? 0) === 3 // exactly 2+
 }
 
 /**
@@ -253,7 +275,7 @@ export function generateAlerts(
   const relapseStatus = analyzeRelapseStatus(urineTests)
   const today = new Date().toISOString().split("T")[0]
 
-  // 1. RELAPSE DETECTED (Critical)
+  // 1. RELAPSE DETECTED (Critical) - ≥3+ for 3 consecutive days
   if (relapseStatus.consecutivePositiveDays >= 3) {
     alerts.push({
       id: `relapse-${today}`,
@@ -261,8 +283,8 @@ export function generateAlerts(
       severity: "critical",
       title: "Relapse Detected",
       titleHi: "रिलैप्स का पता चला",
-      message: `Protein has been 2+ or higher for ${relapseStatus.consecutivePositiveDays} consecutive days. Please contact your doctor immediately.`,
-      messageHi: `प्रोटीन लगातार ${relapseStatus.consecutivePositiveDays} दिनों से 2+ या अधिक है। कृपया तुरंत अपने डॉक्टर से संपर्क करें।`,
+      message: `Protein has been 3+ or higher for ${relapseStatus.consecutivePositiveDays} consecutive days. This is a relapse. Contact your doctor immediately to restart prednisolone treatment.`,
+      messageHi: `प्रोटीन लगातार ${relapseStatus.consecutivePositiveDays} दिनों से 3+ या अधिक है। यह एक रिलैप्स है। प्रेडनिसोलोन उपचार पुनः शुरू करने के लिए तुरंत अपने डॉक्टर से संपर्क करें।`,
       date: today,
       dismissed: false,
       actionRequired: true,
@@ -274,10 +296,8 @@ export function generateAlerts(
     })
   }
 
-  // 2. RELAPSE WARNING (Warning) - 2 consecutive positive days
-  if (
-    relapseStatus.consecutivePositiveDays === 2
-  ) {
+  // 2. RELAPSE WARNING (Warning) - ≥3+ for 2 consecutive days
+  if (relapseStatus.consecutivePositiveDays === 2) {
     alerts.push({
       id: `relapse-warning-${today}`,
       type: "relapse-warning",
@@ -285,9 +305,9 @@ export function generateAlerts(
       title: "Rising Protein Levels",
       titleHi: "प्रोटीन का स्तर बढ़ रहा है",
       message:
-        "Protein has been 2+ or higher for 2 days. If it continues tomorrow, this indicates a relapse. Monitor carefully.",
+        "Protein has been 3+ or higher for 2 consecutive days. If it continues tomorrow, this confirms a relapse. Monitor carefully and prepare to contact your doctor.",
       messageHi:
-        "प्रोटीन 2 दिनों से 2+ या अधिक है। अगर कल भी ऐसा रहा तो यह रिलैप्स है। ध्यान से निगरानी करें।",
+        "प्रोटीन 2 दिनों से 3+ या अधिक है। अगर कल भी ऐसा रहा तो यह रिलैप्स की पुष्टि है। ध्यान से निगरानी करें और डॉक्टर से संपर्क की तैयारी रखें।",
       date: today,
       dismissed: false,
       actionRequired: true,
@@ -295,6 +315,36 @@ export function generateAlerts(
       data: {
         consecutiveDays: 2,
       },
+    })
+  }
+
+  // 2b. ELEVATED WATCH (Info) - 2+ for 3+ days (mild, not relapse, but worth monitoring)
+  const sortedForElevated = [...urineTests].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+  )
+  let consecutiveElevated = 0
+  for (let i = sortedForElevated.length - 1; i >= 0; i--) {
+    if (isElevated(sortedForElevated[i].result)) {
+      consecutiveElevated++
+    } else {
+      break
+    }
+  }
+  if (consecutiveElevated >= 3) {
+    alerts.push({
+      id: `elevated-watch-${today}`,
+      type: "relapse-warning",
+      severity: "info",
+      title: "Mild Proteinuria (2+)",
+      titleHi: "हल्का प्रोटीनमेह (2+)",
+      message:
+        `Protein has been at 2+ for ${consecutiveElevated} days. This is mild proteinuria and not yet a relapse. However, if it rises to 3+ or higher, contact your doctor.`,
+      messageHi:
+        `प्रोटीन ${consecutiveElevated} दिनों से 2+ है। यह हल्का प्रोटीनमेह है और अभी रिलैप्स नहीं है। लेकिन अगर यह 3+ या अधिक हो जाए, तो डॉक्टर से संपर्क करें।`,
+      date: today,
+      dismissed: false,
+      actionRequired: false,
+      contactDoctor: false,
     })
   }
 
