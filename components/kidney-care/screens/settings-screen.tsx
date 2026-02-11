@@ -117,10 +117,10 @@ export function SettingsScreen() {
             </div>
             <div className="flex-1">
               <p className="font-semibold text-foreground">
-                {patientProfile.childName || (isEn ? "Patient" : "रोगी")}
+                {patientProfile.name || (isEn ? "Patient" : "रोगी")}
               </p>
               <p className="text-sm text-muted-foreground">
-                {patientProfile.parentName || (isEn ? "Parent/Guardian" : "माता-पिता/अभिभावक")}
+                {patientProfile.diagnosis || (isEn ? "Nephrotic Syndrome" : "नेफ्रोटिक सिंड्रोम")}
               </p>
             </div>
             <button

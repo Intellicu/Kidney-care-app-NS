@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react"
 import { useApp, getTranslations } from "@/lib/app-context"
 import { FloatingAssistant } from "../floating-assistant"
 import { TopHeaderBar } from "../top-header-bar"
+import { PullToRefresh } from "../pull-to-refresh"
 import { SettingsSidebar } from "../settings-sidebar"
 import { calculateAllMetrics, formatPercentile, getPercentileColor, getBPCategoryColor } from "@/lib/medical-calculations"
 import { analyzeRelapseStatus, generateAlerts } from "@/lib/relapse-detection"
@@ -58,6 +59,7 @@ export function DashboardScreen() {
     updatePatientProfile,
     urineTests,
     symptomEntries,
+    refreshData,
   } = useApp()
   const t = getTranslations(language)
   const [isSpeaking, setIsSpeaking] = useState(false)
@@ -238,9 +240,10 @@ export function DashboardScreen() {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/10">
-      {/* Top Header Bar */}
-      <TopHeaderBar onMenuClick={() => setShowSidebar(true)} />
+  <PullToRefresh onRefresh={refreshData} className="min-h-screen">
+  <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/10">
+  {/* Top Header Bar */}
+  <TopHeaderBar onMenuClick={() => setShowSidebar(true)} />
       
       {/* Settings Sidebar */}
       <SettingsSidebar isOpen={showSidebar} onClose={() => setShowSidebar(false)} />
@@ -691,5 +694,6 @@ export function DashboardScreen() {
       {/* Floating assistant */}
       <FloatingAssistant />
     </div>
+  </PullToRefresh>
   )
 }

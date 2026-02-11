@@ -1,6 +1,7 @@
 "use client"
 
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, useContext, useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
+import { createClient } from '@/lib/supabase/client'
 
 export type Language = 'en' | 'hi' | 'bn' | 'ta' | 'pa'
 
@@ -109,6 +110,10 @@ interface AppState {
   setIsVoiceEnabled: (val: boolean) => void
   showDailyCheckIn: boolean
   setShowDailyCheckIn: (val: boolean) => void
+  theme: 'light' | 'dark' | 'system'
+  setTheme: (theme: 'light' | 'dark' | 'system') => void
+  isLoaded: boolean
+  refreshData: () => Promise<void>
 }
 
 const translations = {
@@ -1110,90 +1115,212 @@ export function getTranslations(language: Language) {
 
 const AppContext = createContext<AppState | undefined>(undefined)
 
+const defaultProfile: PatientProfile = {
+  name: '',
+  dateOfBirth: '',
+  age: 0,
+  sex: '',
+  weight: 0,
+  height: 0,
+  diagnosis: '',
+  diagnosisDate: '',
+  doctorName: '',
+  hospitalName: '',
+  reminderTime: '08:00',
+}
+
 export function AppProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('en')
-  const [hasConsented, setHasConsented] = useState(false)
-  const [hasCompletedOnboarding, setHasCompletedOnboarding] = useState(false)
-  const [hasCompletedPatientProfile, setHasCompletedPatientProfile] = useState(false)
-  const [currentScreen, setCurrentScreen] = useState('language-selection')
+  const [language, setLanguageState] = useState<Language>('en')
+  const [hasConsented, setHasConsentedState] = useState(false)
+  const [hasCompletedOnboarding, setHasCompletedOnboardingState] = useState(false)
+  const [hasCompletedPatientProfile, setHasCompletedPatientProfileState] = useState(false)
+  const [currentScreen, setCurrentScreenState] = useState('language-selection')
   const [healthData, setHealthData] = useState<HealthData[]>([])
   const [medications, setMedications] = useState<Medication[]>([])
   const [symptomEntries, setSymptomEntries] = useState<SymptomEntry[]>([])
   const [urineTests, setUrineTests] = useState<UrineTestResult[]>([])
   const [dailyCheckIns, setDailyCheckIns] = useState<DailyCheckIn[]>([])
-  const [isVoiceEnabled, setIsVoiceEnabled] = useState(true)
+  const [isVoiceEnabled, setIsVoiceEnabledState] = useState(true)
   const [showDailyCheckIn, setShowDailyCheckIn] = useState(false)
-  
-  const [patientProfile, setPatientProfile] = useState<PatientProfile>({
-    name: '',
-    dateOfBirth: '',
-    age: 0,
-    sex: '',
-    weight: 0,
-    height: 0,
-    diagnosis: '',
-    diagnosisDate: '',
-    doctorName: '',
-    hospitalName: '',
-    reminderTime: '08:00',
-  })
+  const [theme, setThemeState] = useState<'light' | 'dark' | 'system'>('system')
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [patientProfile, setPatientProfileState] = useState<PatientProfile>(defaultProfile)
 
-  const updatePatientProfile = (updates: Partial<PatientProfile>) => {
-    setPatientProfile(prev => ({ ...prev, ...updates }))
-  }
+  // Debounce timer for Supabase sync
+  const syncTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hasMounted = useRef(false)
 
-  const addHealthData = (data: HealthData) => {
+  // Load state from Supabase on mount
+  useEffect(() => {
+    const loadState = async () => {
+      try {
+        const supabase = createClient()
+        const { data: { user } } = await supabase.auth.getUser()
+        if (user) {
+          const { data } = await supabase
+            .from('user_app_state')
+            .select('*')
+            .eq('id', user.id)
+            .single()
+          if (data) {
+            if (data.language) setLanguageState(data.language as Language)
+            if (data.has_consented) setHasConsentedState(data.has_consented)
+            if (data.has_completed_onboarding) setHasCompletedOnboardingState(data.has_completed_onboarding)
+            if (data.has_completed_patient_profile) setHasCompletedPatientProfileState(data.has_completed_patient_profile)
+            if (data.current_screen) setCurrentScreenState(data.current_screen)
+            if (data.patient_profile && typeof data.patient_profile === 'object') {
+              setPatientProfileState({ ...defaultProfile, ...data.patient_profile as Partial<PatientProfile> })
+            }
+            if (Array.isArray(data.health_data)) setHealthData(data.health_data as HealthData[])
+            if (Array.isArray(data.medications)) setMedications(data.medications as Medication[])
+            if (Array.isArray(data.symptom_entries)) setSymptomEntries(data.symptom_entries as SymptomEntry[])
+            if (Array.isArray(data.urine_tests)) setUrineTests(data.urine_tests as UrineTestResult[])
+            if (Array.isArray(data.daily_check_ins)) setDailyCheckIns(data.daily_check_ins as DailyCheckIn[])
+            if (typeof data.is_voice_enabled === 'boolean') setIsVoiceEnabledState(data.is_voice_enabled)
+            if (data.theme) setThemeState(data.theme as 'light' | 'dark' | 'system')
+          }
+        }
+      } catch {
+        // Guest mode or offline - continue with defaults
+      } finally {
+        setIsLoaded(true)
+        hasMounted.current = true
+      }
+    }
+    loadState()
+  }, [])
+
+  // Debounced save to Supabase whenever state changes
+  const saveToSupabase = useCallback(async () => {
+    try {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      await supabase.from('user_app_state').upsert({
+        id: user.id,
+        language,
+        has_consented: hasConsented,
+        has_completed_onboarding: hasCompletedOnboarding,
+        has_completed_patient_profile: hasCompletedPatientProfile,
+        current_screen: currentScreen,
+        patient_profile: patientProfile,
+        health_data: healthData,
+        medications,
+        symptom_entries: symptomEntries,
+        urine_tests: urineTests,
+        daily_check_ins: dailyCheckIns,
+        is_voice_enabled: isVoiceEnabled,
+        theme,
+        updated_at: new Date().toISOString(),
+      })
+    } catch {
+      // Offline or guest mode - silently skip
+    }
+  }, [language, hasConsented, hasCompletedOnboarding, hasCompletedPatientProfile,
+    currentScreen, patientProfile, healthData, medications, symptomEntries,
+    urineTests, dailyCheckIns, isVoiceEnabled, theme])
+
+  // Auto-save debounced after state changes
+  useEffect(() => {
+    if (!hasMounted.current) return
+    if (syncTimer.current) clearTimeout(syncTimer.current)
+    syncTimer.current = setTimeout(() => {
+      saveToSupabase()
+    }, 2000)
+    return () => {
+      if (syncTimer.current) clearTimeout(syncTimer.current)
+    }
+  }, [saveToSupabase])
+
+  // Wrapped setters that update state optimistically
+  const setLanguage = useCallback((lang: Language) => setLanguageState(lang), [])
+  const setHasConsented = useCallback((val: boolean) => setHasConsentedState(val), [])
+  const setHasCompletedOnboarding = useCallback((val: boolean) => setHasCompletedOnboardingState(val), [])
+  const setHasCompletedPatientProfile = useCallback((val: boolean) => setHasCompletedPatientProfileState(val), [])
+  const setCurrentScreen = useCallback((screen: string) => setCurrentScreenState(screen), [])
+  const setPatientProfile = useCallback((profile: PatientProfile) => setPatientProfileState(profile), [])
+  const setIsVoiceEnabled = useCallback((val: boolean) => setIsVoiceEnabledState(val), [])
+  const setTheme = useCallback((t: 'light' | 'dark' | 'system') => setThemeState(t), [])
+
+  const updatePatientProfile = useCallback((updates: Partial<PatientProfile>) => {
+    setPatientProfileState(prev => ({ ...prev, ...updates }))
+  }, [])
+
+  const addHealthData = useCallback((data: HealthData) => {
     setHealthData(prev => [...prev, data])
-  }
+  }, [])
 
-  const addMedication = (med: Medication) => {
+  const addMedication = useCallback((med: Medication) => {
     setMedications(prev => [...prev, med])
-  }
+  }, [])
 
-  const updateMedication = (id: string, updates: Partial<Medication>) => {
+  const updateMedication = useCallback((id: string, updates: Partial<Medication>) => {
     setMedications(prev => 
       prev.map(med => med.id === id ? { ...med, ...updates } : med)
     )
-  }
+  }, [])
 
-  const removeMedication = (id: string) => {
+  const removeMedication = useCallback((id: string) => {
     setMedications(prev => prev.filter(med => med.id !== id))
-  }
+  }, [])
 
-  const toggleMedicationTaken = (id: string) => {
+  const toggleMedicationTaken = useCallback((id: string) => {
     setMedications(prev =>
       prev.map(med => med.id === id ? { ...med, takenToday: !med.takenToday } : med)
     )
-  }
+  }, [])
 
-  const toggleMedicationTakenYesterday = (id: string) => {
+  const toggleMedicationTakenYesterday = useCallback((id: string) => {
     setMedications(prev =>
       prev.map(med => med.id === id ? { ...med, takenYesterday: !med.takenYesterday } : med)
     )
-  }
+  }, [])
 
-  const addSymptomEntry = (entry: SymptomEntry) => {
+  const addSymptomEntry = useCallback((entry: SymptomEntry) => {
     setSymptomEntries(prev => [...prev, entry])
-  }
+  }, [])
 
-  const addUrineTest = (test: UrineTestResult) => {
+  const addUrineTest = useCallback((test: UrineTestResult) => {
     setUrineTests(prev => [...prev, test])
-  }
+  }, [])
 
-  const addDailyCheckIn = (checkIn: DailyCheckIn) => {
+  const addDailyCheckIn = useCallback((checkIn: DailyCheckIn) => {
     setDailyCheckIns(prev => [...prev, checkIn])
-  }
+  }, [])
 
-  const updateDailyCheckIn = (date: string, updates: Partial<DailyCheckIn>) => {
+  const updateDailyCheckIn = useCallback((date: string, updates: Partial<DailyCheckIn>) => {
     setDailyCheckIns(prev =>
       prev.map(c => c.date === date ? { ...c, ...updates } : c)
     )
-  }
+  }, [])
 
-  const getTodayCheckIn = () => {
+  const getTodayCheckIn = useCallback(() => {
     const today = new Date().toISOString().split('T')[0]
     return dailyCheckIns.find(c => c.date === today)
-  }
+  }, [dailyCheckIns])
+
+  // Pull-to-refresh: re-fetch from Supabase
+  const refreshData = useCallback(async () => {
+    try {
+      const supabase = createClient()
+      const { data: { user } } = await supabase.auth.getUser()
+      if (!user) return
+      const { data } = await supabase
+        .from('user_app_state')
+        .select('*')
+        .eq('id', user.id)
+        .single()
+      if (data) {
+        if (Array.isArray(data.health_data)) setHealthData(data.health_data as HealthData[])
+        if (Array.isArray(data.medications)) setMedications(data.medications as Medication[])
+        if (Array.isArray(data.symptom_entries)) setSymptomEntries(data.symptom_entries as SymptomEntry[])
+        if (Array.isArray(data.urine_tests)) setUrineTests(data.urine_tests as UrineTestResult[])
+        if (Array.isArray(data.daily_check_ins)) setDailyCheckIns(data.daily_check_ins as DailyCheckIn[])
+      }
+    } catch {
+      // silently fail
+    }
+  }, [])
 
   return (
     <AppContext.Provider value={{
@@ -1231,6 +1358,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setIsVoiceEnabled,
       showDailyCheckIn,
       setShowDailyCheckIn,
+      theme,
+      setTheme,
+      isLoaded,
+      refreshData,
     }}>
       {children}
     </AppContext.Provider>

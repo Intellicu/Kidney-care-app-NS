@@ -6,6 +6,7 @@ import { Eye, EyeOff, Heart, Loader2, Mail, Lock, UserPlus, LogIn } from "lucide
 
 interface AuthScreenProps {
   onAuthSuccess: () => void
+  onGuestMode?: () => void
   language: string
 }
 
@@ -54,7 +55,7 @@ const t = {
   },
 }
 
-export function AuthScreen({ onAuthSuccess, language }: AuthScreenProps) {
+export function AuthScreen({ onAuthSuccess, onGuestMode, language }: AuthScreenProps) {
   const [mode, setMode] = useState<"login" | "signup">("login")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -231,7 +232,7 @@ export function AuthScreen({ onAuthSuccess, language }: AuthScreenProps) {
 
         <button
           type="button"
-          onClick={onAuthSuccess}
+          onClick={onGuestMode || onAuthSuccess}
           className="w-full h-12 rounded-xl border border-border bg-card text-foreground font-medium flex items-center justify-center gap-2 hover:bg-muted active:scale-[0.98] transition-all select-none"
         >
           {l.guestMode}

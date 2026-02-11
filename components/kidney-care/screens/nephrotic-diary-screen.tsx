@@ -8,6 +8,7 @@ import {
   XCircle, AlertCircle, Eye, Sparkles
 } from "lucide-react"
 import { TopHeaderBar } from "../top-header-bar"
+import { PullToRefresh } from "../pull-to-refresh"
 
 export function NephroticDiaryScreen() {
   const { 
@@ -19,6 +20,7 @@ export function NephroticDiaryScreen() {
     symptomEntries,
     dailyCheckIns,
     healthData,
+    refreshData,
   } = useApp()
   const t = getTranslations(language)
   
@@ -234,8 +236,9 @@ export function NephroticDiaryScreen() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
-      <TopHeaderBar showMenu={false} />
+  <PullToRefresh onRefresh={refreshData} className="min-h-screen">
+  <div className="min-h-screen flex flex-col bg-background">
+  <TopHeaderBar showMenu={false} />
       
       {/* Header */}
       <div className="px-5 py-4 border-b border-border">
@@ -541,5 +544,6 @@ export function NephroticDiaryScreen() {
         )}
       </div>
     </div>
+  </PullToRefresh>
   )
 }

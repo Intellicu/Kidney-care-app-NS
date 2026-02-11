@@ -47,7 +47,7 @@ const TAB_DEFAULT_SCREENS: Record<TabId, string> = {
 }
 
 function AppContent() {
-  const { currentScreen, setCurrentScreen } = useApp()
+  const { currentScreen, setCurrentScreen, isLoaded } = useApp()
   const [activeTab, setActiveTab] = useState<TabId>("home")
 
   // Per-tab history stacks for independent navigation
@@ -57,6 +57,15 @@ function AppContent() {
     assistant: ["education-hub"],
     settings: ["settings"],
   })
+
+  // Show spinner while loading saved state from Supabase
+  if (!isLoaded) {
+    return (
+      <main className="max-w-lg mx-auto bg-background min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      </main>
+    )
+  }
 
   const isOnboarding = ONBOARDING_SCREENS.has(currentScreen)
   const showBottomNav = !isOnboarding
@@ -103,6 +112,7 @@ function AppContent() {
     "education-hub": <EducationHubScreen />,
     "adherence-calendar": <AdherenceCalendarScreen />,
     settings: <SettingsScreen />,
+    auth: <AuthScreen onAuthSuccess={() => setCurrentScreen("dashboard")} onGuestMode={() => setCurrentScreen("dashboard")} language="en" />,
   }
 
   return (
@@ -191,8 +201,8 @@ export function KidneyCareApp() {
     return (
       <AuthScreen
         onAuthSuccess={() => {
-          // Re-check auth — if they actually logged in, user will be set via onAuthStateChange
-          // If guest mode, just set the flag
+          // Re-check auth — if they logged in, user will be set via onAuthStateChange
+          // If guest mode (no session), just set the guest flag
           const supabase = createClient()
           supabase.auth.getSession().then(({ data: { session } }) => {
             if (session?.user) {
@@ -200,8 +210,11 @@ export function KidneyCareApp() {
             } else {
               setIsGuest(true)
             }
+          }).catch(() => {
+            setIsGuest(true)
           })
         }}
+        onGuestMode={() => setIsGuest(true)}
         language="en"
       />
     )
