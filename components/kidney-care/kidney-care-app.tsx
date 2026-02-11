@@ -19,6 +19,9 @@ import { NephroticDiaryScreen } from "./screens/nephrotic-diary-screen"
 import { HealthTrendScreen } from "./screens/health-trend-screen"
 import { ComplianceScreen } from "./screens/compliance-screen"
 import { ClinicianDashboardScreen } from "./screens/clinician-dashboard-screen"
+import { PatientAnalyticsScreen } from "./screens/patient-analytics-screen"
+import { EducationHubScreen } from "./screens/education-hub-screen"
+import { AdherenceCalendarScreen } from "./screens/adherence-calendar-screen"
 
 function AppContent() {
   const { currentScreen } = useApp()
@@ -40,6 +43,9 @@ function AppContent() {
     "health-trend": <HealthTrendScreen />,
     "compliance": <ComplianceScreen />,
     "clinician-dashboard": <ClinicianDashboardScreen />,
+    "patient-analytics": <PatientAnalyticsScreen />,
+    "education-hub": <EducationHubScreen />,
+    "adherence-calendar": <AdherenceCalendarScreen />,
   }
 
   return (

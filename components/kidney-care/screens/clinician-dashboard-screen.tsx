@@ -526,7 +526,7 @@ export function ClinicianDashboardScreen() {
                   <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
                     <div className="flex-1 border-t-2 border-dashed border-red-300" />
                     <span className="text-red-500 font-medium">
-                      {isEn ? "Relapse threshold (2+)" : "रिलैप्स सीमा (2+)"}
+                      {isEn ? "Relapse threshold (3+)" : "रिलैप्स सीमा (3+)"}
                     </span>
                   </div>
                 </>

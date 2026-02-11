@@ -1,7 +1,7 @@
 "use client"
 
 import { useApp, getTranslations, type Language } from "@/lib/app-context"
-import { Globe, Volume2, VolumeX, Menu, X } from "lucide-react"
+import { Globe, Volume2, VolumeX, Menu, ChevronLeft } from "lucide-react"
 import { useState } from "react"
 
 const languages: { code: Language; label: string; nativeLabel: string }[] = [
@@ -15,9 +15,11 @@ const languages: { code: Language; label: string; nativeLabel: string }[] = [
 interface TopHeaderBarProps {
   onMenuClick?: () => void
   showMenu?: boolean
+  showBack?: boolean
+  onBack?: () => void
 }
 
-export function TopHeaderBar({ onMenuClick, showMenu = true }: TopHeaderBarProps) {
+export function TopHeaderBar({ onMenuClick, showMenu = true, showBack = false, onBack }: TopHeaderBarProps) {
   const { language, setLanguage, isVoiceEnabled, setIsVoiceEnabled } = useApp()
   const t = getTranslations(language)
   const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
@@ -35,8 +37,20 @@ export function TopHeaderBar({ onMenuClick, showMenu = true }: TopHeaderBarProps
     <>
       <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-sm border-b border-border px-4 py-3 safe-top">
         <div className="flex items-center justify-between gap-3">
+          {/* Back Button */}
+          {showBack && onBack && (
+            <button
+              type="button"
+              onClick={onBack}
+              className="w-11 h-11 rounded-xl bg-muted flex items-center justify-center text-foreground hover:bg-muted/80 active:scale-95 transition-all"
+              aria-label={t.back}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+          )}
+
           {/* Menu Button */}
-          {showMenu && (
+          {showMenu && !showBack && (
             <button
               type="button"
               onClick={onMenuClick}
@@ -46,6 +60,9 @@ export function TopHeaderBar({ onMenuClick, showMenu = true }: TopHeaderBarProps
               <Menu className="w-6 h-6" />
             </button>
           )}
+
+          {/* Spacer when neither menu nor back shown */}
+          {!showMenu && !showBack && <div className="w-11" />}
 
           {/* App Title */}
           <div className="flex-1 text-center">

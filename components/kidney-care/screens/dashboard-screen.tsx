@@ -590,6 +590,38 @@ export function DashboardScreen() {
                 {language === "en" ? "For Doctor" : "डॉक्टर के लिए"}
               </p>
             </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                if (isVoiceEnabled) speak(language === "en" ? "Health Analytics" : "स्वास्थ्य विश्लेषण")
+                setCurrentScreen("patient-analytics")
+              }}
+              className="bg-card rounded-xl p-4 border border-border flex flex-col items-center gap-3 hover:border-primary/30 active:scale-[0.98] transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center">
+                <BarChart3 className="w-6 h-6 text-purple-600" />
+              </div>
+              <p className="text-sm font-medium text-foreground text-center">
+                {language === "en" ? "Analytics" : "विश्लेषण"}
+              </p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                if (isVoiceEnabled) speak(language === "en" ? "Adherence Calendar" : "अनुपालन कैलेंडर")
+                setCurrentScreen("adherence-calendar")
+              }}
+              className="bg-card rounded-xl p-4 border border-border flex flex-col items-center gap-3 hover:border-primary/30 active:scale-[0.98] transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center">
+                <Calendar className="w-6 h-6 text-orange-600" />
+              </div>
+              <p className="text-sm font-medium text-foreground text-center">
+                {language === "en" ? "Calendar" : "कैलेंडर"}
+              </p>
+            </button>
           </div>
         </div>
 
@@ -617,7 +649,7 @@ export function DashboardScreen() {
             type="button"
             onClick={() => {
               if (isVoiceEnabled) speak(t.education)
-              setCurrentScreen("education")
+              setCurrentScreen("education-hub")
             }}
             className="w-full min-h-[72px] p-4 rounded-xl border border-border bg-card flex items-center gap-4 hover:border-primary/30 active:scale-[0.98] transition-all"
           >
