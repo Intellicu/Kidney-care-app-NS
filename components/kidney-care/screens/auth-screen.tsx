@@ -91,11 +91,15 @@ export function AuthScreen({ onAuthSuccess, onGuestMode, language }: AuthScreenP
 
     try {
       if (mode === "login") {
-        const { error: authError } = await supabase.auth.signInWithPassword({
+        const { data, error: authError } = await supabase.auth.signInWithPassword({
           email: email.trim(),
           password,
         })
         if (authError) throw authError
+        if (!data.session) throw new Error("No session returned after login")
+        // onAuthStateChange will pick up the session and set the user
+        // Small delay to let the listener fire before calling onAuthSuccess
+        await new Promise(resolve => setTimeout(resolve, 100))
         onAuthSuccess()
       } else {
         const { error: authError } = await supabase.auth.signUp({
@@ -103,7 +107,7 @@ export function AuthScreen({ onAuthSuccess, onGuestMode, language }: AuthScreenP
           password,
           options: {
             emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ||
-              `${window.location.origin}`,
+              `${window.location.origin}/auth/confirm`,
           },
         })
         if (authError) throw authError

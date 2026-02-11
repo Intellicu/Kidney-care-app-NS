@@ -58,19 +58,11 @@ function AppContent() {
     settings: ["settings"],
   })
 
-  // Show spinner while loading saved state from Supabase
-  if (!isLoaded) {
-    return (
-      <main className="max-w-lg mx-auto bg-background min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-      </main>
-    )
-  }
-
   const isOnboarding = ONBOARDING_SCREENS.has(currentScreen)
   const showBottomNav = !isOnboarding
 
   // Sync currentScreen changes into the active tab's history
+  // MUST be above any early return to satisfy Rules of Hooks
   useEffect(() => {
     if (isOnboarding) return
     const history = tabHistory.current[activeTab]
@@ -90,6 +82,16 @@ function AppContent() {
       setCurrentScreen(history[history.length - 1] || TAB_DEFAULT_SCREENS[tab])
     }
   }, [activeTab, setCurrentScreen])
+
+  // Show spinner while loading saved state from Supabase
+  // (placed after all hooks to satisfy Rules of Hooks)
+  if (!isLoaded) {
+    return (
+      <main className="max-w-lg mx-auto bg-background min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      </main>
+    )
+  }
 
   const screens: Record<string, React.ReactNode> = {
     "language-selection": <LanguageSelectionScreen />,
@@ -201,17 +203,13 @@ export function KidneyCareApp() {
     return (
       <AuthScreen
         onAuthSuccess={() => {
-          // Re-check auth — if they logged in, user will be set via onAuthStateChange
-          // If guest mode (no session), just set the guest flag
+          // After successful signInWithPassword, onAuthStateChange listener
+          // already sets `user` — force a re-check as a safety fallback
           const supabase = createClient()
-          supabase.auth.getSession().then(({ data: { session } }) => {
-            if (session?.user) {
-              setUser(session.user)
-            } else {
-              setIsGuest(true)
+          supabase.auth.getUser().then(({ data: { user: u } }) => {
+            if (u) {
+              setUser(u)
             }
-          }).catch(() => {
-            setIsGuest(true)
           })
         }}
         onGuestMode={() => setIsGuest(true)}
