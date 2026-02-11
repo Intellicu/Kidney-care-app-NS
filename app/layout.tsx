@@ -40,11 +40,15 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#4B7BF5',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f5f6fa' },
+    { media: '(prefers-color-scheme: dark)', color: '#1a1d2e' },
+  ],
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
+  viewportFit: 'cover',
 }
 
 export default function RootLayout({
@@ -54,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${nunito.className} font-sans antialiased min-h-screen`}>
+      <body className={`${nunito.className} font-sans antialiased min-h-screen bg-background text-foreground overscroll-none pt-[env(safe-area-inset-top)]`}>
         {children}
         <Analytics />
       </body>

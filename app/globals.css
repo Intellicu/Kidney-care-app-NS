@@ -171,3 +171,68 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
+
+/* ===== iOS / Mobile Native-like Enhancements ===== */
+
+/* Disable overscroll bounce on iOS */
+html,
+body {
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Disable text selection on interactive elements (buttons, nav, icons)
+   but keep it enabled for educational content and assistant messages */
+button,
+[role="tab"],
+[role="tablist"],
+nav,
+nav *,
+.select-none {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Ensure text selection works in content areas */
+.selectable-content,
+article,
+.education-content,
+.assistant-message,
+p.user-selectable {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* Disable tap highlight on iOS */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling for all scrollable containers */
+.overflow-y-auto,
+.overflow-y-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Fix iOS input zoom - ensure font size >= 16px on inputs */
+@supports (-webkit-touch-callout: none) {
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+}
+
+/* Bottom nav safe area helper */
+.pb-nav-safe {
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Standalone PWA styles */
+@media all and (display-mode: standalone) {
+  body {
+    overscroll-behavior-y: none;
+  }
+}
