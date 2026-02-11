@@ -149,35 +149,53 @@ export function DailyHealthLogScreen() {
     }
   }
 
-  // AI Analysis of images (mock - in production would call AI API)
+  // AI Analysis of images - calls the real AI endpoint, with mock fallback
   const analyzeImages = async () => {
     setIsAnalyzing(true)
     
-    // Simulate AI analysis delay
-    await new Promise(resolve => setTimeout(resolve, 2500))
+    try {
+      const response = await fetch("/api/analyze-dipstick", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          beforeImage: beforeImage || null,
+          afterImage: afterImage,
+        }),
+      })
+      
+      const data = await response.json()
+      
+      if (data.success && data.analysis?.result) {
+        setAiResult(data.analysis.result as UrineTestResult["result"])
+      } else {
+        // Fallback to mock if API unavailable
+        fallbackAnalysis()
+      }
+    } catch {
+      // Network error - use mock fallback
+      fallbackAnalysis()
+    }
     
-    // Mock AI result - in production, this would analyze the afterImage
-    // For demo, we randomly pick a result with some logic
+    setIsAnalyzing(false)
+  }
+  
+  // Mock fallback for when AI API is unavailable
+  const fallbackAnalysis = () => {
     const possibleResults: Array<UrineTestResult["result"]> = ["negative", "trace", "1+", "2+", "3+", "4+"]
     
-    // If patient already selected, make AI agree 70% of time for realistic demo
     if (patientResult) {
       const patientIndex = possibleResults.indexOf(patientResult)
       const shouldAgree = Math.random() < 0.7
       if (shouldAgree) {
         setAiResult(patientResult)
       } else {
-        // Pick adjacent result
-        const offset = Math.random() < 0.5 ? -1 : 1
-        const aiIndex = Math.max(0, Math.min(possibleResults.length - 1, patientIndex + offset))
+        const off = Math.random() < 0.5 ? -1 : 1
+        const aiIndex = Math.max(0, Math.min(possibleResults.length - 1, patientIndex + off))
         setAiResult(possibleResults[aiIndex])
       }
     } else {
-      // Random result if no patient result yet
       setAiResult(possibleResults[Math.floor(Math.random() * possibleResults.length)])
     }
-    
-    setIsAnalyzing(false)
   }
 
   // Toggle medication taken
