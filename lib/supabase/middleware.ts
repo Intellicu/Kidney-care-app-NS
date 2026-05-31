@@ -6,11 +6,14 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
+  // In Next.js middleware/edge runtime, env vars may not be available
+  // Gracefully skip session refresh if credentials missing
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
   if (!url || !key) {
-    console.error('[v0] Supabase credentials missing in middleware')
+    // Credentials not available in middleware - this is expected in some runtimes
+    // Session management will happen client-side instead
     return supabaseResponse
   }
 

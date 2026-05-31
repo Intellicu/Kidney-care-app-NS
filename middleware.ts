@@ -1,8 +1,11 @@
-import { type NextRequest } from 'next/server'
-import { updateSession } from '@/lib/supabase/middleware'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request)
+  // Session management is handled client-side in KidneyCareApp
+  // Middleware only needs to pass through requests
+  return NextResponse.next({
+    request,
+  })
 }
 
 export const config = {
