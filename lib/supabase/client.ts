@@ -23,7 +23,9 @@ export function createClient() {
   }
 
   try {
+    console.log('[v0] Creating Supabase client with URL:', url.substring(0, 50) + '...')
     clientInstance = createBrowserClient(url, key)
+    console.log('[v0] Supabase client created successfully')
     return clientInstance
   } catch (error) {
     console.error('[v0] Failed to create Supabase client', error)

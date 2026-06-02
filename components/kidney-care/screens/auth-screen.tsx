@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { createClient } from "@/lib/supabase/client"
 import { Eye, EyeOff, Heart, Loader2, Mail, Lock, UserPlus, LogIn } from "lucide-react"
 
 interface AuthScreenProps {
@@ -87,33 +86,39 @@ export function AuthScreen({ onAuthSuccess, onGuestMode, language }: AuthScreenP
     }
 
     setLoading(true)
-    const supabase = createClient()
-
+    
     try {
       if (mode === "login") {
-        const { data, error: authError } = await supabase.auth.signInWithPassword({
-          email: email.trim(),
-          password,
+        console.log("[v0] Attempting login with email:", email.trim())
+        const response = await fetch("/api/auth/sign-in", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email.trim(), password }),
         })
-        if (authError) throw authError
-        if (!data.session) throw new Error("No session returned after login")
-        // onAuthStateChange will pick up the session and set the user
-        // Small delay to let the listener fire before calling onAuthSuccess
+        
+        const data = await response.json()
+        if (!response.ok) throw new Error(data.error || "Login failed")
+        
+        console.log("[v0] Login successful, user:", data.user?.email)
+        // Wait for cookies to be set and session to be available
         await new Promise(resolve => setTimeout(resolve, 100))
         onAuthSuccess()
       } else {
-        const { error: authError } = await supabase.auth.signUp({
-          email: email.trim(),
-          password,
-          options: {
-            emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ||
-              `${window.location.origin}/auth/confirm`,
-          },
+        console.log("[v0] Attempting signup with email:", email.trim())
+        const response = await fetch("/api/auth/sign-up", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email.trim(), password }),
         })
-        if (authError) throw authError
+        
+        const data = await response.json()
+        if (!response.ok) throw new Error(data.error || "Signup failed")
+        
+        console.log("[v0] Signup successful, check email")
         setSuccess(l.signupSuccess)
       }
     } catch (err: unknown) {
+      console.error("[v0] Auth error:", err)
       const message = err instanceof Error ? err.message : "An error occurred"
       setError(message)
     } finally {
