@@ -1,12 +1,12 @@
 "use client"
 
 import { useApp, getTranslations, type Medication } from "@/lib/app-context"
-import { 
-  ChevronLeft, 
-  Volume2, 
-  Check, 
-  Plus, 
-  Pill, 
+import {
+  ChevronLeft,
+  Volume2,
+  Check,
+  Plus,
+  Pill,
   CheckCircle2,
   X,
   Mic,
@@ -66,10 +66,10 @@ const voiceLanguageMap: Record<string, string> = {
 }
 
 export function MedicationCheckScreen() {
-  const { 
-    language, 
-    setCurrentScreen, 
-    medications, 
+  const {
+    language,
+    setCurrentScreen,
+    medications,
     toggleMedicationTakenYesterday,
     addMedication,
     isVoiceEnabled,
@@ -85,7 +85,9 @@ export function MedicationCheckScreen() {
   const [isListening, setIsListening] = useState(false)
 
   const activeMedications = medications.filter(m => m.isActive)
-  const takenCount = activeMedications.filter(m => m.takenYesterday).length
+  const today = new Date().toISOString().split('T')[0]
+  const isTakenToday = (med: Medication) => med.takenDate === today && !!med.takenYesterday
+  const takenCount = activeMedications.filter(isTakenToday).length
 
   const speak = useCallback(
     (text: string) => {
@@ -106,7 +108,7 @@ export function MedicationCheckScreen() {
 
   useEffect(() => {
     if (isVoiceEnabled) {
-      const greeting = patientProfile.name 
+      const greeting = patientProfile.name
         ? `${patientProfile.name.split(' ')[0]}, ${t.didYouTakeMedicines}`
         : t.didYouTakeMedicines
       speak(greeting)
@@ -114,10 +116,10 @@ export function MedicationCheckScreen() {
   }, [])
 
   const handleToggleMedication = (id: string, name: string) => {
-    toggleMedicationTakenYesterday(id)
     const med = medications.find(m => m.id === id)
+    toggleMedicationTakenYesterday(id)
     if (isVoiceEnabled) {
-      if (med?.takenYesterday) {
+      if (med && isTakenToday(med)) {
         speak(language === "hi" ? `${name} हटाया गया` : `${name} unmarked`)
       } else {
         speak(language === "hi" ? `${name} लिया गया` : `${name} taken`)
@@ -136,6 +138,7 @@ export function MedicationCheckScreen() {
         startDate: new Date().toISOString().split("T")[0],
         takenToday: false,
         takenYesterday: true,
+        takenDate: today,
         isActive: true,
         isCustom: true,
       })
@@ -143,7 +146,7 @@ export function MedicationCheckScreen() {
       setNewMedDose("")
       setShowAddModal(false)
       if (isVoiceEnabled) {
-        speak(language === "hi" ? `${newMedName} जोड़ा गया` : `${newMedName} added`)
+        speak(language === "hi" ? `${newMedName} जोड़ा गया` : `${newMedName} added`)
       }
     }
   }
@@ -151,7 +154,7 @@ export function MedicationCheckScreen() {
   const startVoiceInput = useCallback((field: "name" | "dose") => {
     if (typeof window === "undefined") return
 
-    const SpeechRecognitionAPI = SpeechRecognition // Use SpeechRecognition directly
+    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition
 
     if (!SpeechRecognitionAPI) {
       alert("Voice input not supported in this browser")
@@ -274,7 +277,7 @@ export function MedicationCheckScreen() {
               onClick={() => handleToggleMedication(med.id, med.name)}
               className={cn(
                 "w-full flex items-center gap-4 p-5 rounded-2xl border-2 transition-all min-h-[88px]",
-                med.takenYesterday
+                isTakenToday(med)
                   ? "border-green-500 bg-green-50"
                   : "border-border bg-card hover:border-primary/50"
               )}
@@ -282,12 +285,12 @@ export function MedicationCheckScreen() {
               <div
                 className={cn(
                   "w-14 h-14 rounded-full flex items-center justify-center transition-all",
-                  med.takenYesterday
+                  isTakenToday(med)
                     ? "bg-green-500 text-white"
                     : "bg-muted text-muted-foreground"
                 )}
               >
-                {med.takenYesterday ? (
+                {isTakenToday(med) ? (
                   <Check className="w-8 h-8" />
                 ) : (
                   <Pill className="w-8 h-8" />

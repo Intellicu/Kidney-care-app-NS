@@ -70,7 +70,7 @@ export function FloatingAssistant({ className }: FloatingAssistantProps) {
         color: "text-orange-600 bg-orange-100",
         message: isEn
           ? "Protein has been 3+ for 2 days. If it continues tomorrow, this confirms a relapse. Prepare to contact your doctor."
-          : "प्रोटीन 2 दिनों से 3+ है। अगर कल भी ऐसा रहा तो रिलैप्स है। डॉक्टर से संपर्क की तैयारी रखें।",
+          : "प्रोटीन 2 दिनों से 3+ है। अगर कल भी एसा रहा तो रिलैप्स है। डॉक्टर से संपर्क की तैयारी रखें।",
         severity: "warning",
       })
     }
@@ -82,7 +82,7 @@ export function FloatingAssistant({ className }: FloatingAssistantProps) {
         color: "text-amber-600 bg-amber-100",
         message: isEn
           ? "You have missed several urine tests this week. Daily testing helps detect relapses early. Test every morning with first urine."
-          : "इस सप्ताह कई मूत्र परीक्षण छूट गए। दैनिक परीक्षण रिलैप्स जल्दी पकड़ने में मदद करता है। हर सुबह पहले मूत्र से परीक्षण करें।",
+          : "इस सप्ताह कई मूत्र परीक्षण छूट गए। दैनिक परीक्षण रिलैप्स जल्दी पकड़ने में मदद करता है। हर सुबह पहले मूत्र से परीक्षण करें।",
         severity: "info",
       })
     }
@@ -93,7 +93,7 @@ export function FloatingAssistant({ className }: FloatingAssistantProps) {
         color: "text-emerald-600 bg-emerald-100",
         message: isEn
           ? "Some medications were missed this week. Never stop steroids suddenly - this can cause a dangerous adrenal crisis. Set a daily reminder to stay on track."
-          : "इस सप्ताह कुछ दवाइयां छूट गईं। स्टेरॉयड कभी अचानक बंद न करें। ट्रैक पर रहने के लिए दैनिक रिमाइंडर सेट करें।",
+          : "इस सप्ताह कुछ दवाइंआं छूट गईं। स्टेरॉयड कभी अचानक बंद न करें। ट्रैक पर रहने के लिए दैनिक रिमाइंडर सेट करें।",
         severity: "warning",
       })
     }
@@ -114,7 +114,7 @@ export function FloatingAssistant({ className }: FloatingAssistantProps) {
           color: "text-orange-600 bg-orange-100",
           message: isEn
             ? `Weight has increased by ${gain.toFixed(1)} kg recently. Rapid weight gain with swelling may indicate a relapse. Monitor closely and restrict salt intake.`
-            : `हाल ही में वजन ${gain.toFixed(1)} किलो बढ़ा है। सूजन के साथ तेज वजन बढ़ना रिलैप्स का संकेत हो सकता है। नमक कम करें।`,
+            : `हाल ही में वजन ${gain.toFixed(1)} किलो बढ़ा है। सूजन के साथ तेज वजन बढ़ना रिलैप्स का संकेत हो सकता है। नमक कम करें।`,
           severity: "warning",
         })
       }
@@ -177,7 +177,7 @@ export function FloatingAssistant({ className }: FloatingAssistantProps) {
         color: "text-primary bg-primary/10",
         message: isEn
           ? "Everything looks stable! Remember to test urine every morning with first morning sample, and take all prescribed medications on time."
-          : "सब कुछ स्थिर दिखता है! हर सुबह पहले मूत्र नमूने से परीक्षण करना और सभी निर्धारित दवाइयां समय पर लेना याद रखें।",
+          : "सब कुछ स्थिर दिखता है! हर सुबह पहले मूत्र नमूने से परीक्षण करना और सभी निर्धारित दवाइंआं समय पर लेना याद रखें।",
         severity: "info",
       })
     }
@@ -225,13 +225,22 @@ export function FloatingAssistant({ className }: FloatingAssistantProps) {
       case "help":
         message = isEn
           ? "I am here to help you. This app helps you track your kidney health. You can check how you feel, do urine tests, track your medicines, and learn about kidney care."
-          : "मैं आपकी मदद के लिए यहाँ हूं। यह ऐप आपकी किडनी स्वास्थ्य को ट्रैक करने में मदद करता है।"
+          : "मैं आपकी मदद के लिए यहाँ हूं। यह एप आपकी किडनी स्वास्थ्य को ट्रैक करने में मदद करता है।"
         break
       case "call":
-        message = isEn
-          ? "Calling your doctor. Please wait."
-          : "आपके डॉक्टर को कॉल कर रहा है। कृपया प्रतीक्षा करें।"
-        break
+        if (patientProfile.doctorPhone) {
+          speak(isEn ? "Calling your doctor now." : "डॉक्टर को कॉल कर रहे हैं।")
+          setIsOpen(false)
+          window.location.href = `tel:${patientProfile.doctorPhone}`
+        } else {
+          speak(
+            isEn
+              ? "No doctor phone number saved. Please add it in Settings."
+              : "डॉक्टर का नंबर नहीं मिला। कृपया सेटिंग्स में जोड़ें।"
+          )
+          setIsOpen(false)
+        }
+        return
       case "insights":
         setActiveView("insights")
         if (insights.length > 0) {
