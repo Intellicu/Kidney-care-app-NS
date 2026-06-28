@@ -47,6 +47,7 @@ const TAB_DEFAULT_SCREENS: Record<TabId, string> = {
 }
 
 function AppContent() {
+  // All hooks must be called at the top, before any conditional logic
   const { currentScreen, setCurrentScreen, isLoaded, language } = useApp()
   const [activeTab, setActiveTab] = useState<TabId>("home")
   const [isOnline, setIsOnline] = useState(
@@ -72,26 +73,15 @@ function AppContent() {
     settings: ["settings"],
   })
 
-  // Show spinner while loading saved state from Supabase
-  if (!isLoaded) {
-    return (
-      <main className="max-w-lg mx-auto bg-background min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-      </main>
-    )
-  }
-
-  const isOnboarding = ONBOARDING_SCREENS.has(currentScreen)
-  const showBottomNav = !isOnboarding
-
   // Sync currentScreen changes into the active tab's history
   useEffect(() => {
-    if (isOnboarding) return
-    const history = tabHistory.current[activeTab]
-    if (history[history.length - 1] !== currentScreen) {
-      history.push(currentScreen)
+    if (!ONBOARDING_SCREENS.has(currentScreen)) {
+      const history = tabHistory.current[activeTab]
+      if (history[history.length - 1] !== currentScreen) {
+        history.push(currentScreen)
+      }
     }
-  }, [currentScreen, activeTab, isOnboarding])
+  }, [currentScreen, activeTab])
 
   const handleTabChange = useCallback((tab: TabId) => {
     if (tab === activeTab) {
@@ -104,6 +94,18 @@ function AppContent() {
       setCurrentScreen(history[history.length - 1] || TAB_DEFAULT_SCREENS[tab])
     }
   }, [activeTab, setCurrentScreen])
+
+  // Show spinner while loading saved state from Supabase
+  if (!isLoaded) {
+    return (
+      <main className="max-w-lg mx-auto bg-background min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+      </main>
+    )
+  }
+
+  const isOnboarding = ONBOARDING_SCREENS.has(currentScreen)
+  const showBottomNav = !isOnboarding
 
   const screens: Record<string, React.ReactNode> = {
     "language-selection": <LanguageSelectionScreen />,
