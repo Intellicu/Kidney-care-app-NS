@@ -79,6 +79,8 @@ export function UrineTestScreen() {
   const [afterImage, setAfterImage] = useState("")
   const [selectedResult, setSelectedResult] = useState<Result | null>(null)
   const [finalResult, setFinalResult] = useState<Result | null>(null)
+  const [aiConfidence, setAiConfidence] = useState<number | null>(null)
+  const [analysisError, setAnalysisError] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [timer, setTimer] = useState(0)
@@ -211,7 +213,8 @@ export function UrineTestScreen() {
     if (!beforeImage || !afterImage) return
 
     setIsAnalyzing(true)
-    
+    setAnalysisError(false)
+
     try {
       const response = await fetch("/api/analyze-dipstick", {
         method: "POST",
@@ -219,48 +222,52 @@ export function UrineTestScreen() {
         body: JSON.stringify({ beforeImage, afterImage }),
       })
       const data = await response.json()
-      
+
       if (data.success && data.analysis?.result) {
-        setFinalResult(data.analysis.result as Result)
+        const aiResult = data.analysis.result as Result
+        setFinalResult(aiResult)
+        setAiConfidence(typeof data.analysis.confidence === "number" ? data.analysis.confidence : null)
+        setIsAnalyzing(false)
+        setStep("result")
+        if (isVoiceEnabled) {
+          const resultLabel = results.find((r) => r.value === aiResult)?.label || aiResult
+          speak(resultLabel)
+        }
       } else {
-        // Fallback
-        const mockResults: Result[] = ["negative", "trace", "1+", "2+", "3+", "4+"]
-        setFinalResult(mockResults[Math.floor(Math.random() * mockResults.length)])
+        setAnalysisError(true)
+        setIsAnalyzing(false)
+        setStep("manual-result")
       }
     } catch {
-      const mockResults: Result[] = ["negative", "trace", "1+", "2+", "3+", "4+"]
-      setFinalResult(mockResults[Math.floor(Math.random() * mockResults.length)])
-    }
-    
-    setIsAnalyzing(false)
-    setStep("result")
-    
-    if (isVoiceEnabled && finalResult) {
-      const resultLabel = results.find((r) => r.value === finalResult)?.label || finalResult
-      speak(resultLabel)
+      setAnalysisError(true)
+      setIsAnalyzing(false)
+      setStep("manual-result")
     }
   }
 
   const handleManualConfirm = () => {
     if (!selectedResult) return
     setFinalResult(selectedResult)
+    setAiConfidence(null)
     setStep("result")
   }
 
   const handleSave = () => {
     if (!finalResult) return
 
+    const usedAI = !!afterImage && aiConfidence !== null
     const testEntry: UrineTestResult = {
       id: Date.now().toString(),
       date: new Date().toISOString(),
-      beforeImage,
-      afterImage,
+      beforeImage: beforeImage || undefined,
+      afterImage: afterImage || undefined,
+      patientResult: usedAI ? null : finalResult,
+      aiResult: usedAI ? finalResult : null,
       result: finalResult,
-      manualResult: !beforeImage && !afterImage,
+      manualResult: !usedAI,
     }
     addUrineTest(testEntry)
-    
-    // Go to medication check after saving
+
     setShowDailyCheckIn(true)
     setCurrentScreen("medication-check")
   }
@@ -273,6 +280,7 @@ export function UrineTestScreen() {
         setCurrentScreen("dashboard")
       }
     } else if (step === "manual-result") {
+      setAnalysisError(false)
       setStep("instructions")
     } else if (step === "capture") {
       setStep("manual-result")
@@ -387,7 +395,19 @@ export function UrineTestScreen() {
 
   const renderManualResult = () => (
     <div className="flex-1 flex flex-col">
-      <div className="text-center mb-6">
+      {/* AI error banner */}
+      {analysisError && (
+        <div className="mx-4 mt-2 mb-2 p-4 rounded-xl bg-amber-50 border-2 border-amber-300 flex items-start gap-3">
+          <AlertCircle className="w-6 h-6 text-amber-600 flex-shrink-0 mt-0.5" />
+          <p className="text-base text-amber-800">
+            {language === "hi"
+              ? "AI पट्टी नहीं पढ़ सका। कृपया परिणाम स्वयं दर्ज करें।"
+              : "AI could not read the strip. Please enter the result manually."}
+          </p>
+        </div>
+      )}
+
+      <div className="text-center mb-6 px-4">
         <h2 className="text-2xl font-bold text-foreground mb-2">{t.selectResult}</h2>
         <p className="text-lg text-muted-foreground">{t.whatColorDoYouSee}</p>
       </div>
@@ -547,7 +567,7 @@ export function UrineTestScreen() {
         {/* Result Card */}
         <div
           className={cn(
-            "w-full p-8 rounded-3xl border-4 mb-6",
+            "w-full p-8 rounded-3xl border-4 mb-4",
             colors.border,
             colors.bg
           )}
@@ -559,6 +579,50 @@ export function UrineTestScreen() {
             {resultInfo?.label}
           </p>
         </div>
+
+        {/* AI Confidence Indicator */}
+        {aiConfidence !== null && (
+          <div className="bg-card border border-border rounded-2xl p-4 mb-4 w-full">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-medium text-muted-foreground">
+                {language === "hi" ? "AI विश्वास स्तर" : "AI Confidence"}
+              </p>
+              <span
+                className={cn(
+                  "text-sm font-bold",
+                  aiConfidence >= 0.7
+                    ? "text-emerald-600"
+                    : aiConfidence >= 0.5
+                    ? "text-amber-600"
+                    : "text-red-600"
+                )}
+              >
+                {Math.round(aiConfidence * 100)}%
+              </span>
+            </div>
+            <div className="w-full bg-muted rounded-full h-2 mb-2">
+              <div
+                className={cn(
+                  "h-2 rounded-full transition-all",
+                  aiConfidence >= 0.7
+                    ? "bg-emerald-500"
+                    : aiConfidence >= 0.5
+                    ? "bg-amber-500"
+                    : "bg-red-500"
+                )}
+                style={{ width: `${Math.round(aiConfidence * 100)}%` }}
+              />
+            </div>
+            {aiConfidence < 0.6 && (
+              <p className="text-xs text-amber-700 flex items-center gap-1">
+                <AlertCircle className="w-3.5 h-3.5" />
+                {language === "hi"
+                  ? "कम विश्वास — कृपया इस परिणाम को मैन्युअल रूप से सत्यापित करें"
+                  : "Low confidence — please verify this result manually"}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Explanation */}
         <div className="bg-card border border-border rounded-2xl p-6 mb-8 w-full">
