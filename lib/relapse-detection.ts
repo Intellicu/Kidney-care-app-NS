@@ -109,7 +109,9 @@ function isNegativeOrTrace(result: string | null | undefined): boolean {
 }
 
 /**
- * Get consecutive days count for a condition from most recent tests
+ * Get consecutive days count for a condition from most recent tests.
+ * A gap of >1 calendar day between adjacent tests breaks the streak —
+ * a missed test day is not counted as continuation.
  */
 function getConsecutiveDays(
   tests: UrineTestResult[],
@@ -118,14 +120,21 @@ function getConsecutiveDays(
   const sorted = getSortedTests(tests)
   let count = 0
 
-  // Work backwards from most recent
   for (let i = sorted.length - 1; i >= 0; i--) {
     const result = sorted[i].result
-    if (conditionFn(result)) {
-      count++
-    } else {
-      break
+    if (!conditionFn(result)) break
+
+    // Check for a date gap between this test and the next-newer one
+    if (i < sorted.length - 1) {
+      const currDate = new Date(sorted[i].date)
+      const newerDate = new Date(sorted[i + 1].date)
+      const dayGap = Math.round(
+        (newerDate.getTime() - currDate.getTime()) / (1000 * 60 * 60 * 24)
+      )
+      if (dayGap > 1) break // missed test day — streak resets
     }
+
+    count++
   }
 
   return count
@@ -148,7 +157,22 @@ function countRelapses(tests: UrineTestResult[]): {
   let consecutiveNegative = 0
   let inRemission = false
 
-  for (const test of sorted) {
+  for (let i = 0; i < sorted.length; i++) {
+    const test = sorted[i]
+
+    // A gap of >1 day between adjacent tests resets both streaks
+    if (i > 0) {
+      const prevDate = new Date(sorted[i - 1].date)
+      const currDate = new Date(test.date)
+      const dayGap = Math.round(
+        (currDate.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24)
+      )
+      if (dayGap > 1) {
+        consecutivePositive = 0
+        consecutiveNegative = 0
+      }
+    }
+
     if (isPositive(test.result)) {
       consecutivePositive++
       consecutiveNegative = 0
