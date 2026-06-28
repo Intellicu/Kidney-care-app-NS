@@ -25,6 +25,7 @@ import {
   Camera,
   Clock,
   Bell,
+  Phone,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -80,9 +81,10 @@ type OnboardingStep =
   | "sex"
   | "diagnosis"
   | "medications"
+  | "doctor"
   | "reminder"
 
-const TOTAL_STEPS = 9
+const TOTAL_STEPS = 10
 
 const voiceLanguageMap: Record<string, string> = {
   en: "en-IN",
@@ -228,6 +230,7 @@ export function PatientOnboardingScreen() {
     "sex",
     "diagnosis",
     "medications",
+    "doctor",
     "reminder",
   ]
 
@@ -279,6 +282,10 @@ export function PatientOnboardingScreen() {
         return `${t.whatIsYourDiagnosis}. ${t.selectNSType}`
       case "medications":
         return `${t.medicationManagement}. ${t.manageYourMedications}`
+      case "doctor":
+        return language === "hi"
+          ? "अपने डॉक्टर का नाम और फोन नंबर दर्ज करें"
+          : "Enter your doctor's name and phone number for the Call Doctor feature"
       case "reminder":
         return `${t.setDailyReminder}. ${t.whenToRemind}`
       default:
@@ -296,7 +303,7 @@ export function PatientOnboardingScreen() {
   }, [currentStep, isVoiceEnabled, speak, getStepInstruction])
 
   const startVoiceInput = useCallback(
-    (field: "name" | "weight" | "height" | "dose" | "medName" | "customFreq") => {
+    (field: "name" | "weight" | "height" | "dose" | "medName" | "customFreq" | "doctorName" | "doctorPhone") => {
       if (typeof window === "undefined") return
 
       const SpeechRecognitionAPI =
@@ -333,6 +340,10 @@ export function PatientOnboardingScreen() {
           setCustomMedName(result)
         } else if (field === "customFreq") {
           setCustomFrequency(result)
+        } else if (field === "doctorName") {
+          updatePatientProfile({ doctorName: result })
+        } else if (field === "doctorPhone") {
+          updatePatientProfile({ doctorPhone: result.replace(/[^\d+\-\s]/g, "") })
         }
       }
 
@@ -875,6 +886,81 @@ export function PatientOnboardingScreen() {
               <Plus className="w-6 h-6" />
               {t.addMedication}
             </button>
+          </div>
+        )
+
+      case "doctor":
+        return (
+          <div className="flex-1 flex flex-col items-center px-6 py-6">
+            <StepIcon
+              icon={<Phone className="w-full h-full" />}
+              color="text-sky-500"
+              bgColor="bg-sky-50"
+              pulse={isSpeaking}
+            />
+            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+              {language === "hi" ? "डॉक्टर की जानकारी" : "Doctor Details"}
+            </h1>
+            <p className="text-xl text-muted-foreground text-center mb-4">
+              {language === "hi"
+                ? "कॉल डॉक्टर बटन के लिए जरूरी"
+                : "Required for the Call Doctor button"}
+            </p>
+            <ListenButton
+              label={t.listen}
+              onClick={() => speak(getStepInstruction())}
+              isPlaying={isSpeaking}
+            />
+            <div className="w-full mt-6 space-y-4">
+              {/* Doctor Name */}
+              <div>
+                <label className="text-lg font-semibold text-foreground mb-2 block">
+                  {language === "hi" ? "डॉक्टर का नाम" : "Doctor's Name"}
+                </label>
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    value={patientProfile.doctorName}
+                    onChange={(e) => updatePatientProfile({ doctorName: e.target.value })}
+                    placeholder={language === "hi" ? "डॉक्टर का नाम लिखें..." : "Dr. Sharma..."}
+                    className="flex-1 min-h-[64px] px-6 py-4 text-xl border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
+                  />
+                  <VoiceMicButton
+                    isListening={isListening}
+                    onToggle={isListening ? stopVoiceInput : () => startVoiceInput("doctorName")}
+                  />
+                </div>
+              </div>
+
+              {/* Doctor Phone */}
+              <div>
+                <label className="text-lg font-semibold text-foreground mb-2 block">
+                  {language === "hi" ? "डॉक्टर का फोन नंबर" : "Doctor's Phone Number"}
+                </label>
+                <div className="flex gap-3">
+                  <input
+                    type="tel"
+                    value={patientProfile.doctorPhone}
+                    onChange={(e) => updatePatientProfile({ doctorPhone: e.target.value })}
+                    placeholder="+91 98765 43210"
+                    className="flex-1 min-h-[64px] px-6 py-4 text-xl border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
+                  />
+                  <VoiceMicButton
+                    isListening={isListening}
+                    onToggle={isListening ? stopVoiceInput : () => startVoiceInput("doctorPhone")}
+                  />
+                </div>
+              </div>
+
+              {patientProfile.doctorPhone && (
+                <div className="p-4 bg-sky-50 rounded-xl flex items-center gap-3">
+                  <Check className="w-6 h-6 text-sky-600" />
+                  <span className="text-lg text-sky-800 font-medium">
+                    {patientProfile.doctorPhone}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
         )
 
