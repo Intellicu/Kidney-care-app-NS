@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useRef, useCallback, useEffect } from "react"
 import { useApp, getTranslations } from "@/lib/app-context"
 import { analyzeRelapseStatus, generateAlerts, getStatusSummary } from "@/lib/relapse-detection"
 import { calculateComplianceMetrics, getGradeInfo } from "@/lib/compliance-tracking"
@@ -29,6 +29,7 @@ import {
   Target,
   BarChart3,
   Stethoscope,
+  Delete,
 } from "lucide-react"
 
 export function ClinicianDashboardScreen() {
@@ -46,6 +47,170 @@ export function ClinicianDashboardScreen() {
   const [activeTab, setActiveTab] = useState<"overview" | "labs" | "meds" | "timeline">("overview")
 
   const isEn = language === "en" || !["hi", "bn", "ta", "pa"].includes(language)
+
+  // PIN gate state
+  const [pinState, setPinState] = useState<'loading' | 'create' | 'confirm' | 'enter' | 'unlocked'>('loading')
+  const [pinInput, setPinInput] = useState('')
+  const [pinConfirm, setPinConfirm] = useState('')
+  const [pinError, setPinError] = useState('')
+  const lockTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const stored = typeof window !== 'undefined' ? localStorage.getItem('clinicianPin') : null
+    setPinState(stored ? 'enter' : 'create')
+  }, [])
+
+  const resetLockTimer = useCallback(() => {
+    if (lockTimerRef.current) clearTimeout(lockTimerRef.current)
+    lockTimerRef.current = setTimeout(() => {
+      setPinState('enter')
+      setPinInput('')
+      setPinError('')
+    }, 30000)
+  }, [])
+
+  useEffect(() => {
+    if (pinState === 'unlocked') resetLockTimer()
+    return () => { if (lockTimerRef.current) clearTimeout(lockTimerRef.current) }
+  }, [pinState, resetLockTimer])
+
+  const handlePinKey = useCallback((key: string) => {
+    if (key === 'back') {
+      setPinInput(prev => prev.slice(0, -1))
+      setPinError('')
+      return
+    }
+
+    const next = pinInput + key
+
+    if (pinState === 'create') {
+      setPinInput(next)
+      if (next.length === 4) {
+        setPinConfirm(next)
+        setPinInput('')
+        setPinError('')
+        setPinState('confirm')
+      }
+    } else if (pinState === 'confirm') {
+      setPinInput(next)
+      if (next.length === 4) {
+        if (next === pinConfirm) {
+          localStorage.setItem('clinicianPin', next)
+          setPinInput('')
+          setPinError('')
+          setPinState('unlocked')
+        } else {
+          setPinInput('')
+          setPinError(isEn ? 'PINs do not match. Try again.' : 'PIN मेल नहीं खाता। पुनः प्रयास करें।')
+          setPinState('create')
+          setPinConfirm('')
+        }
+      }
+    } else if (pinState === 'enter') {
+      setPinInput(next)
+      if (next.length === 4) {
+        const stored = localStorage.getItem('clinicianPin')
+        if (next === stored) {
+          setPinInput('')
+          setPinError('')
+          setPinState('unlocked')
+        } else {
+          setPinInput('')
+          setPinError(isEn ? 'Incorrect PIN. Please try again.' : 'गलत PIN। पुनः प्रयास करें।')
+        }
+      }
+    }
+  }, [pinInput, pinState, pinConfirm, isEn])
+
+  const renderPinGate = () => {
+    const title =
+      pinState === 'create'
+        ? (isEn ? 'Set Clinician PIN' : 'क्लीनिशियन PIN सेट करें')
+        : pinState === 'confirm'
+        ? (isEn ? 'Confirm PIN' : 'PIN की पुष्टि करें')
+        : (isEn ? 'Enter PIN' : 'PIN दर्ज करें')
+
+    const subtitle =
+      pinState === 'create'
+        ? (isEn ? 'Choose a 4-digit PIN to protect this dashboard' : 'डैशबोर्ड सुरक्षित करने के लिए 4-अंकीय PIN चुनें')
+        : pinState === 'confirm'
+        ? (isEn ? 'Enter the same PIN again to confirm' : 'पुष्टि के लिए वही PIN दोबारा दर्ज करें')
+        : (isEn ? 'Enter your PIN to access the dashboard' : 'डैशबोर्ड एक्सेस करने के लिए PIN दर्ज करें')
+
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-background px-6">
+        <div className="w-full max-w-xs">
+          {/* Back button */}
+          <button
+            type="button"
+            onClick={() => setCurrentScreen("dashboard")}
+            className="mb-8 w-10 h-10 rounded-xl bg-muted flex items-center justify-center"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* Icon + Title */}
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
+              <Stethoscope className="w-8 h-8 text-primary" />
+            </div>
+            <h1 className="text-2xl font-bold text-foreground">{title}</h1>
+            <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>
+          </div>
+
+          {/* PIN dots */}
+          <div className="flex justify-center gap-4 mb-6">
+            {[0, 1, 2, 3].map(i => (
+              <div
+                key={i}
+                className={`w-4 h-4 rounded-full transition-all ${
+                  i < pinInput.length ? 'bg-primary' : 'bg-muted border-2 border-border'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Error */}
+          {pinError && (
+            <p className="text-sm text-red-600 text-center mb-4">{pinError}</p>
+          )}
+
+          {/* Keypad */}
+          <div className="grid grid-cols-3 gap-3">
+            {['1','2','3','4','5','6','7','8','9'].map(k => (
+              <button
+                key={k}
+                type="button"
+                onClick={() => handlePinKey(k)}
+                style={{ width: '72px', height: '72px' }}
+                className="mx-auto rounded-2xl bg-card border border-border flex items-center justify-center text-2xl font-bold text-foreground active:bg-muted transition-colors"
+              >
+                {k}
+              </button>
+            ))}
+            {/* Bottom row: empty, 0, backspace */}
+            <div style={{ width: '72px', height: '72px' }} className="mx-auto" />
+            <button
+              type="button"
+              onClick={() => handlePinKey('0')}
+              style={{ width: '72px', height: '72px' }}
+              className="mx-auto rounded-2xl bg-card border border-border flex items-center justify-center text-2xl font-bold text-foreground active:bg-muted transition-colors"
+            >
+              0
+            </button>
+            <button
+              type="button"
+              onClick={() => handlePinKey('back')}
+              style={{ width: '72px', height: '72px' }}
+              className="mx-auto rounded-2xl bg-muted flex items-center justify-center active:bg-border transition-colors"
+            >
+              <Delete className="w-6 h-6 text-foreground" />
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   // Calculate all clinical data
   const relapseStatus = useMemo(() => analyzeRelapseStatus(urineTests), [urineTests])
@@ -176,8 +341,16 @@ export function ClinicianDashboardScreen() {
   }
   const TrendIcon = trendIcons[relapseStatus.trend]
 
+  // PIN gate early returns
+  if (pinState === 'loading') {
+    return <div className="min-h-screen flex items-center justify-center bg-background" />
+  }
+  if (pinState !== 'unlocked') {
+    return renderPinGate()
+  }
+
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-background" onPointerDown={resetLockTimer}>
       <TopHeaderBar showMenu={false} />
 
       {/* Header */}
@@ -704,7 +877,7 @@ export function ClinicianDashboardScreen() {
                 const symptoms = []
                 if (entry.symptoms.swelling) symptoms.push(isEn ? "Swelling" : "सूजन")
                 if (entry.symptoms.fever) symptoms.push(isEn ? "Fever" : "बुखार")
-                if (entry.symptoms.vomiting) symptoms.push(isEn ? "Vomiting" : "उल्टी")
+                if (entry.symptoms.vomiting) symptoms.push(isEn ? "Vomiting" : "उलटी")
                 if (entry.symptoms.breathingDifficulty) symptoms.push(isEn ? "Breathing" : "सांस")
 
                 timeline.push({
