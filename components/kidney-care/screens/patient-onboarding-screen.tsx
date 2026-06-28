@@ -105,12 +105,12 @@ function StepIcon({ icon, color, bgColor, pulse }: StepIconProps) {
   return (
     <div
       className={cn(
-        "w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-6 transition-transform duration-300",
+        "w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-3 transition-transform duration-300",
         bgColor,
         pulse && "animate-pulse"
       )}
     >
-      <div className={cn("w-14 h-14", color)}>{icon}</div>
+      <div className={cn("w-8 h-8", color)}>{icon}</div>
     </div>
   )
 }
@@ -121,21 +121,21 @@ interface ProgressDotsProps {
 }
 
 function ProgressDots({ currentStep, totalSteps }: ProgressDotsProps) {
+  const pct = Math.round(((currentStep + 1) / totalSteps) * 100)
   return (
-    <div className="flex items-center justify-center gap-2 py-4">
-      {Array.from({ length: totalSteps }, (_, i) => (
+    <div className="px-5 pb-3">
+      <div className="flex items-center justify-between mb-1">
+        <span className="text-xs font-semibold text-muted-foreground">
+          Step {currentStep + 1} of {totalSteps}
+        </span>
+        <span className="text-xs font-bold text-primary">{pct}%</span>
+      </div>
+      <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
         <div
-          key={i}
-          className={cn(
-            "w-3 h-3 rounded-full transition-all duration-500",
-            i < currentStep
-              ? "bg-primary scale-100"
-              : i === currentStep
-                ? "bg-primary scale-125 ring-4 ring-primary/30"
-                : "bg-muted"
-          )}
+          className="h-full bg-primary rounded-full transition-all duration-500"
+          style={{ width: `${pct}%` }}
         />
-      ))}
+      </div>
     </div>
   )
 }
@@ -478,17 +478,17 @@ export function PatientOnboardingScreen() {
     switch (currentStep) {
       case "welcome":
         return (
-          <div className="flex-1 flex flex-col items-center justify-center px-6 py-8">
+          <div className="flex-1 flex flex-col items-center justify-center px-5 py-6">
             <StepIcon
               icon={<Heart className="w-full h-full" />}
               color="text-primary"
               bgColor="bg-primary/10"
               pulse={isSpeaking}
             />
-            <h1 className="text-4xl font-bold text-foreground mb-4 text-center text-balance">
+            <h1 className="text-2xl font-bold text-foreground mb-2 text-center text-balance">
               {t.welcomeProfile}
             </h1>
-            <p className="text-2xl text-muted-foreground text-center mb-8 leading-relaxed">
+            <p className="text-base text-muted-foreground text-center mb-5 leading-relaxed">
               {t.letsSetupProfile}
             </p>
             <ListenButton
@@ -501,17 +501,17 @@ export function PatientOnboardingScreen() {
 
       case "name":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<User className="w-full h-full" />}
               color="text-emerald-500"
               bgColor="bg-emerald-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {t.whatIsYourName}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {t.enterFullName}
             </p>
             <ListenButton
@@ -519,14 +519,14 @@ export function PatientOnboardingScreen() {
               onClick={() => speak(getStepInstruction())}
               isPlaying={isSpeaking}
             />
-            <div className="w-full mt-6">
+            <div className="w-full mt-3">
               <div className="relative flex items-center gap-3">
                 <input
                   type="text"
                   value={patientProfile.name}
                   onChange={(e) => updatePatientProfile({ name: e.target.value })}
                   placeholder={t.typeName}
-                  className="flex-1 min-h-[64px] px-6 py-4 text-xl border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
+                  className="flex-1 min-h-[52px] px-5 py-3 text-lg border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
                 />
                 <VoiceMicButton
                   isListening={isListening}
@@ -548,17 +548,17 @@ export function PatientOnboardingScreen() {
 
       case "dob":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<Calendar className="w-full h-full" />}
               color="text-violet-500"
               bgColor="bg-violet-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {t.whenWereYouBorn}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {t.selectDOB}
             </p>
             <ListenButton
@@ -566,7 +566,7 @@ export function PatientOnboardingScreen() {
               onClick={() => speak(getStepInstruction())}
               isPlaying={isSpeaking}
             />
-            <div className="w-full mt-6">
+            <div className="w-full mt-3">
               <input
                 type="date"
                 value={patientProfile.dateOfBirth}
@@ -596,17 +596,17 @@ export function PatientOnboardingScreen() {
 
       case "weight":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<Scale className="w-full h-full" />}
               color="text-amber-500"
               bgColor="bg-amber-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {t.whatIsYourWeight}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {t.enterWeightKg}
             </p>
             <ListenButton
@@ -614,7 +614,7 @@ export function PatientOnboardingScreen() {
               onClick={() => speak(getStepInstruction())}
               isPlaying={isSpeaking}
             />
-            <div className="w-full mt-6">
+            <div className="w-full mt-3">
               <div className="relative flex items-center gap-3">
                 <div className="relative flex-1">
                   <input
@@ -625,7 +625,7 @@ export function PatientOnboardingScreen() {
                       updatePatientProfile({ weight: Number(e.target.value) })
                     }
                     placeholder={t.weightKg}
-                    className="w-full min-h-[64px] px-6 py-4 text-2xl font-semibold border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 pr-20"
+                    className="w-full min-h-[52px] px-5 py-3 text-xl font-semibold border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 pr-16"
                   />
                   <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xl text-muted-foreground font-medium">
                     {t.kg}
@@ -643,17 +643,17 @@ export function PatientOnboardingScreen() {
 
       case "height":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<Ruler className="w-full h-full" />}
               color="text-teal-500"
               bgColor="bg-teal-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {t.whatIsYourHeight}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {t.enterHeightCm}
             </p>
             <ListenButton
@@ -661,7 +661,7 @@ export function PatientOnboardingScreen() {
               onClick={() => speak(getStepInstruction())}
               isPlaying={isSpeaking}
             />
-            <div className="w-full mt-6">
+            <div className="w-full mt-3">
               <div className="relative flex items-center gap-3">
                 <div className="relative flex-1">
                   <input
@@ -672,7 +672,7 @@ export function PatientOnboardingScreen() {
                       updatePatientProfile({ height: Number(e.target.value) })
                     }
                     placeholder={t.heightCm}
-                    className="w-full min-h-[64px] px-6 py-4 text-2xl font-semibold border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 pr-20"
+                    className="w-full min-h-[52px] px-5 py-3 text-xl font-semibold border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20 pr-16"
                   />
                   <span className="absolute right-6 top-1/2 -translate-y-1/2 text-xl text-muted-foreground font-medium">
                     {t.cm}
@@ -690,17 +690,17 @@ export function PatientOnboardingScreen() {
 
       case "sex":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<User className="w-full h-full" />}
               color="text-pink-500"
               bgColor="bg-pink-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {t.whatIsYourSex}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {t.selectSex}
             </p>
             <ListenButton
@@ -708,7 +708,7 @@ export function PatientOnboardingScreen() {
               onClick={() => speak(getStepInstruction())}
               isPlaying={isSpeaking}
             />
-            <div className="w-full mt-6 space-y-3">
+            <div className="w-full mt-3 space-y-3">
               {(["male", "female", "other"] as const).map((sex) => (
                 <button
                   key={sex}
@@ -718,7 +718,7 @@ export function PatientOnboardingScreen() {
                     if (isVoiceEnabled) speak(t[sex])
                   }}
                   className={cn(
-                    "w-full flex items-center gap-4 p-5 rounded-2xl border-2 transition-all min-h-[72px]",
+                    "w-full flex items-center gap-3 p-4 rounded-2xl border-2 transition-all min-h-[56px]",
                     patientProfile.sex === sex
                       ? "border-primary bg-primary/5 scale-[1.02]"
                       : "border-border bg-card hover:border-primary/50"
@@ -734,7 +734,7 @@ export function PatientOnboardingScreen() {
                   >
                     <User className="w-6 h-6" />
                   </div>
-                  <span className="text-xl font-semibold text-card-foreground">
+                  <span className="text-base font-semibold text-card-foreground">
                     {t[sex]}
                   </span>
                   {patientProfile.sex === sex && (
@@ -748,17 +748,17 @@ export function PatientOnboardingScreen() {
 
       case "diagnosis":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<Stethoscope className="w-full h-full" />}
               color="text-red-500"
               bgColor="bg-red-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {t.whatIsYourDiagnosis}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {t.selectNSType}
             </p>
             <ListenButton
@@ -766,7 +766,7 @@ export function PatientOnboardingScreen() {
               onClick={() => speak(getStepInstruction())}
               isPlaying={isSpeaking}
             />
-            <div className="w-full mt-6 space-y-3">
+            <div className="w-full mt-3 space-y-3">
               {(["IFRNS", "FRNS", "SDNS", "SRNS"] as NephroticSyndromeCategory[]).map(
                 (diagnosis) => (
                   <button
@@ -785,13 +785,13 @@ export function PatientOnboardingScreen() {
                       if (isVoiceEnabled) speak(label)
                     }}
                     className={cn(
-                      "w-full flex items-center gap-4 p-5 rounded-2xl border-2 transition-all min-h-[72px]",
+                      "w-full flex items-center gap-3 p-4 rounded-2xl border-2 transition-all min-h-[56px]",
                       patientProfile.diagnosis === diagnosis
                         ? "border-primary bg-primary/5 scale-[1.02]"
                         : "border-border bg-card hover:border-primary/50"
                     )}
                   >
-                    <span className="text-lg font-semibold text-card-foreground">
+                    <span className="text-base font-semibold text-card-foreground">
                       {diagnosis === "IFRNS"
                         ? t.ifrns
                         : diagnosis === "FRNS"
@@ -812,7 +812,7 @@ export function PatientOnboardingScreen() {
 
       case "medications":
         return (
-          <div className="flex-1 flex flex-col px-6 py-6">
+          <div className="flex-1 flex flex-col px-5 py-3">
             <div className="text-center mb-4">
               <StepIcon
                 icon={<Pill className="w-full h-full" />}
@@ -820,10 +820,10 @@ export function PatientOnboardingScreen() {
                 bgColor="bg-blue-50"
                 pulse={isSpeaking}
               />
-              <h1 className="text-3xl font-bold text-foreground mb-2">
+              <h1 className="text-xl font-bold text-foreground mb-1">
                 {t.medicationManagement}
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 {t.manageYourMedications}
               </p>
             </div>
@@ -891,17 +891,17 @@ export function PatientOnboardingScreen() {
 
       case "doctor":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<Phone className="w-full h-full" />}
               color="text-sky-500"
               bgColor="bg-sky-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {language === "hi" ? "डॉक्टर की जानकारी" : "Doctor Details"}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {language === "hi"
                 ? "कॉल डॉक्टर बटन के लिए जरूरी"
                 : "Required for the Call Doctor button"}
@@ -911,7 +911,7 @@ export function PatientOnboardingScreen() {
               onClick={() => speak(getStepInstruction())}
               isPlaying={isSpeaking}
             />
-            <div className="w-full mt-6 space-y-4">
+            <div className="w-full mt-3 space-y-4">
               {/* Doctor Name */}
               <div>
                 <label className="text-lg font-semibold text-foreground mb-2 block">
@@ -923,7 +923,7 @@ export function PatientOnboardingScreen() {
                     value={patientProfile.doctorName}
                     onChange={(e) => updatePatientProfile({ doctorName: e.target.value })}
                     placeholder={language === "hi" ? "डॉक्टर का नाम लिखें..." : "Dr. Sharma..."}
-                    className="flex-1 min-h-[64px] px-6 py-4 text-xl border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
+                    className="flex-1 min-h-[52px] px-5 py-3 text-lg border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
                   />
                   <VoiceMicButton
                     isListening={isListening}
@@ -943,7 +943,7 @@ export function PatientOnboardingScreen() {
                     value={patientProfile.doctorPhone}
                     onChange={(e) => updatePatientProfile({ doctorPhone: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className="flex-1 min-h-[64px] px-6 py-4 text-xl border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
+                    className="flex-1 min-h-[52px] px-5 py-3 text-lg border-2 border-border rounded-2xl bg-card text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
                   />
                   <VoiceMicButton
                     isListening={isListening}
@@ -966,21 +966,18 @@ export function PatientOnboardingScreen() {
 
       case "reminder":
         return (
-          <div className="flex-1 flex flex-col items-center px-6 py-6">
+          <div className="flex-1 flex flex-col items-center px-5 py-3">
             <StepIcon
               icon={<Bell className="w-full h-full" />}
               color="text-orange-500"
               bgColor="bg-orange-50"
               pulse={isSpeaking}
             />
-            <h1 className="text-3xl font-bold text-foreground mb-2 text-center">
+            <h1 className="text-xl font-bold text-foreground mb-1 text-center">
               {t.setDailyReminder}
             </h1>
-            <p className="text-xl text-muted-foreground text-center mb-4">
+            <p className="text-sm text-muted-foreground text-center mb-3">
               {t.whenToRemind}
-            </p>
-            <p className="text-lg text-muted-foreground text-center mb-6">
-              {t.reminderHelp}
             </p>
             <ListenButton
               label={t.listen}
@@ -988,16 +985,16 @@ export function PatientOnboardingScreen() {
               isPlaying={isSpeaking}
             />
             
-            <div className="w-full mt-6">
+            <div className="w-full mt-3">
               <input
                 type="time"
                 value={patientProfile.reminderTime}
                 onChange={(e) => updatePatientProfile({ reminderTime: e.target.value })}
-                className="w-full min-h-[80px] px-6 py-4 text-3xl font-bold text-center border-2 border-border rounded-2xl bg-card text-card-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
+                className="w-full min-h-[60px] px-5 py-3 text-2xl font-bold text-center border-2 border-border rounded-2xl bg-card text-card-foreground focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/20"
               />
               
               {/* Quick Time Options */}
-              <div className="grid grid-cols-3 gap-3 mt-6">
+              <div className="grid grid-cols-3 gap-3 mt-3">
                 {[
                   { time: "07:00", label: t.morning, icon: "🌅" },
                   { time: "13:00", label: t.afternoon, icon: "☀️" },
@@ -1056,24 +1053,24 @@ export function PatientOnboardingScreen() {
       </button>
 
       {/* Navigation */}
-      <div className="p-6 flex gap-4">
+      <div className="px-5 pb-5 pt-2 flex gap-3">
         {currentStepIndex > 0 && (
           <button
             type="button"
             onClick={goToPreviousStep}
-            className="flex-1 py-5 px-6 rounded-2xl bg-secondary text-secondary-foreground font-bold text-xl flex items-center justify-center gap-2"
+            className="flex-1 py-3.5 px-4 rounded-2xl bg-secondary text-secondary-foreground font-bold text-base flex items-center justify-center gap-2"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5" />
             {t.back}
           </button>
         )}
         <button
           type="button"
           onClick={currentStepIndex === TOTAL_STEPS - 1 ? handleFinish : goToNextStep}
-          className="flex-1 py-5 px-6 rounded-2xl bg-primary text-primary-foreground font-bold text-xl flex items-center justify-center gap-2"
+          className="flex-1 py-3.5 px-4 rounded-2xl bg-primary text-primary-foreground font-bold text-base flex items-center justify-center gap-2"
         >
           {currentStepIndex === TOTAL_STEPS - 1 ? t.finishSetup : t.next}
-          {currentStepIndex < TOTAL_STEPS - 1 && <ChevronRight className="w-6 h-6" />}
+          {currentStepIndex < TOTAL_STEPS - 1 && <ChevronRight className="w-5 h-5" />}
         </button>
       </div>
 
