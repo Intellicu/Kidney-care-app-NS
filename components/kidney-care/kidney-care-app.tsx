@@ -47,8 +47,22 @@ const TAB_DEFAULT_SCREENS: Record<TabId, string> = {
 }
 
 function AppContent() {
-  const { currentScreen, setCurrentScreen, isLoaded } = useApp()
+  const { currentScreen, setCurrentScreen, isLoaded, language } = useApp()
   const [activeTab, setActiveTab] = useState<TabId>("home")
+  const [isOnline, setIsOnline] = useState(
+    typeof navigator !== "undefined" ? navigator.onLine : true
+  )
+
+  useEffect(() => {
+    const goOnline = () => setIsOnline(true)
+    const goOffline = () => setIsOnline(false)
+    window.addEventListener("online", goOnline)
+    window.addEventListener("offline", goOffline)
+    return () => {
+      window.removeEventListener("online", goOnline)
+      window.removeEventListener("offline", goOffline)
+    }
+  }, [])
 
   // Per-tab history stacks for independent navigation
   const tabHistory = useRef<Record<TabId, string[]>>({
@@ -117,6 +131,13 @@ function AppContent() {
 
   return (
     <main className="max-w-lg mx-auto bg-background min-h-screen relative">
+      {!isOnline && (
+        <div className="sticky top-0 z-50 w-full bg-amber-500 text-white text-center py-2 px-4 text-sm font-semibold">
+          {language === "hi"
+            ? "ऑफलाइन — डेटा सिंक नहीं हो रहा"
+            : "Offline — data will sync when connection returns"}
+        </div>
+      )}
       <div className={showBottomNav ? "pb-nav-safe" : ""}>
         {screens[currentScreen] || <LanguageSelectionScreen />}
       </div>
