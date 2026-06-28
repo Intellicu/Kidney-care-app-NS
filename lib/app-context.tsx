@@ -17,6 +17,7 @@ export interface PatientProfile {
   diagnosis: NephroticSyndromeCategory
   diagnosisDate: string
   doctorName: string
+  doctorPhone: string
   hospitalName: string
   reminderTime: string
 }
@@ -39,6 +40,7 @@ export interface Medication {
   prescriptionImage?: string
   takenToday: boolean
   takenYesterday?: boolean
+  takenDate?: string  // ISO date (YYYY-MM-DD) of last toggle — explicit date stamp
   reminderTime?: string
   isActive: boolean
   isCustom?: boolean
@@ -1125,6 +1127,7 @@ const defaultProfile: PatientProfile = {
   diagnosis: '',
   diagnosisDate: '',
   doctorName: '',
+  doctorPhone: '',
   hospitalName: '',
   reminderTime: '08:00',
 }
@@ -1271,8 +1274,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [])
 
   const toggleMedicationTakenYesterday = useCallback((id: string) => {
+    const today = new Date().toISOString().split('T')[0]
     setMedications(prev =>
-      prev.map(med => med.id === id ? { ...med, takenYesterday: !med.takenYesterday } : med)
+      prev.map(med => {
+        if (med.id !== id) return med
+        // If already toggled today, flip it; otherwise treat as first toggle for today
+        const alreadyToggledToday = med.takenDate === today
+        const newTaken = alreadyToggledToday ? !med.takenYesterday : true
+        return { ...med, takenYesterday: newTaken, takenDate: today }
+      })
     )
   }, [])
 
