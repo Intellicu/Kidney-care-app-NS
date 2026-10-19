@@ -1,0 +1,60 @@
+{
+  "_note": "Engine settings. Clinician and dietitian sign-off is required before any value is used for care.",
+  "phosphorus_absorption": {
+    "_note": "Fractions absorbed by phosphorus source. Two published sets are kept; the engine reports the range across both.",
+    "polderman_2026": {
+      "citation": "Polderman N, Shaw V et al. Clin Kidney J 2026;19(4):sfag046",
+      "additive": [1.0, 1.0],
+      "animal": [0.4, 0.6],
+      "plant": [0.2, 0.4]
+    },
+    "print_course": {
+      "citation": "rn4kids PRINT course",
+      "additive": [0.9, 1.0],
+      "animal": [0.4, 0.7],
+      "plant": [0.2, 0.5]
+    }
+  },
+  "potassium_leaching": {
+    "_note": "No leaching factor is approved. Entries marked as leached are reported unleached (the conservative value) until a dietitian approves a factor here.",
+    "approved_by": null,
+    "approved_on": null,
+    "factors": {}
+  },
+  "fluid_densities_note": "Grams for a fluid entered in mL use the food's density_g_per_ml (milk 1.03; others 1.0).",
+  "nutrients": [
+    "energy_kcal", "protein_g", "fat_g", "carb_g", "fibre_g", "water_g",
+    "calcium_mg", "phosphorus_mg", "potassium_mg", "sodium_mg", "iron_mg"
+  ],
+  "renal_prescription_defaults": {
+    "holliday_segar_fluid": {
+      "first_10kg_ml_per_kg": 100,
+      "next_10kg_ml_per_kg": 50,
+      "above_20kg_ml_per_kg": 20,
+      "edema_restriction_ratio": 0.65
+    },
+    "potassium_intake_mg_per_kg_day": {
+      "standard_range": [39, 78],
+      "hyperkalaemia_restriction_max": 45,
+      "serum_k_threshold_mmol_l": 5.3
+    },
+    "sodium_limits_mg_day": {
+      "relapse_edema": {
+        "under_4y": 1200,
+        "4_to_8y": 1500,
+        "above_8y": 1800
+      },
+      "remission_normal": {
+        "under_4y": 1500,
+        "4_to_8y": 2000,
+        "above_8y": 2300
+      }
+    },
+    "phosphate_dri_mg_day": {
+      "under_4y": 460,
+      "4_to_8y": 500,
+      "9_to_18y": 800,
+      "additive_tolerance_mg": 0
+    }
+  }
+}

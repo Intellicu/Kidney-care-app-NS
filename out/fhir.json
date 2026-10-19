@@ -1,0 +1,1036 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "NutritionIntake",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/EXAMPLE-01"
+        },
+        "occurrenceDateTime": "2026-10-16",
+        "code": {
+          "text": "early morning"
+        },
+        "consumedItem": [
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Milk, whole, Cow",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:L002"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 154.5,
+              "unit": "g"
+            }
+          }
+        ],
+        "ingredientLabel": [
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Energy"
+              }
+            },
+            "amount": {
+              "value": 112.6,
+              "unit": "kcal"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Protein"
+              }
+            },
+            "amount": {
+              "value": 5.0,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fat"
+              }
+            },
+            "amount": {
+              "value": 6.9,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Carbohydrate"
+              }
+            },
+            "amount": {
+              "value": 7.6,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fibre"
+              }
+            },
+            "amount": {
+              "value": 0.0,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Water in food"
+              }
+            },
+            "amount": {
+              "value": 133.9,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Calcium"
+              }
+            },
+            "amount": {
+              "value": 182.3,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Phosphorus"
+              }
+            },
+            "amount": {
+              "value": 149.2,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Potassium"
+              }
+            },
+            "amount": {
+              "value": 177.7,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Sodium"
+              }
+            },
+            "amount": {
+              "value": 39.3,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Iron"
+              }
+            },
+            "amount": {
+              "value": 0.2,
+              "unit": "mg"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "NutritionIntake",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/EXAMPLE-01"
+        },
+        "occurrenceDateTime": "2026-10-16",
+        "code": {
+          "text": "breakfast"
+        },
+        "consumedItem": [
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Rice, flakes",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:A011"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 30.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Ground nut",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:H012"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 4.5,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Mustard oil",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:T006"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 5.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Banana, ripe, robusta",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:E012"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 50.0,
+              "unit": "g"
+            }
+          }
+        ],
+        "ingredientLabel": [
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Energy"
+              }
+            },
+            "amount": {
+              "value": 226.3,
+              "unit": "kcal"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Protein"
+              }
+            },
+            "amount": {
+              "value": 3.9,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fat"
+              }
+            },
+            "amount": {
+              "value": 7.3,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Carbohydrate"
+              }
+            },
+            "amount": {
+              "value": 35.6,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fibre"
+              }
+            },
+            "amount": {
+              "value": 2.5,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Water in food"
+              }
+            },
+            "amount": {
+              "value": 39.4,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Calcium"
+              }
+            },
+            "amount": {
+              "value": 7.7,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Phosphorus"
+              }
+            },
+            "amount": {
+              "value": 88.3,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Potassium"
+              }
+            },
+            "amount": {
+              "value": 228.0,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Sodium"
+              }
+            },
+            "amount": {
+              "value": 1.7,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Iron"
+              }
+            },
+            "amount": {
+              "value": 1.6,
+              "unit": "mg"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "NutritionIntake",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/EXAMPLE-01"
+        },
+        "occurrenceDateTime": "2026-10-16",
+        "code": {
+          "text": "lunch"
+        },
+        "consumedItem": [
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Roti, atta (example, calibrate per household)",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "RECIPE:ROTI_EXAMPLE"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 50.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Moong dal, plain, no salt (example, calibrate per household)",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "RECIPE:MOONG_DAL_EXAMPLE"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 150.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Rice, raw, milled",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:A015"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 40.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Potato, brown skin, big",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:F006"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 50.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Curd, cow milk (proxy)",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "CUSTOM:CURD"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 103.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Salt, table (sodium chloride)",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "CUSTOM:SALT"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 2.5,
+              "unit": "g"
+            }
+          }
+        ],
+        "ingredientLabel": [
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Energy"
+              }
+            },
+            "amount": {
+              "value": 516.2,
+              "unit": "kcal"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Protein"
+              }
+            },
+            "amount": {
+              "value": 18.6,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fat"
+              }
+            },
+            "amount": {
+              "value": 8.5,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Carbohydrate"
+              }
+            },
+            "amount": {
+              "value": 89.1,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fibre"
+              }
+            },
+            "amount": {
+              "value": 10.0,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Water in food"
+              }
+            },
+            "amount": {
+              "value": 266.6,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Calcium"
+              }
+            },
+            "amount": {
+              "value": 155.5,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Phosphorus"
+              }
+            },
+            "amount": {
+              "value": 421.1,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Potassium"
+              }
+            },
+            "amount": {
+              "value": 904.6,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Sodium"
+              }
+            },
+            "amount": {
+              "value": 1016.3,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Iron"
+              }
+            },
+            "amount": {
+              "value": 3.7,
+              "unit": "mg"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "NutritionIntake",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/EXAMPLE-01"
+        },
+        "occurrenceDateTime": "2026-10-16",
+        "code": {
+          "text": "evening"
+        },
+        "consumedItem": [
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Rice-moong homemade feed",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "RECIPE:RICE_MOONG_FEED"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 195.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Coconut water",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:K002"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 100.0,
+              "unit": "g"
+            }
+          }
+        ],
+        "ingredientLabel": [
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Energy"
+              }
+            },
+            "amount": {
+              "value": 204.0,
+              "unit": "kcal"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Protein"
+              }
+            },
+            "amount": {
+              "value": 4.2,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fat"
+              }
+            },
+            "amount": {
+              "value": 5.4,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Carbohydrate"
+              }
+            },
+            "amount": {
+              "value": 34.1,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fibre"
+              }
+            },
+            "amount": {
+              "value": 1.5,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Water in food"
+              }
+            },
+            "amount": {
+              "value": 248.7,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Calcium"
+              }
+            },
+            "amount": {
+              "value": 33.3,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Phosphorus"
+              }
+            },
+            "amount": {
+              "value": 78.8,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Potassium"
+              }
+            },
+            "amount": {
+              "value": 363.4,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Sodium"
+              }
+            },
+            "amount": {
+              "value": 29.6,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Iron"
+              }
+            },
+            "amount": {
+              "value": 0.6,
+              "unit": "mg"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "NutritionIntake",
+        "status": "completed",
+        "subject": {
+          "reference": "Patient/EXAMPLE-01"
+        },
+        "occurrenceDateTime": "2026-10-16",
+        "code": {
+          "text": "dinner"
+        },
+        "consumedItem": [
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Roti, atta (example, calibrate per household)",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "RECIPE:ROTI_EXAMPLE"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 50.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Spinach",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:C033"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 26.7,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Ghee",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "IFCT:T013"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 5.0,
+              "unit": "g"
+            }
+          },
+          {
+            "type": {
+              "text": "food"
+            },
+            "nutritionProduct": {
+              "concept": {
+                "text": "Water, drinking",
+                "coding": [
+                  {
+                    "system": "urn:kidneycare:food-id",
+                    "code": "CUSTOM:WATER"
+                  }
+                ]
+              }
+            },
+            "amount": {
+              "value": 600.0,
+              "unit": "g"
+            }
+          }
+        ],
+        "ingredientLabel": [
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Energy"
+              }
+            },
+            "amount": {
+              "value": 210.9,
+              "unit": "kcal"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Protein"
+              }
+            },
+            "amount": {
+              "value": 5.9,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fat"
+              }
+            },
+            "amount": {
+              "value": 5.9,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Carbohydrate"
+              }
+            },
+            "amount": {
+              "value": 32.6,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Fibre"
+              }
+            },
+            "amount": {
+              "value": 6.3,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Water in food"
+              }
+            },
+            "amount": {
+              "value": 629.7,
+              "unit": "g"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Calcium"
+              }
+            },
+            "amount": {
+              "value": 37.4,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Phosphorus"
+              }
+            },
+            "amount": {
+              "value": 166.2,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Potassium"
+              }
+            },
+            "amount": {
+              "value": 322.4,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Sodium"
+              }
+            },
+            "amount": {
+              "value": 12.4,
+              "unit": "mg"
+            }
+          },
+          {
+            "nutrient": {
+              "concept": {
+                "text": "Iron"
+              }
+            },
+            "amount": {
+              "value": 2.8,
+              "unit": "mg"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

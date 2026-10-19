@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" width="100%" height="100%">
+  <rect width="600" height="420" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <!-- Hospital Header -->
+  <rect x="0" y="0" width="600" height="75" fill="#0E3D46"/>
+  <text x="30" y="32" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="16" font-weight="700">ALL INDIA INSTITUTE OF MEDICAL SCIENCES, PATNA</text>
+  <text x="30" y="52" fill="#99F6E4" font-family="system-ui, sans-serif" font-size="12">Department of Pathology &amp; Pediatric Nephrology · Laboratory Report</text>
+  <text x="570" y="42" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="end">🏥</text>
+
+  <!-- Patient Demographic Bar -->
+  <rect x="25" y="90" width="550" height="65" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="40" y="112" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Patient Name:</text>
+  <text x="120" y="112" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Aarav Kumar (Boy, 7Y)</text>
+  <text x="330" y="112" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">CR / Hospital ID:</text>
+  <text x="440" y="112" fill="#0E3D46" font-family="system-ui, sans-serif" font-size="12" font-weight="700">2026/0412</text>
+
+  <text x="40" y="136" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Sample Collected:</text>
+  <text x="145" y="136" fill="#0F172A" font-family="system-ui, sans-serif" font-size="11">04-Oct-2026, 07:45 AM</text>
+  <text x="330" y="136" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Consultant:</text>
+  <text x="440" y="136" fill="#0F172A" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Dr. Swarnim</text>
+
+  <!-- Investigation Table -->
+  <rect x="25" y="170" width="550" height="30" fill="#E2E8F0"/>
+  <text x="40" y="190" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">TEST / INVESTIGATION</text>
+  <text x="260" y="190" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">RESULT</text>
+  <text x="370" y="190" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">UNIT</text>
+  <text x="460" y="190" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">REFERENCE</text>
+
+  <!-- Row 1: Spot UPCR -->
+  <text x="40" y="225" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Urine Protein/Creatinine Ratio (UPCR)</text>
+  <text x="260" y="225" fill="#B91C1C" font-family="system-ui, sans-serif" font-size="13" font-weight="800">2.40 (High)</text>
+  <text x="370" y="225" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">mg/mg</text>
+  <text x="460" y="225" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">&lt; 0.20 Normal</text>
+  <line x1="25" y1="240" x2="575" y2="240" stroke="#F1F5F9"/>
+
+  <!-- Row 2: Spot Urine Protein -->
+  <text x="40" y="265" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12">Spot Urine Protein</text>
+  <text x="260" y="265" fill="#B91C1C" font-family="system-ui, sans-serif" font-size="12" font-weight="700">120</text>
+  <text x="370" y="265" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">mg/dL</text>
+  <text x="460" y="265" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">&lt; 10 mg/dL</text>
+  <line x1="25" y1="280" x2="575" y2="280" stroke="#F1F5F9"/>
+
+  <!-- Row 3: Spot Urine Creatinine -->
+  <text x="40" y="305" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12">Spot Urine Creatinine</text>
+  <text x="260" y="305" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12">50.0</text>
+  <text x="370" y="305" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">mg/dL</text>
+  <text x="460" y="305" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">20 - 250</text>
+  <line x1="25" y1="320" x2="575" y2="320" stroke="#F1F5F9"/>
+
+  <!-- Doctor Remarks Card -->
+  <rect x="25" y="335" width="550" height="60" rx="6" fill="#FEF3C7" stroke="#F59E0B"/>
+  <text x="40" y="355" fill="#B45309" font-family="system-ui, sans-serif" font-size="11" font-weight="700">CLINICAL INTERPRETATION &amp; DOCTOR NOTE:</text>
+  <text x="40" y="375" fill="#78350F" font-family="system-ui, sans-serif" font-size="11">UPCR &gt; 2.0 confirms nephrotic-range proteinuria. Correlates with 3-day 2+ dipstick relapse watch. Advised prednisolone taper adjustment.</text>
+</svg>

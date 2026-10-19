@@ -1,0 +1,2079 @@
+/* KidneyCare AI - AIIMS Patna Pediatric Nephrology
+   Design System & Styling matching Prototype Mockups
+*/
+
+:root {
+  --brand-teal: #0E3D46;
+  --brand-teal-dark: #07262D;
+  --brand-teal-light: #18535E;
+  --brand-teal-subtle: #E6EFF0;
+  --brand-rust: #BD4423;
+  --brand-rust-hover: #A6381B;
+  --brand-rust-subtle: #FDF1ED;
+  --brand-amber: #B45309;
+  --brand-amber-bg: #FEF3C7;
+  --brand-red: #B91C1C;
+  --brand-red-bg: #FEE2E2;
+  --brand-green: #15803D;
+  --brand-green-bg: #DCFCE7;
+  
+  --bg-app: #F5F6F5;
+  --bg-card: #FFFFFF;
+  --border-light: #E2E8F0;
+  --border-input: #D1D5DB;
+  
+  --text-main: #111827;
+  --text-muted: #6B7280;
+  --text-dim: #9CA3AF;
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  /* Urine Dipstick Standard Reagent Pad Colors */
+  --dip-neg: #D4E09B;
+  --dip-trace: #C3D76F;
+  --dip-1plus: #A4C55E;
+  --dip-2plus: #6BA357;
+  --dip-3plus: #3E7E52;
+  --dip-4plus: #1B5338;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", "Helvetica Neue", Arial, sans-serif;
+  background-color: #ECEEEC;
+  color: var(--text-main);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+}
+
+/* App Wrapper & Desktop Container */
+.prototype-outer-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Optional Desktop Viewport Bar */
+.viewport-switch-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  font-size: 0.85rem;
+}
+
+.viewport-switch-bar .title {
+  font-weight: 600;
+  color: var(--brand-teal);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.view-mode-pills {
+  display: flex;
+  gap: 6px;
+}
+
+.view-mode-btn {
+  border: 1px solid var(--border-light);
+  background: #F9FAFB;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.view-mode-btn.active {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+  border-color: var(--brand-teal);
+}
+
+/* Smartphone Shell Frame */
+.smartphone-device {
+  width: 100%;
+  background: var(--bg-app);
+  border-radius: 28px;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 840px;
+  position: relative;
+  border: 8px solid #22292F;
+}
+
+/* Smartphone Status Bar (Matching mockups: 09:15 KidneyCare 4G ▮▮▮) */
+.phone-status-bar {
+  background: var(--bg-app);
+  padding: 10px 18px 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.2px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  user-select: none;
+}
+
+.status-bar-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+}
+
+/* Top App Header (Matching mockups: KidneyCare AI + EN / हिं) */
+.app-header {
+  padding: 10px 18px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-app);
+}
+
+.app-brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--brand-teal);
+  letter-spacing: -0.3px;
+}
+
+.lang-switch-group {
+  display: flex;
+  background: #E5EBEB;
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.lang-pill {
+  padding: 5px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--brand-teal);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lang-pill.active {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+}
+
+/* Patient CR Card / Info Row */
+.patient-row {
+  padding: 8px 18px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.patient-info-left .label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+.patient-info-left .cr-code {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+}
+
+.patient-action-link {
+  color: var(--brand-teal);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Quick Nav Tab Pills Carousel (Dipstick, Docs, BP, Weight, Trend) */
+.quick-tabs-container {
+  padding: 4px 18px 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tabs-scroll-wrapper {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.tabs-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-tab-pill {
+  flex-shrink: 0;
+  padding: 8px 15px;
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 600;
+  background: #E4EAEB;
+  color: var(--brand-teal);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quick-tab-pill.active {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+}
+
+.tabs-nav-arrow {
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+/* Screen Viewport Container */
+.screen-content-area {
+  flex: 1;
+  padding: 0 18px 18px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Generic Screen Header (Back / Home navigation) */
+.subscreen-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.subscreen-nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--brand-teal);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.subscreen-badge {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brand-teal);
+}
+
+/* Watch Alert Banner (Matching mockup: Red/Rust border, bold alert) */
+.alert-banner-watch {
+  background: #FFFFFF;
+  border: 1.5px solid var(--brand-rust);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(189, 68, 35, 0.06);
+}
+
+.alert-banner-watch.hidden {
+  display: none;
+}
+
+.alert-content .alert-headline {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--brand-rust);
+  margin-bottom: 2px;
+}
+
+.alert-content .alert-subline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.alert-action-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--brand-teal);
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* Section Headings */
+.section-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--brand-teal);
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: -8px;
+  margin-bottom: 14px;
+}
+
+/* Cards & Lists on Home Screen */
+.today-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.today-summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.today-summary-card:hover {
+  border-color: #CBD5E1;
+}
+
+.card-info-group .card-timestamp {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.card-info-group .card-primary-val {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+}
+
+.card-badge-tag {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.card-action-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brand-teal);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Fixed Bottom Primary Action Button */
+.bottom-action-container {
+  margin-top: auto;
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-primary-rust {
+  width: 100%;
+  background: var(--brand-rust);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 15px 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(189, 68, 35, 0.25);
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.btn-primary-rust:hover {
+  background: var(--brand-rust-hover);
+}
+
+.btn-primary-rust:active {
+  transform: scale(0.99);
+}
+
+.btn-secondary-outline {
+  width: 100%;
+  background: #FFFFFF;
+  color: var(--brand-teal);
+  border: 1px solid var(--brand-teal);
+  border-radius: var(--radius-md);
+  padding: 13px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.15s ease;
+}
+
+.btn-secondary-outline:hover {
+  background: var(--brand-teal-subtle);
+}
+
+/* Footer Sync Status (Matching mockup: 🟢 Saved on this phone. 2 readings waiting to sync.) */
+.sync-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.sync-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #16A34A;
+  display: inline-block;
+}
+
+.sync-dot.waiting {
+  background: #EAB308;
+}
+
+/* ========================================================
+   SCREEN 3: BARCODE SCANNER / SCAN THE PATIENT
+   ======================================================== */
+.camera-viewfinder-box {
+  width: 100%;
+  height: 240px;
+  background: #111827;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  border: 2px solid #374151;
+}
+
+.camera-preview-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.viewfinder-barcode-target {
+  width: 76%;
+  height: 130px;
+  border: 2px dashed #9CA3AF;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.simulated-barcode-bars {
+  display: flex;
+  height: 80px;
+  gap: 3px;
+  align-items: center;
+}
+
+.simulated-barcode-bars span {
+  background: #FFFFFF;
+  height: 100%;
+  width: 3px;
+}
+
+.simulated-barcode-bars span.w {
+  width: 7px;
+}
+
+.simulated-barcode-bars span.m {
+  width: 4px;
+}
+
+.viewfinder-status-pill {
+  position: absolute;
+  bottom: 12px;
+  background: #0E3D46;
+  color: #FFFFFF;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  z-index: 3;
+}
+
+.readout-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.readout-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.readout-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 4px 0 6px;
+}
+
+.privacy-notice-text {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.dual-button-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn-pill-action {
+  background: #FFFFFF;
+  border: 1.5px solid var(--brand-teal);
+  color: var(--brand-teal);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.btn-pill-action:hover {
+  background: var(--brand-teal-subtle);
+}
+
+/* ========================================================
+   SCREEN 4: DIPSTICK CAMERA READER & 60-SEC TIMER
+   ======================================================== */
+.camera-viewfinder-dipstick {
+  width: 100%;
+  height: 180px;
+  background: #111827;
+  border-radius: var(--radius-lg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.strip-alignment-frame {
+  width: 82%;
+  height: 48px;
+  border: 2px dashed #9CA3AF;
+  border-radius: 4px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.condition-pills-row {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 3;
+}
+
+.condition-pill {
+  background: rgba(14, 61, 70, 0.85);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.timer-circle-widget {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 12px 0 16px;
+  position: relative;
+}
+
+.timer-svg {
+  transform: rotate(-90deg);
+}
+
+.timer-circle-bg {
+  stroke: #E2E8F0;
+  fill: none;
+}
+
+.timer-circle-progress {
+  stroke: var(--brand-teal);
+  stroke-linecap: round;
+  fill: none;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-display-text {
+  position: absolute;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+}
+
+/* Instruction banner card */
+.guide-card-note {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.guide-card-note .guide-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.guide-card-note .guide-text {
+  font-size: 0.92rem;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+/* ========================================================
+   SCREEN 5: DIPSTICK RESULT VERIFICATION
+   ======================================================== */
+.reading-presentation-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.dipstick-vertical-strip {
+  width: 18px;
+  background: #F1F5F9;
+  border-radius: 4px;
+  padding: 4px 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #CBD5E1;
+}
+
+.strip-pad-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+.reading-details-right .label {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.reading-details-right .grade-value {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--brand-teal-dark);
+  line-height: 1.1;
+  margin: 2px 0;
+}
+
+.reading-details-right .confidence-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.grade-picker-selector {
+  margin-bottom: 20px;
+}
+
+.grade-picker-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.grade-selector-chips {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.grade-chip-btn {
+  padding: 12px 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  background: #FFFFFF;
+  border: none;
+  border-right: 1px solid var(--border-light);
+  color: var(--brand-teal);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: center;
+}
+
+.grade-chip-btn:last-child {
+  border-right: none;
+}
+
+.grade-chip-btn.active {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+}
+
+.disclaimer-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+/* ========================================================
+   SCREEN 6: DOCUMENT / PRESCRIPTION SCANNER
+   ======================================================== */
+.doc-scanner-preview {
+  width: 100%;
+  height: 250px;
+  background: #111827;
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.paper-sheet-graphic {
+  width: 68%;
+  height: 84%;
+  background: #FFFFFF;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.paper-sheet-line {
+  background: #E2E8F0;
+  height: 6px;
+  border-radius: 3px;
+  width: 85%;
+}
+
+.paper-sheet-line.short {
+  width: 50%;
+}
+
+.paper-sheet-line.long {
+  width: 100%;
+}
+
+.doc-type-selection-block {
+  margin-bottom: 16px;
+}
+
+.doc-type-selection-block .title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 10px;
+}
+
+.doc-type-chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.doc-type-chip {
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  color: var(--brand-teal);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.doc-type-chip.active {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+  border-color: var(--brand-teal);
+}
+
+.page-counter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.page-thumb-pill {
+  width: 38px;
+  height: 44px;
+  border: 1px solid var(--border-light);
+  background: #FFFFFF;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-teal);
+}
+
+.pages-scanned-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ========================================================
+   SCREEN 7: CHECK THE MEDICINES (PRESCRIPTION OCR)
+   ======================================================== */
+.meds-checklist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.med-prescription-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.med-prescription-card.warning-box {
+  border: 1.5px solid var(--brand-rust);
+}
+
+.med-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.med-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+}
+
+.med-warning-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--brand-rust);
+}
+
+.med-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.med-field-group .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.med-field-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background: #FAFAFA;
+}
+
+.med-checkbox-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+  user-select: none;
+}
+
+.med-checkbox-input {
+  width: 20px;
+  height: 20px;
+  accent-color: #0284C7;
+  cursor: pointer;
+}
+
+.add-medicine-link {
+  color: var(--brand-teal);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: 18px;
+  display: inline-block;
+}
+
+/* ========================================================
+   SCREEN 8: BLOOD PRESSURE MONITOR
+   ======================================================== */
+.device-status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.device-status-header .title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+}
+
+.conn-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #15803D;
+}
+
+.bp-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0 16px;
+}
+
+.bp-input-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+
+.bp-input-box .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.bp-input-box input {
+  width: 100%;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main);
+  outline: none;
+  background: transparent;
+}
+
+.pediatric-staging-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.pediatric-staging-card .badge-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #15803D;
+  margin-bottom: 6px;
+}
+
+.pediatric-staging-card .rule-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.segmented-control-group {
+  margin-bottom: 16px;
+}
+
+.segmented-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.segmented-chips {
+  display: flex;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+  overflow: hidden;
+}
+
+.segmented-btn {
+  flex: 1;
+  padding: 12px 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  background: #FFFFFF;
+  border: none;
+  border-right: 1px solid var(--border-light);
+  color: var(--brand-teal);
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+
+.segmented-btn:last-child {
+  border-right: none;
+}
+
+.segmented-btn.active {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+}
+
+/* ========================================================
+   SCREEN 9: WEIGHT & GROWTH (PEDIATRIC SD)
+   ======================================================== */
+.growth-evaluation-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  margin-bottom: 18px;
+}
+
+.growth-card-title {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.growth-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.growth-stat-row:last-child {
+  border-bottom: none;
+}
+
+.growth-stat-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.growth-stat-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.growth-badge-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.growth-badge-chip.normal {
+  color: #15803D;
+}
+
+.growth-badge-chip.watch {
+  color: #B45309;
+}
+
+.growth-explainer-text {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  margin-top: 10px;
+}
+
+/* ========================================================
+   SCREEN 10: DIARY TIMELINE
+   ======================================================== */
+.diary-date-group {
+  margin-bottom: 20px;
+}
+
+.diary-date-header {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+  margin-bottom: 12px;
+}
+
+.diary-timeline-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.diary-entry-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.diary-entry-left .timestamp {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.diary-entry-left .item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.diary-badge-tag {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.diary-badge-tag.due {
+  color: var(--brand-rust);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.diary-badge-tag.taken {
+  color: var(--brand-teal);
+  font-weight: 600;
+}
+
+/* ========================================================
+   SCREEN 11: EXPORT THE RECORD
+   ======================================================== */
+.date-range-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.date-input-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+}
+
+.date-input-box .label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.date-input-box input {
+  width: 100%;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+  outline: none;
+  background: transparent;
+}
+
+.export-checklist-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.export-check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.export-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* ========================================================
+   SCREEN 12: HOW TO TEST (TUTORIAL)
+   ======================================================== */
+.tutorial-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.tutorial-step-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  position: relative;
+}
+
+.step-num-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--brand-teal);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.step-body-content {
+  flex: 1;
+}
+
+.step-title-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+}
+
+.duration-chip {
+  background: #E4EAEB;
+  color: var(--brand-teal);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+}
+
+.step-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+/* ========================================================
+   SCREEN 13: MANUAL COLOUR PICKER
+   ======================================================== */
+.color-picker-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.color-option-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.color-option-card.active {
+  border-color: var(--brand-teal);
+  box-shadow: 0 0 0 1px var(--brand-teal);
+}
+
+.color-radio-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #CBD5E1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-option-card.active .color-radio-indicator {
+  border-color: #0284C7;
+}
+
+.color-option-card.active .color-radio-indicator::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0284C7;
+}
+
+.color-swatch-box {
+  width: 48px;
+  height: 32px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.color-option-label {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+}
+
+/* ========================================================
+   SCREEN 14: PROTEIN TRENDS (14-DAY CHART & RELAPSE RULES)
+   ======================================================== */
+.trend-chart-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 12px;
+  margin-bottom: 14px;
+}
+
+.trend-bars-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 160px;
+  padding: 10px 0;
+  border-bottom: 1px solid #E2E8F0;
+  position: relative;
+}
+
+.trend-y-axis-labels {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+.trend-bar-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.trend-bar-pillar {
+  width: 14px;
+  border-radius: 2px;
+  transition: height 0.3s ease;
+}
+
+.trend-bar-pillar.neg {
+  background: #94A3B8;
+  height: 8px;
+}
+
+.trend-bar-pillar.plus1 {
+  background: #EAB308;
+  height: 45px;
+}
+
+.trend-bar-pillar.plus2 {
+  background: var(--brand-rust);
+  height: 90px;
+}
+
+.trend-bar-pillar.plus3 {
+  background: var(--brand-rust);
+  height: 130px;
+}
+
+.trend-bar-day {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.trend-legend-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0 16px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.trend-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend-swatch.neg { background: #94A3B8; }
+.legend-swatch.watch { background: #EAB308; }
+.legend-swatch.act { background: var(--brand-rust); }
+
+.trend-stats-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.trend-stat-widget {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px;
+}
+
+.trend-stat-widget .label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.trend-stat-widget .val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--brand-teal-dark);
+  margin-top: 2px;
+}
+
+/* ========================================================
+   SCREEN 15: REMINDERS
+   ======================================================== */
+.reminders-list-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.reminder-item-row {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.reminder-item-row:last-child {
+  border-bottom: none;
+}
+
+.reminder-title-line {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+  margin-bottom: 2px;
+}
+
+.reminder-subtitle-line {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.reminder-checkbox {
+  width: 22px;
+  height: 22px;
+  accent-color: #0284C7;
+  cursor: pointer;
+}
+
+/* ========================================================
+   SCREEN 16: FROM YOUR DOCTOR & LAB ORDERS
+   ======================================================== */
+.doctor-messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.doctor-message-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.doctor-message-card.featured {
+  border: 1.5px solid var(--brand-teal);
+}
+
+.doc-msg-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.doc-msg-time {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.doc-msg-tag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand-rust);
+}
+
+.doc-msg-text {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.4;
+}
+
+.lab-orders-list {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.lab-order-row {
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+}
+
+.lab-order-row:last-child {
+  border-bottom: none;
+}
+
+.lab-order-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+  margin-bottom: 2px;
+}
+
+.lab-order-due {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Modal Popup Dialogs */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 999;
+  backdrop-filter: blur(2px);
+}
+
+.modal-dialog-content {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 440px;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-teal);
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+/* Chat Assistant inside modal */
+.chat-messages-container {
+  max-height: 300px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding: 4px;
+}
+
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 85%;
+}
+
+.chat-bubble.bot {
+  background: #E8F4F8;
+  color: #0E3D46;
+  align-self: flex-start;
+}
+
+.chat-bubble.user {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+  align-self: flex-end;
+}
+
+.chat-input-bar {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-input-field {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+/* Toast Alerts */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0E3D46;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+  transition: opacity 0.2s ease;
+}
+
+
+/* ========================================================
+   DATA COLLECTION: PATIENT MEDIA & DOCTOR REPORT PORTAL
+   ======================================================== */
+.docs-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.btn-upload-report {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-upload-report:hover {
+  background: var(--brand-teal-light);
+}
+
+.doc-filter-pills {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  margin-bottom: 14px;
+  padding-bottom: 2px;
+}
+
+.doc-filter-btn {
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.doc-filter-btn.active {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+  border-color: var(--brand-teal);
+}
+
+.docs-gallery-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.doc-item-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.1s ease, border-color 0.15s ease;
+}
+
+.doc-item-card:hover {
+  border-color: #CBD5E1;
+}
+
+.doc-top-info {
+  display: flex;
+  gap: 12px;
+}
+
+.doc-thumb-box {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+  background: #F1F5F9;
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.doc-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.doc-thumb-icon {
+  font-size: 1.8rem;
+}
+
+.doc-meta-col {
+  flex: 1;
+}
+
+.doc-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.doc-title-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brand-teal-dark);
+  line-height: 1.25;
+}
+
+.doc-badge-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.doc-badge-pill.lab_report {
+  background: #E0F2FE;
+  color: #0369A1;
+}
+
+.doc-badge-pill.dipstick {
+  background: #DCFCE7;
+  color: #15803D;
+}
+
+.doc-badge-pill.prescription {
+  background: #FEF3C7;
+  color: #B45309;
+}
+
+.doc-badge-pill.clinical_photo {
+  background: #F3E8FF;
+  color: #7E22CE;
+}
+
+.doc-detail-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.doc-notes-box {
+  background: #F8FAFC;
+  border-left: 3px solid var(--brand-teal);
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.doc-actions-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid #F1F5F9;
+  padding-top: 8px;
+}
+
+.doc-action-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--brand-teal);
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.doc-action-btn:hover {
+  background: var(--brand-teal-subtle);
+}
+
+.doc-action-btn.delete {
+  color: #DC2626;
+}
+
+.doc-action-btn.delete:hover {
+  background: #FEE2E2;
+}
+
+/* Upload Drop Zone */
+.upload-drop-zone {
+  border: 2px dashed #CBD5E1;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: center;
+  background: #F8FAFC;
+  cursor: pointer;
+  margin-bottom: 14px;
+  transition: all 0.15s ease;
+}
+
+.upload-drop-zone:hover {
+  border-color: var(--brand-teal);
+  background: #F0FDFA;
+}
+
+.drop-zone-icon {
+  font-size: 2rem;
+  margin-bottom: 6px;
+}
+
+.drop-zone-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brand-teal);
+}
+
+.drop-zone-subtext {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Camera Live Snapshot Control Bar */
+.camera-snap-bar {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn-camera-snap {
+  background: var(--brand-teal);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Modal Fullscreen Document Viewer */
+.modal-doc-viewer {
+  max-width: 600px;
+  width: 95%;
+}
+
+.doc-full-preview-container {
+  max-height: 480px;
+  overflow: auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  background: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doc-full-preview-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

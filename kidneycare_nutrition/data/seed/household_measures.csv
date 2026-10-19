@@ -1,0 +1,39 @@
+food_id,unit,grams,ml,source,note
+,katori_large,,360,ICMR-NIN DGI 2024 Annexure I (C6),Volume only. Grams depend on the food.
+,katori_medium,,200,ICMR-NIN DGI 2024 Annexure I (C7),Volume only. Grams depend on the food.
+,katori_small_155,,155,ICMR-NIN DGI 2024 Annexure I (C8),Volume only. Grams depend on the food.
+,katori_small,,115,ICMR-NIN DGI 2024 Annexure I (C9),"Volume only. ICMR highlights the 115 mL katori as the 'small' katori."
+,cup,,200,ICMR-NIN DGI 2024 (1 cup/katori = 200 mL),Volume only.
+,glass_small,,100,ICMR-NIN DGI 2024 Annexure II (milk 100 mL = one small steel glass),Volume only.
+,tbsp,15,15,ICMR-NIN DGI 2024 Annexure I (tablespoon 15 g),Generic fallback. Food-specific value used when available.
+,tsp,5,5,ICMR-NIN DGI 2024 Annexure I (teaspoon 5 g),Generic fallback. Food-specific value used when available.
+IFCT:A015,tsp,5,,ICMR-NIN DGI 2024 Annexure II (rice 10 g = 2 tsp),Raw rice.
+IFCT:A019,tsp,3.33,,ICMR-NIN DGI 2024 Annexure II (wheat flour 10 g = 3 tsp),Atta.
+IFCT:A010,tsp,3.33,,ICMR-NIN DGI 2024 Annexure II (ragi 10 g = 3 tsp flour),Ragi flour.
+IFCT:A003,tsp,5,,ICMR-NIN DGI 2024 Annexure II (bajra 10 g = 2 tsp),
+IFCT:A011,tsp,2.5,,ICMR-NIN DGI 2024 Annexure II (rice flakes 10 g = 4 tsp),Poha.
+IFCT:B021,tsp,5,,ICMR-NIN DGI 2024 Annexure II (redgram dal 5 g = 1 tsp),Raw dal.
+IFCT:B010,tsp,5,,ICMR-NIN DGI 2024 Annexure II (green gram dal 5 g = 1 tsp),Raw dal.
+IFCT:B001,tsp,5,,ICMR-NIN DGI 2024 Annexure II (chana dal 5 g = 1 tsp),Raw dal.
+IFCT:B003,tsp,5,,ICMR-NIN DGI 2024 Annexure II (blackgram dal 5 g = 1 tsp),Raw dal.
+IFCT:B013,tsp,5,,ICMR-NIN DGI 2024 Annexure II (lentil 5 g = 1 tsp),Raw dal.
+IFCT:B020,tsp,5,,ICMR-NIN DGI 2024 Annexure II (rajmah 5 g = 1 tsp or 8 beans),Raw beans.
+IFCT:B020,piece,0.625,,ICMR-NIN DGI 2024 Annexure II (rajmah 5 g = 8 beans),One raw bean.
+IFCT:C033,katori_medium,26.7,,ICMR-NIN DGI 2024 Annexure II (spinach 20 g = 3/4 medium katori),Raw leaves.
+IFCT:C002,katori_medium,20,,ICMR-NIN DGI 2024 Annexure II (amaranth 20 g = 1 full medium katori),Raw leaves.
+IFCT:C020,katori_medium,26.7,,ICMR-NIN DGI 2024 Annexure II (fenugreek 20 g = 3/4 medium katori),Raw leaves.
+IFCT:H012,tsp,5,,ICMR-NIN DGI 2024 Annexure II (groundnut 5 g = 1 tsp or 11 nuts),
+IFCT:H012,piece,0.45,,ICMR-NIN DGI 2024 Annexure II (groundnut 5 g = 11 nuts),One kernel.
+IFCT:H005,piece,1.25,,ICMR-NIN DGI 2024 Annexure II (cashew 20 g = 16 pieces; 5 g = 4 pieces),"The 9-12 month chart gives 5 g = 3 pieces (1.67 g each); the child and adult charts give 1.25 g."
+IFCT:H011,tsp,2.5,,ICMR-NIN DGI 2024 Annexure II (sesame seeds 5 g = 2 tsp),
+IFCT:M001,piece,40,,ICMR-NIN DGI 2024 Annexure II (egg 20 g = 1/2 egg),One whole egg.
+IFCT:E012,piece,50,,ICMR-NIN DGI 2024 Annexure II (banana 50 g = 1 small banana without peel),One small banana.
+IFCT:T005,tsp,5,,ICMR-NIN DGI 2024 Annexure II (oil/ghee 5 g = 1 tsp),
+IFCT:T005,tbsp,10,,ICMR-NIN DGI 2024 Annexure II (oil 10 g = 1 tablespoon),Annexure I gives a 15 g tablespoon; Annexure II uses 10 g for oil.
+IFCT:T006,tsp,5,,ICMR-NIN DGI 2024 Annexure II (oil/ghee 5 g = 1 tsp),
+IFCT:T006,tbsp,10,,ICMR-NIN DGI 2024 Annexure II (oil 10 g = 1 tablespoon),Annexure I gives a 15 g tablespoon; Annexure II uses 10 g for oil.
+IFCT:T013,tsp,5,,ICMR-NIN DGI 2024 Annexure II (oil/ghee 5 g = 1 tsp),
+IFCT:T013,tbsp,10,,ICMR-NIN DGI 2024 Annexure II (oil 10 g = 1 tablespoon),Applied to ghee by analogy with oil.
+CUSTOM:SUGAR,tsp,5,,ICMR-NIN DGI 2024 Annexure I (teaspoon 5 g),Generic teaspoon.
+CUSTOM:SALT,tsp,5,,ICMR-NIN DGI 2024 (5 g salt = 1 teaspoon),
+CUSTOM:SALT,pinch,0.3,,assumed,"Pinch is not standardised; weigh if possible."

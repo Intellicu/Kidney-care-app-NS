@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+venv/
+env/
+ENV/
+*.sqlite3
+*.db-journal
+
+# Node / Web
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+build/
+.vite/
+.next/
+
+# Android
+.gradle/
+build/
+captures/
+*.apk
+*.aab
+local.properties
+.idea/
+*.iml
+.DS_Store
+Thumbs.db

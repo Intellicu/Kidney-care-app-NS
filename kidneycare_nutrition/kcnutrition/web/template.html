@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KidneyCare Diet Calculator</title>
+<style>
+:root {
+  --bg: #f6f5f1; --panel: #ffffff; --ink: #1d2327; --muted: #5d676d; --line: #dcdcd4;
+  --accent: #1f6f78; --accent-ink: #ffffff; --soft: #eaf3f3;
+  --ok: #2e7d4f; --ok-bg: #e5f3ea; --hi: #a3361f; --hi-bg: #f8e6e1; --lo: #8a5a00; --lo-bg: #fbf0d9;
+  --warn-bg: #fff8e6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15191b; --panel: #1d2326; --ink: #e7ebec; --muted: #9aa5aa; --line: #2f383c;
+    --accent: #5fb3bb; --accent-ink: #0d1517; --soft: #1f3134;
+    --ok: #7fd09c; --ok-bg: #1d3326; --hi: #f19a83; --hi-bg: #3a221c; --lo: #e8c06d; --lo-bg: #352b16;
+    --warn-bg: #2d2817;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; }
+header { padding: 20px 16px 8px; max-width: 1180px; margin: 0 auto; }
+h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.01em; }
+.sub { color: var(--muted); margin: 0; }
+main { max-width: 1180px; margin: 0 auto; padding: 8px 16px 40px; display: grid; gap: 14px; }
+section { min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+h2 { font-size: 16px; margin: 0 0 10px; }
+label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 3px; }
+input, select, button { font: inherit; color: var(--ink); }
+input, select { width: 100%; padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel); }
+input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+button { border: 1px solid var(--line); background: var(--panel); border-radius: 7px; padding: 7px 12px; cursor: pointer; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+button.link { border: none; background: none; color: var(--accent); padding: 2px 4px; }
+.grid { display: grid; gap: 10px; }
+.grid > * { min-width: 0; }
+.child { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+.entry { grid-template-columns: 130px 140px minmax(220px, 2fr) 90px 150px auto auto; align-items: end; }
+@media (max-width: 860px) { .entry { grid-template-columns: 1fr 1fr; } .entry .food { grid-column: 1 / -1; } }
+.food { position: relative; }
+.suggest { position: absolute; z-index: 5; left: 0; right: 0; top: 100%; margin-top: 2px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 7px; max-height: 280px; overflow: auto; display: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12); }
+.suggest div { padding: 6px 9px; cursor: pointer; }
+.suggest div:hover, .suggest div.active { background: var(--soft); }
+.suggest small { color: var(--muted); }
+.picked { font-size: 12px; color: var(--muted); margin-top: 3px; min-height: 16px; }
+.check { display: flex; gap: 6px; align-items: center; padding-bottom: 8px; font-size: 13px; }
+.check input { width: auto; }
+.err { color: var(--hi); font-size: 13px; margin-top: 8px; min-height: 18px; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th:first-child, td:first-child, td.txt, th.txt { text-align: left; }
+td.wrap { white-space: normal; min-width: 180px; }
+thead th { color: var(--muted); font-weight: 600; font-size: 12px; }
+tr.total td { font-weight: 700; border-top: 2px solid var(--ink); }
+.chip { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 12px; font-weight: 600; white-space: normal; }
+.chip.within { background: var(--ok-bg); color: var(--ok); }
+.chip.above { background: var(--hi-bg); color: var(--hi); }
+.chip.below { background: var(--lo-bg); color: var(--lo); }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; }
+.note { color: var(--muted); font-size: 13px; }
+ul.plain { margin: 6px 0 0; padding-left: 18px; font-size: 13px; }
+.warnbox { background: var(--warn-bg); border-radius: 8px; padding: 8px 12px; }
+.daytitle { font-weight: 700; margin: 4px 0 6px; }
+footer { max-width: 1180px; margin: 0 auto; padding: 0 16px 30px; color: var(--muted); font-size: 12.5px; }
+@media print { .entry, .bar, .noprint { display: none !important; } section { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>KidneyCare diet calculator</h1>
+  <p class="sub">Add each food with its meal, type and amount. Totals, per-kg values and the prescription check update as you go. Personal use; clinician sign-off is needed before any value is used for care.</p>
+</header>
+<main>
+  <section>
+    <h2>Child and prescription</h2>
+    <div class="grid child">
+      <div><label for="c_id">Child ID (pseudonymous)</label><input id="c_id"></div>
+      <div><label for="c_age">Age (years)</label><input id="c_age" type="number" step="0.1" min="0"></div>
+      <div><label for="c_sex">Sex</label><select id="c_sex"><option></option><option>F</option><option>M</option></select></div>
+      <div><label for="c_wt">Weight (kg)</label><input id="c_wt" type="number" step="0.1" min="0"></div>
+      <div><label for="c_cond">Condition</label><input id="c_cond" placeholder="e.g. NS relapse, CKD 4"></div>
+      <div><label for="l_e_lo">Energy kcal/kg, min</label><input id="l_e_lo" type="number" step="any"></div>
+      <div><label for="l_e_hi">Energy kcal/kg, max</label><input id="l_e_hi" type="number" step="any"></div>
+      <div><label for="l_p_lo">Protein g/kg, min</label><input id="l_p_lo" type="number" step="any"></div>
+      <div><label for="l_p_hi">Protein g/kg, max</label><input id="l_p_hi" type="number" step="any"></div>
+      <div><label for="l_na">Sodium max (mg/day)</label><input id="l_na" type="number" step="any"></div>
+      <div><label for="l_k">Potassium max (mg/day)</label><input id="l_k" type="number" step="any"></div>
+      <div><label for="l_phos">Phosphorus max (mg/day)</label><input id="l_phos" type="number" step="any"></div>
+      <div><label for="l_ca">Calcium min (mg/day)</label><input id="l_ca" type="number" step="any"></div>
+      <div><label for="l_fl">Fluid max (mL/day)</label><input id="l_fl" type="number" step="any"></div>
+    </div>
+    <p class="note">Leave a limit blank to skip it. Enter the child's own prescription; the example values are not targets.</p>
+  </section>
+
+  <section>
+    <h2>Add food</h2>
+    <div class="grid entry">
+      <div><label for="e_date">Date</label><input id="e_date" type="date"></div>
+      <div><label for="e_slot">Meal</label>
+        <select id="e_slot">
+          <option>early morning</option><option selected>breakfast</option><option>mid-morning</option>
+          <option>lunch</option><option>evening</option><option>dinner</option><option>bedtime</option>
+          <option>feed</option><option>snack</option>
+        </select></div>
+      <div class="food"><label for="e_food">Food or dish (English, Hindi or IFCT code)</label>
+        <input id="e_food" autocomplete="off" placeholder="e.g. moong dal, atta, doodh, A019">
+        <div class="suggest" id="suggest" role="listbox"></div>
+        <div class="picked" id="picked"></div></div>
+      <div><label for="e_amt">Amount</label><input id="e_amt" type="number" step="any" min="0"></div>
+      <div><label for="e_unit">Unit</label><select id="e_unit"><option>g</option></select></div>
+      <div class="check"><input id="e_leach" type="checkbox"><label for="e_leach" style="margin:0">Leached</label></div>
+      <div><button class="primary" id="add">Add</button></div>
+    </div>
+    <div class="err" id="err"></div>
+  </section>
+
+  <section id="results"><h2>Composition</h2><div id="out" class="note">No entries yet.</div></section>
+
+  <section class="noprint">
+    <div class="bar">
+      <button id="example">Load example day</button>
+      <button id="export">Export CSV</button>
+      <label class="note" style="margin:0;align-self:center"><input id="import" type="file" accept=".csv" style="display:none"><span style="cursor:pointer;color:var(--accent)">Import CSV</span></label>
+      <button onclick="window.print()">Print</button>
+      <button id="clear">Clear entries</button>
+    </div>
+    <p class="note">The CSV columns match the Python engine (date, slot, food, amount, unit, leached), so a log made here can be recalculated with <code>python -m kcnutrition.cli calc</code>.</p>
+  </section>
+</main>
+<footer>
+  Food values: Indian Food Composition Tables 2017, ICMR-National Institute of Nutrition, Hyderabad (raw foods; transcription from github.com/ifct2017). Household measures: ICMR-NIN Dietary Guidelines for Indians 2024, Annexures I and II. Phosphorus absorption tiers: Polderman et al. 2026 and the PRINT course. Proxies and derived values are listed under each result. For personal use; written NIN permission is needed before this is used in any product or shared.
+</footer>
+<script>/*__DATA__*/</script>
+<script>/*__ENGINE__*/</script>
+<script>
+(function () {
+  "use strict";
+  const D = window.KC_DATA, E = KCEngine.make(D), L = KCEngine.LABELS;
+  const $ = id => document.getElementById(id);
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } },
+  };
+  let entries = store.get("kc_entries") || [];
+  let picked = null, active = -1;
+  const childFields = ["c_id", "c_age", "c_sex", "c_wt", "c_cond", "l_e_lo", "l_e_hi", "l_p_lo", "l_p_hi", "l_na", "l_k", "l_phos", "l_ca", "l_fl"];
+  const savedChild = store.get("kc_child") || {};
+  childFields.forEach(f => { if (savedChild[f] != null) $(f).value = savedChild[f]; $(f).addEventListener("input", () => { saveChild(); render(); }); });
+  $("e_date").value = new Date().toISOString().slice(0, 10);
+
+  function saveChild() { const o = {}; childFields.forEach(f => o[f] = $(f).value); store.set("kc_child", o); }
+  const num = id => { const v = $(id).value; return v === "" ? null : Number(v); };
+  function child() {
+    const lim = {}, src = "Prescription entered in calculator";
+    if (num("l_e_lo") != null || num("l_e_hi") != null) lim.energy_kcal = { per_kg: [num("l_e_lo"), num("l_e_hi")], source: src };
+    if (num("l_p_lo") != null || num("l_p_hi") != null) lim.protein_g = { per_kg: [num("l_p_lo"), num("l_p_hi")], source: src };
+    if (num("l_na") != null) lim.sodium_mg = { max: num("l_na"), source: src };
+    if (num("l_k") != null) lim.potassium_mg = { max: num("l_k"), source: src };
+    if (num("l_phos") != null) lim.phosphorus_mg = { max: num("l_phos"), source: src };
+    if (num("l_ca") != null) lim.calcium_mg = { min: num("l_ca"), source: src };
+    if (num("l_fl") != null) lim.fluid_ml = { max: num("l_fl"), source: src };
+    return { child_id: $("c_id").value, age_years: $("c_age").value, sex: $("c_sex").value,
+      weight_kg: num("c_wt"), condition: $("c_cond").value, limits: lim };
+  }
+
+  // ---- food search ----
+  const box = $("suggest");
+  function showSuggest() {
+    const q = $("e_food").value;
+    const ids = E.search(q, 14);
+    active = -1;
+    if (!q.trim() || !ids.length) { box.style.display = "none"; return; }
+    box.innerHTML = ids.map((id, i) => {
+      const grp = D.foods[id] ? D.foods[id].g : "Recipe";
+      return `<div data-id="${id}" data-i="${i}">${esc(E.nameOf(id))} <small>${esc(id)} · ${esc(grp)}</small></div>`;
+    }).join("");
+    box.style.display = "block";
+  }
+  function pick(id) {
+    picked = id; box.style.display = "none";
+    $("e_food").value = E.nameOf(id);
+    const f = D.foods[id], r = D.recipes[id];
+    $("picked").textContent = r ? `Recipe: ${r.ingredients.join(", ")} (${r.servings} serving${r.servings === 1 ? "" : "s"}${r.batch ? ", cooked batch " + r.batch + " g" : ""}; ${r.status})`
+      : `${id} · ${f.g}${f.st === "raw" ? " · raw values" : ""}${f.note ? " · " + f.note : ""}`;
+    const units = E.units(id);
+    $("e_unit").innerHTML = units.map(u => `<option>${u}</option>`).join("");
+    $("e_unit").value = r ? "serving" : units[0];
+    $("e_amt").focus();
+  }
+  $("e_food").addEventListener("input", () => { picked = null; $("picked").textContent = ""; showSuggest(); });
+  $("e_food").addEventListener("keydown", ev => {
+    const items = [...box.querySelectorAll("div")];
+    if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+      if (!items.length) return; ev.preventDefault();
+      active = (active + (ev.key === "ArrowDown" ? 1 : -1) + items.length) % items.length;
+      items.forEach((d, i) => d.classList.toggle("active", i === active));
+    } else if (ev.key === "Enter" && box.style.display === "block" && items.length) {
+      ev.preventDefault(); pick(items[Math.max(active, 0)].dataset.id);
+    } else if (ev.key === "Escape") box.style.display = "none";
+  });
+  box.addEventListener("mousedown", ev => { const d = ev.target.closest("div[data-id]"); if (d) { ev.preventDefault(); pick(d.dataset.id); } });
+  document.addEventListener("click", ev => { if (!ev.target.closest(".food")) box.style.display = "none"; });
+
+  $("add").addEventListener("click", addEntry);
+  $("e_amt").addEventListener("keydown", ev => { if (ev.key === "Enter") addEntry(); });
+  function addEntry() {
+    $("err").textContent = "";
+    try {
+      const id = picked || E.resolve($("e_food").value);
+      const e = { date: $("e_date").value, slot: $("e_slot").value, food: id, food_id: id,
+        amount: $("e_amt").value, unit: $("e_unit").value, leached: $("e_leach").checked ? "yes" : "" };
+      E.computeEntry(e);            // validate before storing
+      entries.push(e); store.set("kc_entries", entries);
+      $("e_food").value = ""; $("e_amt").value = ""; $("e_leach").checked = false; picked = null; $("picked").textContent = "";
+      $("e_food").focus(); render();
+    } catch (err) { $("err").textContent = err.message; }
+  }
+
+  // ---- rendering ----
+  const SHOW = ["energy_kcal", "protein_g", "sodium_mg", "potassium_mg", "phosphorus_mg", "calcium_mg", "fibre_g", "fluid_ml"];
+  const one = new Set(["protein_g", "fibre_g", "fat_g", "carb_g", "iron_mg"]);
+  const fmt = (v, n) => v == null ? "n/a" : one.has(n) ? v.toFixed(1) : Math.round(v).toString();
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+  function render() {
+    const res = E.compute(entries.map(e => Object.assign({}, e)), child());
+    const out = $("out");
+    if (!entries.length) { out.className = "note"; out.textContent = "No entries yet."; return; }
+    out.className = "";
+    let h = "";
+    const head = `<tr><th class="txt">Meal</th>${SHOW.map(n => `<th>${L[n][0]}<br>(${L[n][1]})</th>`).join("")}</tr>`;
+    for (const [date, day] of Object.entries(res.days)) {
+      h += `<div class="daytitle">${esc(date || "Undated")}</div><div class="table-wrap"><table><thead>${head}</thead><tbody>`;
+      for (const [slot, t] of Object.entries(day.meals))
+        h += `<tr><td>${esc(slot)}</td>${SHOW.map(n => `<td>${fmt(t[n], n)}</td>`).join("")}</tr>`;
+      const t = day.total;
+      h += `<tr class="total"><td>Day total</td>${SHOW.map(n => `<td>${fmt(t[n], n)}</td>`).join("")}</tr></tbody></table></div>`;
+      const [plo, phi] = t.phosphorus_absorbable_mg;
+      h += `<p class="note">Estimated absorbable phosphorus ${Math.round(plo)} to ${Math.round(phi)} mg (range across Polderman 2026 and PRINT course tiers${t.p_absorbable_incomplete ? "; " + t.p_absorbable_incomplete + " entries without a value" : ""}).`;
+      if (day.per_kg.energy_kcal_per_kg != null)
+        h += ` Per kg: energy ${Math.round(day.per_kg.energy_kcal_per_kg)} kcal/kg, protein ${day.per_kg.protein_g_per_kg.toFixed(2)} g/kg, fluid ${Math.round(day.per_kg.fluid_ml_per_kg)} mL/kg.`;
+      h += `</p>`;
+      const miss = Object.entries(t.missing_counts).filter(x => x[1]);
+      if (miss.length) h += `<p class="note">Missing values, not counted as zero: ${miss.map(([n, c]) => `${L[n][0]} in ${c}`).join("; ")}.</p>`;
+      const a = Object.entries(day.assessment);
+      if (a.length) {
+        h += `<div class="table-wrap"><table><thead><tr><th class="txt">Against prescription</th><th>Value</th><th>Range</th><th class="txt">Status</th></tr></thead><tbody>`;
+        for (const [n, x] of a) {
+          const cls = x.status.startsWith("above") ? "above" : x.status.startsWith("below") ? "below" : "within";
+          h += `<tr><td>${L[n][0]}</td><td>${fmt(x.value, n)} ${L[n][1]}</td><td>${x.min == null ? "-" : fmt(x.min, n)} to ${x.max == null ? "-" : fmt(x.max, n)}</td><td class="txt"><span class="chip ${cls}">${esc(x.status)}</span></td></tr>`;
+        }
+        h += `</tbody></table></div>`;
+      }
+    }
+    h += `<h2 style="margin-top:14px">Entries</h2><div class="table-wrap"><table><thead><tr><th class="txt">Date</th><th class="txt">Meal</th><th class="txt">Food</th><th>Amount</th><th>Grams</th><th>Energy</th><th>Protein</th><th>Na</th><th>K</th><th>P</th><th class="noprint"></th></tr></thead><tbody>`;
+    const byKey = new Map(res.entries.map((r, i) => [i, r]));
+    let ok = 0;
+    entries.forEach((e, i) => {
+      const err = res.errors.find(x => x.row === i + 1);
+      if (err) { h += `<tr><td class="txt">${esc(e.date)}</td><td class="txt">${esc(e.slot)}</td><td class="txt" colspan="8" style="color:var(--hi)">${esc(e.food)}: ${esc(err.error)}</td><td class="noprint"><button class="link" data-del="${i}">Remove</button></td></tr>`; return; }
+      const r = byKey.get(ok++), n = r.nutrients;
+      h += `<tr><td class="txt">${esc(r.date)}</td><td class="txt">${esc(r.slot)}</td><td class="txt wrap">${esc(r.food_name)} <span class="note">${esc(r.food_id)}</span></td><td>${r.amount} ${esc(r.unit)}${e.leached ? " (leached)" : ""}</td><td>${Math.round(r.grams)}</td><td>${fmt(n.energy_kcal)}</td><td>${fmt(n.protein_g, "protein_g")}</td><td>${fmt(n.sodium_mg)}</td><td>${fmt(n.potassium_mg)}</td><td>${fmt(n.phosphorus_mg)}</td><td class="noprint"><button class="link" data-del="${i}">Remove</button></td></tr>`;
+    });
+    h += `</tbody></table></div>`;
+    const warns = [...new Set(res.entries.flatMap(r => r.warnings))];
+    const prov = [...new Set(res.entries.flatMap(r => r.provenance))];
+    if (warns.length) h += `<div class="warnbox" style="margin-top:12px"><strong>Warnings</strong><ul class="plain">${warns.map(w => `<li>${esc(w)}</li>`).join("")}</ul></div>`;
+    if (prov.length) h += `<p class="note" style="margin-top:10px"><strong>Values that are not IFCT-analysed</strong></p><ul class="plain note">${prov.map(w => `<li>${esc(w)}</li>`).join("")}</ul>`;
+    out.innerHTML = h;
+    out.querySelectorAll("[data-del]").forEach(b => b.addEventListener("click", () => { entries.splice(Number(b.dataset.del), 1); store.set("kc_entries", entries); render(); }));
+  }
+
+  // ---- CSV ----
+  const COLS = ["date", "slot", "food", "amount", "unit", "leached"];
+  $("export").addEventListener("click", () => {
+    const q = v => /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
+    const csv = [COLS.join(",")].concat(entries.map(e => COLS.map(c => q(e[c] == null ? "" : e[c])).join(","))).join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = `kidneycare_meals_${$("c_id").value || "log"}.csv`; a.click();
+  });
+  $("import").addEventListener("change", ev => {
+    const file = ev.target.files[0]; if (!file) return;
+    file.text().then(text => {
+      const rows = parseCSV(text); const hdr = rows.shift().map(x => x.trim().toLowerCase());
+      for (const r of rows) { if (!r.join("").trim()) continue; const e = {}; hdr.forEach((k, i) => e[k] = (r[i] || "").trim()); entries.push(e); }
+      store.set("kc_entries", entries); render();
+    });
+    ev.target.value = "";
+  });
+  function parseCSV(t) {
+    const rows = [[]]; let cur = "", q = false;
+    for (let i = 0; i < t.length; i++) {
+      const c = t[i];
+      if (q) { if (c === '"' && t[i + 1] === '"') { cur += '"'; i++; } else if (c === '"') q = false; else cur += c; }
+      else if (c === '"') q = true; else if (c === ",") { rows[rows.length - 1].push(cur); cur = ""; }
+      else if (c === "\n" || c === "\r") { if (c === "\r" && t[i + 1] === "\n") i++; rows[rows.length - 1].push(cur); cur = ""; rows.push([]); }
+      else cur += c;
+    }
+    rows[rows.length - 1].push(cur);
+    return rows;
+  }
+  $("clear").addEventListener("click", () => { if (entries.length && confirmClear()) { entries = []; store.set("kc_entries", entries); render(); } });
+  function confirmClear() { const b = $("clear"); if (b.dataset.armed) { delete b.dataset.armed; b.textContent = "Clear entries"; return true; } b.dataset.armed = "1"; b.textContent = "Click again to clear"; setTimeout(() => { delete b.dataset.armed; b.textContent = "Clear entries"; }, 3000); return false; }
+
+  $("example").addEventListener("click", () => {
+    const d = $("e_date").value;
+    const ex = [["early morning", "cow milk", 150, "ml"], ["breakfast", "poha", 30, "g"], ["breakfast", "ground nut", 10, "piece"],
+      ["breakfast", "mustard oil", 1, "tsp"], ["breakfast", "IFCT:E012", 1, "piece"], ["lunch", "roti", 2, "serving"],
+      ["lunch", "moong dal cooked", 150, "g"], ["lunch", "rice", 40, "g"], ["lunch", "IFCT:F006", 50, "g", "yes"],
+      ["lunch", "curd", 100, "ml"], ["lunch", "salt", 0.5, "tsp"], ["evening", "rice moong feed", 1, "serving"],
+      ["evening", "coconut water", 100, "ml"], ["dinner", "roti", 2, "serving"], ["dinner", "palak", 1, "katori_medium"],
+      ["dinner", "ghee", 1, "tsp"], ["dinner", "water", 600, "ml"]];
+    entries = ex.map(([slot, food, amount, unit, leached]) => ({ date: d, slot, food, amount, unit, leached: leached || "" }));
+    if (!$("c_wt").value) {
+      const vals = { c_id: "EXAMPLE-01", c_age: 6, c_sex: "F", c_wt: 20, c_cond: "Example only, not a prescription",
+        l_e_lo: 64, l_e_hi: 90, l_p_lo: 0.85, l_p_hi: 0.95, l_na: 1500, l_k: 1500, l_phos: 800, l_fl: 1200 };
+      Object.entries(vals).forEach(([k, v]) => $(k).value = v); saveChild();
+    }
+    store.set("kc_entries", entries); render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

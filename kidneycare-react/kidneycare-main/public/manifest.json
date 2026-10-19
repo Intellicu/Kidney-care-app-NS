@@ -1,0 +1,20 @@
+{
+  "name": "KidneyCare — Nephrotic Syndrome Monitor",
+  "short_name": "KidneyCare",
+  "description": "Daily urine protein testing, medication tracking, and relapse monitoring for children with nephrotic syndrome.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf8f5",
+  "theme_color": "#3730a3",
+  "lang": "en",
+  "categories": ["health", "medical"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "maskable any"
+    }
+  ]
+}

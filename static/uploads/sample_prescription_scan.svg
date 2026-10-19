@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <!-- AIIMS Prescription Header -->
+  <rect x="0" y="0" width="600" height="70" fill="#0E3D46"/>
+  <text x="30" y="30" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="15" font-weight="700">AIIMS PATNA · OPD PRESCRIPTION SCAN</text>
+  <text x="30" y="48" fill="#99F6E4" font-family="system-ui, sans-serif" font-size="11">Division of Pediatric Nephrology · In-charge: Dr. Swarnim</text>
+  <text x="570" y="42" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="end">📄</text>
+
+  <!-- Patient Demographic Bar -->
+  <rect x="25" y="85" width="550" height="50" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="40" y="105" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">CR No: <tspan fill="#0E3D46" font-weight="700">2026/0412</tspan> | Patient: <tspan fill="#0F172A" font-weight="700">Aarav Kumar (7Y/M)</tspan></text>
+  <text x="40" y="123" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Date: 03-Oct-2026 18:30 | Diagnosis: Steroid Dependent Nephrotic Syndrome (SDNS)</text>
+
+  <!-- Prescription Rx Table -->
+  <rect x="25" y="145" width="550" height="28" fill="#E2E8F0"/>
+  <text x="40" y="163" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Rx / MEDICINE</text>
+  <text x="240" y="163" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">DOSE &amp; TIMING</text>
+  <text x="450" y="163" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">STATUS</text>
+
+  <text x="40" y="195" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">1. Tab. Prednisolone</text>
+  <text x="240" y="195" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12">20 mg once daily, morning (with breakfast)</text>
+  <text x="450" y="195" fill="#15803D" font-family="system-ui, sans-serif" font-size="11" font-weight="700">✓ Verified</text>
+  <line x1="25" y1="210" x2="575" y2="210" stroke="#F1F5F9"/>
+
+  <text x="40" y="235" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">2. Cap. Tacrolimus</text>
+  <text x="240" y="235" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12">1 mg twice daily (Strictly 8:00 AM &amp; 8:00 PM)</text>
+  <text x="450" y="235" fill="#15803D" font-family="system-ui, sans-serif" font-size="11" font-weight="700">✓ Verified</text>
+  <line x1="25" y1="250" x2="575" y2="250" stroke="#F1F5F9"/>
+
+  <text x="40" y="275" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">3. Tab. Amlodipine</text>
+  <text x="240" y="275" fill="#B45309" font-family="system-ui, sans-serif" font-size="12">2.5 mg once daily, morning (BP control)</text>
+  <text x="450" y="275" fill="#B45309" font-family="system-ui, sans-serif" font-size="11" font-weight="700">⚠️ Dose checked</text>
+  <line x1="25" y1="290" x2="575" y2="290" stroke="#F1F5F9"/>
+
+  <!-- Instructions -->
+  <rect x="25" y="310" width="550" height="70" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="40" y="330" fill="#0E3D46" font-family="system-ui, sans-serif" font-size="11" font-weight="700">SPECIAL INSTRUCTIONS / DOCTOR ADVICE:</text>
+  <text x="40" y="348" fill="#475569" font-family="system-ui, sans-serif" font-size="11">1. Test first morning urine with dipstick daily. 2. No added salt in food.</text>
+  <text x="40" y="366" fill="#475569" font-family="system-ui, sans-serif" font-size="11">3. Check BP once weekly. 4. Bring diary and report on Tuesday clinic visit.</text>
+</svg>

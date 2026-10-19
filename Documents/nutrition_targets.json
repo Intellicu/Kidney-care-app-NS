@@ -1,0 +1,813 @@
+{
+  "_meta": {
+    "purpose": "Reference values for the KidneyCare nutrition module rules engine. Draft transcribed from the rn4kids PRINT course (Modules 0-8) on 14 Oct 2026. Clinician sign-off required before clinical use.",
+    "sources": {
+      "PRINT_energy_protein": "Shaw V et al. Energy and protein requirements for children with CKD stages 2-5 and on dialysis. Pediatr Nephrol 2020. (Course Module 2, Concept 2, Tables 2a and 2b)",
+      "PRINT_potassium": "Desloovere A et al. Dietary management of potassium in children with CKD stages 2-5 and on dialysis. Pediatr Nephrol 2021. (Course Module 4)",
+      "PRINT_sodium": "PRNT. Sodium intake in children with CKD: clinical practice recommendations. Pediatr Nephrol 2021. (Course Module 6, Table 2)",
+      "PRINT_obesity": "Stabouli S et al. Pediatr Nephrol 2022. (Course Module 2, Concept 5)",
+      "ICMR_NIN_2020_RDA": "Nutrient Requirements for Indians: RDA and EAR. ICMR-NIN 2020 (cited in course Module 0, Section 6)",
+      "ICMR_NIN_2024_DGI": "Dietary Guidelines for Indians 2024. ICMR-NIN (course Module 0, Section 7; Table 1.6 excerpt)",
+      "IFCT_2017": "Indian Food Composition Tables 2017. NIN-ICMR (course Module 0, Section 7, Table 10 group averages)",
+      "CKJ_2026_Polderman": "Polderman N, Shaw V et al. Ten tips on how to optimize nutrition in children with CKD or on dialysis. Clin Kidney J 2026;19(4):sfag046 (open access, CC BY-NC 4.0). Uploaded PDF, read 14 Oct 2026.",
+      "IndianFoodGuide_West_Central_K_2023": "PRNT with Vitaflo (Nestle Health Science). Food guide for managing potassium intake, West and Central Indian diet, Aug 2023. Uploaded PDF.",
+      "IndianFoodGuide_South_K_2024": "PRNT with Vitaflo (Nestle Health Science). Food guide for managing potassium intake, South Indian diet, Aug 2024. Uploaded PDF."
+    },
+    "gaps": [
+      "Course Module 0 Section 6 Table 7 (protein SDI by age and sex, ICMR-NIN) and Module 4 Concept 3 (Indian food potassium list) are images and did not extract as text. Verify against the source PDFs.",
+      "Module 3 renal supplement composition tables (6-8) and modular supplement Table 9 did not extract.",
+      "Module 6 Concept 2 quotes 2.5 g/day salt for hypertension. This is a general figure. Confirm the paediatric value from the PRNT sodium paper before use.",
+      "CKJ 2026 Tips paper: calcium SDI (220 to 1300 mg) and phosphate SDI by age (120 to 1250 mg, 940 to 1250 mg at 11-17 y) are quoted in an earlier draft but are not in the paper text layer; they appear in a table image. Verify before use.",
+      "CKJ 2026 paper gives dialysate glucose energy as about 7 to 9 kcal/kg/day; the course gives 7 to 10. Use the paper value for the rules engine pending clinician sign-off.",
+      "West and South K guides: category bands are printed in the legend, but the colour per food is not in the text layer. Categories in the CSV for these guides are derived from the printed mg bands (High >117 mg, Moderate 39 to 117 mg, Lower <39 mg per portion)."
+    ]
+  },
+  "energy_protein_SDI": {
+    "unit": {
+      "energy": "kcal/kg/day",
+      "protein_per_kg": "g/kg/day",
+      "protein_per_day": "g/day"
+    },
+    "infancy_birth_to_12m": [
+      {
+        "age": "birth",
+        "energy": [
+          93,
+          107
+        ],
+        "protein_kg": [
+          1.52,
+          2.5
+        ],
+        "protein_day": [
+          8,
+          12
+        ]
+      },
+      {
+        "age": "1 month",
+        "energy": [
+          93,
+          120
+        ],
+        "protein_kg": [
+          1.52,
+          1.8
+        ],
+        "protein_day": [
+          8,
+          12
+        ]
+      },
+      {
+        "age": "2 months",
+        "energy": [
+          93,
+          120
+        ],
+        "protein_kg": [
+          1.4,
+          1.52
+        ],
+        "protein_day": [
+          8,
+          12
+        ]
+      },
+      {
+        "age": "3 months",
+        "energy": [
+          82,
+          98
+        ],
+        "protein_kg": [
+          1.4,
+          1.52
+        ],
+        "protein_day": [
+          8,
+          12
+        ]
+      },
+      {
+        "age": "4 months",
+        "energy": [
+          82,
+          98
+        ],
+        "protein_kg": [
+          1.3,
+          1.52
+        ],
+        "protein_day": [
+          9,
+          13
+        ]
+      },
+      {
+        "age": "5 months",
+        "energy": [
+          72,
+          82
+        ],
+        "protein_kg": [
+          1.3,
+          1.52
+        ],
+        "protein_day": [
+          9,
+          13
+        ]
+      },
+      {
+        "age": "6-9 months",
+        "energy": [
+          72,
+          82
+        ],
+        "protein_kg": [
+          1.1,
+          1.3
+        ],
+        "protein_day": [
+          9,
+          14
+        ]
+      },
+      {
+        "age": "10-11 months",
+        "energy": [
+          72,
+          82
+        ],
+        "protein_kg": [
+          1.1,
+          1.3
+        ],
+        "protein_day": [
+          9,
+          15
+        ]
+      },
+      {
+        "age": "12 months",
+        "energy": [
+          72,
+          120
+        ],
+        "protein_kg": [
+          0.9,
+          1.14
+        ],
+        "protein_day": [
+          11,
+          14
+        ]
+      }
+    ],
+    "child_2_to_17y": [
+      {
+        "age_years": 2,
+        "energy_male": [
+          81,
+          95
+        ],
+        "energy_female": [
+          79,
+          92
+        ],
+        "protein_kg": [
+          0.9,
+          1.05
+        ],
+        "protein_day": [
+          11,
+          15
+        ]
+      },
+      {
+        "age_years": 3,
+        "energy_male": [
+          80,
+          82
+        ],
+        "energy_female": [
+          76,
+          77
+        ],
+        "protein_kg": [
+          0.9,
+          1.05
+        ],
+        "protein_day": [
+          13,
+          15
+        ]
+      },
+      {
+        "age_years": "4-6",
+        "energy_male": [
+          67,
+          93
+        ],
+        "energy_female": [
+          64,
+          90
+        ],
+        "protein_kg": [
+          0.85,
+          0.95
+        ],
+        "protein_day": [
+          16,
+          22
+        ]
+      },
+      {
+        "age_years": "7-8",
+        "energy_male": [
+          60,
+          77
+        ],
+        "energy_female": [
+          56,
+          75
+        ],
+        "protein_kg": [
+          0.9,
+          0.95
+        ],
+        "protein_day": [
+          19,
+          28
+        ]
+      },
+      {
+        "age_years": "9-10",
+        "energy_male": [
+          55,
+          69
+        ],
+        "energy_female": [
+          49,
+          63
+        ],
+        "protein_kg": [
+          0.9,
+          0.95
+        ],
+        "protein_day": [
+          26,
+          40
+        ]
+      },
+      {
+        "age_years": "11-12",
+        "energy_male": [
+          48,
+          63
+        ],
+        "energy_female": [
+          43,
+          57
+        ],
+        "protein_kg": [
+          0.9,
+          0.95
+        ],
+        "protein_day": [
+          34,
+          42
+        ]
+      },
+      {
+        "age_years": "13-14",
+        "energy_male": [
+          44,
+          63
+        ],
+        "energy_female": [
+          39,
+          50
+        ],
+        "protein_kg": [
+          0.8,
+          0.9
+        ],
+        "protein_day": [
+          34,
+          50
+        ]
+      },
+      {
+        "age_years": "15-17",
+        "energy_male": [
+          40,
+          55
+        ],
+        "energy_female": [
+          36,
+          46
+        ],
+        "protein_kg": [
+          0.8,
+          0.9
+        ],
+        "protein_day_male": [
+          52,
+          65
+        ],
+        "protein_day_female": [
+          45,
+          49
+        ]
+      }
+    ],
+    "use_rules": [
+      "Start from SDI for the child's age and sex, not from a fixed restriction.",
+      "Poor growth: aim for the upper end of the energy range.",
+      "Persistently high urea: move toward the lower end of protein only after other causes are excluded (total intake, hydration, catabolism, dialysis adequacy) and growth is protected.",
+      "Stage 2-3: avoid routine protein restriction, aim within normal range.",
+      "Stage 4-5 not on dialysis: maintain age-appropriate protein, avoid unnecessary restriction.",
+      "Dialysis: add protein to replace losses (PD +0.15 to 0.3 g/kg/day; HD +0.1 g/kg/day).",
+      "PD: count dialysate glucose as 7-10 kcal/kg/day toward total energy.",
+      "Infant feeds may need fortification (not dilution) when fluid limits reduce volume."
+    ]
+  },
+  "nephrotic_syndrome": {
+    "relapse_definition": "Urine protein 3+ or more on dipstick, or spot UPCR of 2 mg/mg or more.",
+    "remission_definition": "Urine protein nil or trace for 3 consecutive days, oedema resolved, urine output at baseline, weight stable at pre-relapse dry weight.",
+    "acute_relapse": {
+      "energy_carbohydrate": "Adequate energy, limit simple sugars especially on steroids, favour complex carbohydrate.",
+      "protein": "Adequate age-appropriate high-quality protein. Avoid both protein loading and very low-protein diets.",
+      "fat": "Children over 2 y: healthy fats, limit saturated and trans fat. Children under 2 y: no fat restriction.",
+      "sodium": "No-added-salt or sodium-reduced diet during oedema or hypertension. Prioritise fresh food.",
+      "fluid": "Do not restrict automatically. Restrict only on nephrologist advice (severe oedema, significant hyponatraemia, oliguria)."
+    },
+    "complete_remission": {
+      "fluid": "Adequate fluid once oedema resolves.",
+      "protein": "Continue age-appropriate protein.",
+      "sodium": "Normal sodium diet. Avoid added salt and very salty snacks.",
+      "fat": "Continue limiting saturated and trans fat, especially after repeated relapses or steroid exposure."
+    }
+  },
+  "potassium": {
+    "serum_reference_mmol_per_L": {
+      "children_adolescents": [
+        3.5,
+        5.2
+      ],
+      "hyperkalaemia_threshold_children": 5.3,
+      "infants_1y": [
+        3.5,
+        5.6
+      ],
+      "hyperkalaemia_threshold_infants": 5.7,
+      "neonates": [
+        3.5,
+        5.9
+      ],
+      "hyperkalaemia_threshold_neonates": 6.0
+    },
+    "principles": [
+      "Most children with CKD do not need potassium restriction. Restrict only with measured hyperkalaemia on trend.",
+      "Renal K excretion is not significantly impaired until GFR is below about 15-20 mL/min/1.73m2.",
+      "Confirm on serial measurements. Base changes on trends; diet takes 3-7 days to show full effect.",
+      "Exclude non-dietary causes first: ACEi, ARB, spironolactone, calcineurin inhibitors, NSAIDs, beta-blockers, trimethoprim, constipation, acidosis, low energy intake, haemolysed sample, transfusion, inadequate dialysis.",
+      "Hypokalaemia (below 3.5) also needs correction."
+    ],
+    "hidden_potassium_sources": [
+      "Low-sodium salt substitutes (200-300 mg K per gram)",
+      "Potassium additives: INS 508, 332, 340, 202, 501 (absorbed 90-100%)",
+      "Coconut water (high K)",
+      "Processed snacks, bakery, packaged sauces"
+    ],
+    "cut_first": [
+      "Potato chips",
+      "Chocolate",
+      "Coffee",
+      "Custard",
+      "Ice cream",
+      "Fruit and vegetable juices",
+      "Canned soup",
+      "Salt substitutes",
+      "Processed foods"
+    ],
+    "keep_and_portion": [
+      "Milk and dairy",
+      "Potatoes and tubers (leach)",
+      "Vegetables",
+      "Pulses (leach)",
+      "Cereals",
+      "Fruit",
+      "Meat",
+      "Nuts"
+    ],
+    "leaching": "Double-boil cut tubers, pulses and vegetables. If a food cannot be leached and K is high, avoid it in hyperkalaemia.",
+    "infant_feeds_K_mg_per_100mL": {
+      "breastmilk": 58,
+      "whey_dominant_formula": 69,
+      "cows_milk": 150,
+      "renal_low_K_formula": 22,
+      "diluted_whey_plus_modules": 47
+    },
+    "binders_infants": "SPS 0.9 g per 100 mL lowers K by about 25%. Starting dose 0.4-1.5 g/100 mL. Recheck electrolytes after starting."
+  },
+  "phosphate": {
+    "absorption_pct": {
+      "inorganic_additive": [
+        90,
+        100
+      ],
+      "animal": [
+        40,
+        70
+      ],
+      "plant_phytate": [
+        20,
+        50
+      ]
+    },
+    "principles": [
+      "Restrict phosphate additives first, not protein. Do not remove natural protein sources by default.",
+      "Use phosphate-to-protein ratio: prefer egg white, fresh unprocessed chicken and fish. Limit processed meat and cheese.",
+      "Calcium carbonate with meals acts as a binder. Count dietary plus binder calcium together."
+    ],
+    "additive_foods_India": [
+      "Processed meats",
+      "Colas and flavoured drinks",
+      "Instant noodles and soup mixes",
+      "Processed cheese and cheese spreads",
+      "Packaged namkeen and chips",
+      "Bakery (bread, biscuits, rusk)",
+      "Canned sweets",
+      "Ready-to-eat curries and khichdi, poha, upma mixes",
+      "Frozen marinated non-veg"
+    ],
+    "label_terms": [
+      "PHOS in ingredient list",
+      "Phosphate, phosphoric acid",
+      "E338-E452 range",
+      "INS numbers for phosphates"
+    ],
+    "swaps": {
+      "soft_drinks": [
+        "Buttermilk (chaas)",
+        "Nimbu paani",
+        "Coconut water (only if K allows)"
+      ],
+      "processed_cheese": [
+        "Fresh paneer",
+        "Home curd"
+      ],
+      "frozen_ready_meat": [
+        "Fresh unmarinated chicken, fish or mutton, marinated at home"
+      ],
+      "instant_noodles_soup": [
+        "Home poha, upma, khichdi, idli or dosa"
+      ],
+      "biscuits_cake": [
+        "Fresh roti or paratha",
+        "Homemade thepla",
+        "Roasted makhana"
+      ],
+      "savoury_snacks": [
+        "Home-roasted chana",
+        "Murmura or chivda",
+        "Makhana",
+        "Roasted peanuts"
+      ]
+    },
+    "binders": {
+      "calcium_carbonate_or_citrate": "First-line, with meals. Watch hypercalcaemia.",
+      "sevelamer": "Non-calcium, with meals. GI effects.",
+      "lanthanum": "Non-calcium, with meals. Taste.",
+      "aluminium_hydroxide": "Short-course rescue only."
+    }
+  },
+  "sodium": {
+    "AI_infants_g_per_day": {
+      "0-3m": [
+        0.11,
+        0.12
+      ],
+      "4-6m": [
+        0.11,
+        0.2
+      ],
+      "7-11m": [
+        0.17,
+        0.37
+      ]
+    },
+    "CDRR_g_per_day_sodium": {
+      "1-3y": 1.2,
+      "4-6y": 1.5,
+      "7-8y": 1.7,
+      "9-13y": 2.0,
+      "14-18y": 2.3
+    },
+    "CDRR_g_per_day_salt": {
+      "1-3y": 3.0,
+      "4-6y": 3.5,
+      "7-8y": 4.0,
+      "9-13y": 5.0,
+      "14-18y": 5.5
+    },
+    "restrict_when": [
+      "Hypertension or pre-hypertension, or on antihypertensives",
+      "CKD stage 2-4 with BP above 50th centile",
+      "Albuminuria",
+      "Fluid restriction",
+      "Corticosteroid treatment",
+      "Peritoneal dialysis with fluid overload"
+    ],
+    "increase_when": [
+      "Renal or extra-renal sodium losses",
+      "Hypotension or symptomatic hypovolaemia",
+      "Infants and toddlers with growth failure from sodium wasting",
+      "PD with large dialysate sodium losses"
+    ],
+    "sodium_content_per_serving_mg": {
+      "pizza_slice": 600,
+      "burger": 550,
+      "instant_noodle_packet": 955
+    },
+    "label_thresholds_mg": {
+      "low": 140,
+      "very_low": 35,
+      "salt_free": 5
+    },
+    "salt_conversion": "1 tsp salt is about 6 g NaCl = 2400 mg sodium = 104 mEq",
+    "salt_substitute_warning": "Avoid potassium-based salt substitutes in children with impaired kidney function.",
+    "assessment": "Use 24-h recall, FFQ, or 3-day diary. Do not use serum or urinary sodium to estimate intake. Additives can raise intake by up to 60%.",
+    "medication_sources": [
+      "Sodium bicarbonate",
+      "Effervescent and soluble medicines",
+      "Sodium-based potassium binders"
+    ]
+  },
+  "dialysis": {
+    "PD": {
+      "extra_protein_g_per_kg": [
+        0.15,
+        0.3
+      ],
+      "dextrose_kcal_per_kg": [
+        7,
+        10
+      ],
+      "fluid": "More flexible (continuous UF).",
+      "potassium": "Do not restrict routinely; may need supplements.",
+      "water_soluble_vitamins": "Supplement."
+    },
+    "HD": {
+      "extra_protein_g_per_kg": [
+        0.1,
+        0.1
+      ],
+      "fluid": "Restrict to limit interdialytic weight gain.",
+      "potassium": "Restrict as needed; accumulates between sessions.",
+      "sodium": "Restrict; important for thirst and weight gain.",
+      "water_soluble_vitamins": "Supplement. IV iron usually needed with ESA."
+    },
+    "IDPN": "Only for persistent protein-energy malnutrition despite optimised oral and enteral support."
+  },
+  "growth_and_weight": {
+    "overweight_obesity_criteria": {
+      "2-5y": {
+        "measure": "Weight-for-height (WHO)",
+        "overweight": "> +2 SD",
+        "obesity": "> +3 SD"
+      },
+      "over_5y": {
+        "measure": "BMI-for-age (WHO or IAP)",
+        "overweight": "> +1 SD",
+        "obesity": "> +2 SD"
+      }
+    },
+    "metabolic_syndrome": "Overweight or obesity plus 2 of: low HDL, high TG, high BP, high fasting glucose or known T2DM.",
+    "obesity_approach": "Individualise energy. Improve diet quality. Limit sugary drinks and processed food. Avoid aggressive restriction. No anti-obesity drugs in CKD 2-5D or post-transplant.",
+    "dry_weight": "Dialysis dry weight is the weight with excess fluid removed, normal BP, and no dehydration or overload.",
+    "charts": "WHO 0-5 y; IAP charts (iapindia.org) 5-18 y.",
+    "MUAC_6m_5y_cm": {
+      "normal": "12.5 or more",
+      "moderate_acute_malnutrition": [
+        11.5,
+        12.4
+      ],
+      "severe": "below 11.5"
+    },
+    "mid_parental_height": "Boys: (mother + 13 + father)/2. Girls: (mother + father - 13)/2. Target range plus or minus 8.5 cm."
+  },
+  "macronutrient_distribution_healthy": {
+    "carbohydrate_pct_energy": [
+      50,
+      55
+    ],
+    "protein_pct_energy": [
+      10,
+      15
+    ],
+    "fat_pct_energy": [
+      20,
+      30
+    ],
+    "sugar_pct_energy_max_children": 5,
+    "fat_oil_g_per_day_ICMR_2024": {
+      "7-12m": 7,
+      "1-3y": 10,
+      "4-6y": 15,
+      "7-9y": 20,
+      "10-12y_boys": 35,
+      "10-12y_girls": 30,
+      "13-15y_boys": 45,
+      "13-15y_girls": 40,
+      "16-18y_boys": 55,
+      "16-18y_girls": 40
+    }
+  },
+  "food_composition_group_averages_per_100g_raw": {
+    "source": "Course Module 0 Table 10 (IFCT 2017 group averages). Replace with item-level IFCT values in the food table.",
+    "columns": [
+      "protein_g",
+      "fat_g",
+      "carbs_g",
+      "energy_kcal",
+      "phosphorus_mg",
+      "potassium_mg"
+    ],
+    "groups": {
+      "cereals": [
+        9.3,
+        1.2,
+        72,
+        343,
+        270,
+        280
+      ],
+      "millets": [
+        9.9,
+        2.7,
+        65,
+        330,
+        300,
+        300
+      ],
+      "pulses": [
+        22.8,
+        3,
+        49,
+        323,
+        350,
+        950
+      ],
+      "green_leafy_vegetables": [
+        3.8,
+        0.7,
+        5,
+        45,
+        60,
+        400
+      ],
+      "roots_tubers": [
+        1.5,
+        0.2,
+        12,
+        59,
+        45,
+        300
+      ],
+      "vegetables": [
+        1.8,
+        0.4,
+        5,
+        35,
+        40,
+        250
+      ],
+      "nuts": [
+        17.5,
+        41.3,
+        18,
+        516,
+        400,
+        650
+      ],
+      "fruits": [
+        1,
+        0.6,
+        11,
+        59,
+        25,
+        250
+      ],
+      "meat_poultry": [
+        20.8,
+        6.8,
+        0,
+        250,
+        190,
+        300
+      ],
+      "fish_seafood": [
+        18.4,
+        3.1,
+        2,
+        110,
+        200,
+        350
+      ],
+      "milk": [
+        3.1,
+        4.2,
+        5,
+        72,
+        90,
+        150
+      ],
+      "egg": [
+        13.3,
+        10,
+        1,
+        147,
+        200,
+        140
+      ]
+    }
+  },
+  "homemade_feed_example": {
+    "name": "Rice-moong feed (course Module 3, Concept 6)",
+    "ingredients_g_or_ml": {
+      "rice_flour": 20,
+      "moong_dal_flour": 10,
+      "sugar": 10,
+      "soyabean_or_walnut_oil": 5,
+      "water_ml": 150
+    },
+    "approx_per_serving": {
+      "energy_kcal": 170,
+      "protein_g": [
+        4,
+        5
+      ]
+    },
+    "note": "Standardise the recipe. Recalculate for the child's CKD stage and protein allowance."
+  },
+  "model_case_rules": {
+    "poor_growth_CKD3": "Raise energy toward upper SDI. Do not reduce protein. No K or P restriction without biochemical indication. Replace biscuits and chips with planned energy foods.",
+    "hyperkalaemia_CKD4": "Check trend and non-dietary causes. Remove concentrated K (coconut water). Spread K foods across the day. Use leaching. Treat constipation. Do not remove all fruit and vegetables.",
+    "hyperphosphataemia_CKD5": "Remove phosphate additives first. Teach label reading. Keep protein foods; review portions. Check binder timing.",
+    "HD_teen": "Plan meals around school and dialysis. Add dialysis protein. Restrict salty food and fluid. Involve the adolescent.",
+    "PD_toddler": "Count dialysate glucose. Raise protein for PD losses. Consider supplements or enteral feeding early when oral intake is inadequate."
+  },
+  "common_pitfalls": [
+    "Restricting protein because the child has CKD.",
+    "Starting K restriction without confirming need.",
+    "Focusing on phosphorus and ignoring additives.",
+    "Multiple simultaneous restrictions causing low energy intake.",
+    "Ignoring growth trend.",
+    "Using oedematous weight instead of dry weight.",
+    "Giving nutrient numbers without food quantities.",
+    "Ignoring constipation, appetite and feeding difficulty.",
+    "Plans too complicated for the family.",
+    "Failing to reassess when labs, dialysis or growth change."
+  ],
+  "ckj_2026_tips": {
+    "source": "Polderman N, Shaw V et al. Clin Kidney J 2026;19(4):sfag046",
+    "dialysate_glucose_energy_kcal_per_kg_day": "about 7 to 9 (course: 7 to 10)",
+    "pd_protein_losses_g_per_kg_day": {
+      "infants": 0.28,
+      "adolescents": 0.1,
+      "note": "range from infants to adolescents; individual losses vary"
+    },
+    "fibre_sdi_g_per_1000_kcal": {
+      "low": 8.3,
+      "high": 14.2,
+      "note": "PRNT SDI for fibre; plant-slant diets advised"
+    },
+    "calcium": {
+      "total_intake_pct_of_sdi": "100 to 200 (includes breast milk, formula, food, calcium-based medication)",
+      "note": "Restrict phosphate without cutting calcium: use non-dairy sources (plant milks, calcium-set tofu, fortified cereals); calcium supplements or high-calcium dialysate may be needed"
+    },
+    "phosphate_bioavailability_pct": {
+      "additives": "up to 100 (identify by phos on ingredient labels)",
+      "animal": "40 to 60",
+      "plant": "20 to 40"
+    },
+    "phosphate_binders": "Taken with food or formula; whey-dominant or renal formulas have lower phosphate",
+    "potassium_stepwise": [
+      "Correct non-dietary causes first (medications, acidosis, constipation as per course).",
+      "Restrict potassium additive foods and other sources with added potassium.",
+      "Replace high-potassium, low-value foods with lower-potassium alternatives.",
+      "Do not routinely exclude fruit, vegetables or whole grains; they carry fibre and nutrient value.",
+      "Limit animal protein while still meeting protein needs.",
+      "If dietary control is inadequate or hard to sustain, a potassium binder such as sodium zirconium cyclosilicate can be used."
+    ],
+    "fortification": "Expressed breast milk can be fortified with infant formula powder to 13% to 20% (67 to 100 kcal/100 mL); whey-dominant formula preferred for lower phosphate and potassium",
+    "tube_feeding": "Start early when weight centile falls or oral intake is inadequate; NGT as bridge to gastrostomy; plan gastrostomy in PD (peritonitis risk, prophylaxis)",
+    "energy": "Energy SDI; upper end for poor growth; height age for poor linear growth",
+    "ultra_processed_foods": "Limit UPFs (NOVA); about 80% of sodium intake in Western countries comes from processed and UPFs; avoid salt substitutes",
+    "micronutrients": "Monitor vitamins and minerals; supplement only when clinically indicated; limit oxalate-rich foods where relevant"
+  }
+}

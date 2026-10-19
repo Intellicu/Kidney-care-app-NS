@@ -1,0 +1,812 @@
+{
+  "child": {
+    "child_id": "EXAMPLE-01",
+    "age_years": 6,
+    "sex": "F",
+    "weight_kg": 20,
+    "condition": "Example only, not a prescription",
+    "limits": {
+      "energy_kcal": {
+        "per_kg": [
+          64,
+          90
+        ],
+        "source": "PRINT SDI, 6-year-old girl (spec v4, section 2)"
+      },
+      "protein_g": {
+        "per_kg": [
+          0.85,
+          0.95
+        ],
+        "source": "PRINT SDI, 6-year-old girl (spec v4, section 2)"
+      },
+      "sodium_mg": {
+        "max": 1500,
+        "source": "EXAMPLE value; enter the child's prescription"
+      },
+      "potassium_mg": {
+        "max": 1500,
+        "source": "EXAMPLE value; enter the child's prescription"
+      },
+      "phosphorus_mg": {
+        "max": 800,
+        "source": "EXAMPLE value; enter the child's prescription"
+      },
+      "fluid_ml": {
+        "max": 1200,
+        "source": "EXAMPLE value; enter the child's prescription"
+      }
+    }
+  },
+  "entries": [
+    {
+      "date": "2026-10-16",
+      "slot": "early morning",
+      "query": "cow milk",
+      "food_id": "IFCT:L002",
+      "food_name": "Milk, whole, Cow",
+      "amount": 150.0,
+      "unit": "ml",
+      "grams": 154.5,
+      "fluid_ml": 150.0,
+      "nutrients": {
+        "energy_kcal": 112.62547801147228,
+        "protein_g": 5.0367,
+        "fat_g": 6.921600000000001,
+        "carb_g": 7.6323,
+        "fibre_g": 0.0,
+        "water_g": 133.8588,
+        "calcium_mg": 182.31,
+        "phosphorus_mg": 149.1852,
+        "potassium_mg": 177.675,
+        "sodium_mg": 39.3357,
+        "iron_mg": 0.23175
+      },
+      "missing": [],
+      "p_absorbable": [
+        59.674080000000004,
+        104.42964
+      ],
+      "warnings": [],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "breakfast",
+      "query": "poha",
+      "food_id": "IFCT:A011",
+      "food_name": "Rice, flakes",
+      "amount": 30.0,
+      "unit": "g",
+      "grams": 30.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 106.11854684512427,
+        "protein_g": 2.232,
+        "fat_g": 0.34199999999999997,
+        "carb_g": 23.025,
+        "fibre_g": 1.038,
+        "water_g": 3.1079999999999997,
+        "calcium_mg": 2.7569999999999997,
+        "phosphorus_mg": 58.5,
+        "potassium_mg": 44.4,
+        "sodium_mg": 0.7739999999999999,
+        "iron_mg": 1.338
+      },
+      "missing": [],
+      "p_absorbable": [
+        11.700000000000001,
+        29.25
+      ],
+      "warnings": [
+        "IFCT values for Rice, flakes are for the raw food; enter the raw weight, or log the cooked dish as a recipe."
+      ],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "breakfast",
+      "query": "ground nut",
+      "food_id": "IFCT:H012",
+      "food_name": "Ground nut",
+      "amount": 10.0,
+      "unit": "piece",
+      "grams": 4.5,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 23.403441682600377,
+        "protein_g": 1.06425,
+        "fat_g": 1.78335,
+        "carb_g": 0.77715,
+        "fibre_g": 0.4671,
+        "water_g": 0.31365,
+        "calcium_mg": 2.43,
+        "phosphorus_mg": 17.595,
+        "potassium_mg": 30.555,
+        "sodium_mg": 0.5494500000000001,
+        "iron_mg": 0.1548
+      },
+      "missing": [],
+      "p_absorbable": [
+        3.519,
+        8.7975
+      ],
+      "warnings": [],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "breakfast",
+      "query": "mustard oil",
+      "food_id": "IFCT:T006",
+      "food_name": "Mustard oil",
+      "amount": 1.0,
+      "unit": "tsp",
+      "grams": 5.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 44.21606118546844,
+        "protein_g": 0.0,
+        "fat_g": 5.0,
+        "carb_g": 0.0,
+        "fibre_g": 0.0,
+        "water_g": 0.0,
+        "calcium_mg": 0.0,
+        "phosphorus_mg": 0.0,
+        "potassium_mg": 0.0,
+        "sodium_mg": 0.0,
+        "iron_mg": 0.0
+      },
+      "missing": [],
+      "p_absorbable": [
+        0.0,
+        0.0
+      ],
+      "warnings": [],
+      "provenance": [
+        "IFCT:T006 Mustard oil: energy derived:fat x 37 kJ/g (IFCT energy factor)"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "breakfast",
+      "query": "E012",
+      "food_id": "IFCT:E012",
+      "food_name": "Banana, ripe, robusta",
+      "amount": 1.0,
+      "unit": "piece",
+      "grams": 50.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 52.5812619502868,
+        "protein_g": 0.615,
+        "fat_g": 0.165,
+        "carb_g": 11.815,
+        "fibre_g": 0.97,
+        "water_g": 35.965,
+        "calcium_mg": 2.535,
+        "phosphorus_mg": 12.16,
+        "potassium_mg": 153.0,
+        "sodium_mg": 0.425,
+        "iron_mg": 0.13999999999999999
+      },
+      "missing": [],
+      "p_absorbable": [
+        2.4320000000000004,
+        6.08
+      ],
+      "warnings": [],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "lunch",
+      "query": "roti",
+      "food_id": "RECIPE:ROTI_EXAMPLE",
+      "food_name": "Roti, atta (example, calibrate per household)",
+      "amount": 2.0,
+      "unit": "serving",
+      "grams": 50.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 160.13384321223708,
+        "protein_g": 5.285,
+        "fat_g": 0.765,
+        "carb_g": 32.085,
+        "fibre_g": 5.68,
+        "water_g": 5.55,
+        "calcium_mg": 15.47,
+        "phosphorus_mg": 157.5,
+        "potassium_mg": 155.5,
+        "sodium_mg": 1.02,
+        "iron_mg": 2.0500000000000003
+      },
+      "missing": [],
+      "p_absorbable": [
+        31.5,
+        78.75
+      ],
+      "warnings": [
+        "Roti, atta (example, calibrate per household): recipe status is 'example only'."
+      ],
+      "provenance": [
+        "RECIPE:ROTI_EXAMPLE: recipe (Example. Weigh the atta used for a known number of rotis in each household and replace these values.)"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "lunch",
+      "query": "moong dal cooked",
+      "food_id": "RECIPE:MOONG_DAL_EXAMPLE",
+      "food_name": "Moong dal, plain, no salt (example, calibrate per household)",
+      "amount": 150.0,
+      "unit": "g",
+      "grams": 150.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 103.54923518164435,
+        "protein_g": 5.97,
+        "fat_g": 2.8375,
+        "carb_g": 13.1475,
+        "fibre_g": 2.3425,
+        "water_g": 127.4425,
+        "calcium_mg": 10.7825,
+        "phosphorus_mg": 104.0,
+        "potassium_mg": 317.0,
+        "sodium_mg": 2.535,
+        "iron_mg": 0.9825
+      },
+      "missing": [],
+      "p_absorbable": [
+        20.8,
+        52.0
+      ],
+      "warnings": [
+        "Moong dal, plain, no salt (example, calibrate per household): recipe status is 'example only'."
+      ],
+      "provenance": [
+        "IFCT:T013 Ghee: energy derived:fat x 37 kJ/g (IFCT energy factor)",
+        "CUSTOM:WATER Water, drinking: all values derived:assumed",
+        "RECIPE:MOONG_DAL_EXAMPLE: recipe (Example. Weigh the raw ingredients and the cooked pot in each household and replace these values.)"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "lunch",
+      "query": "rice",
+      "food_id": "IFCT:A015",
+      "food_name": "Rice, raw, milled",
+      "amount": 40.0,
+      "unit": "g",
+      "grams": 40.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 142.54302103250475,
+        "protein_g": 3.176,
+        "fat_g": 0.20800000000000002,
+        "carb_g": 31.296,
+        "fibre_g": 1.124,
+        "water_g": 3.972,
+        "calcium_mg": 2.9960000000000004,
+        "phosphorus_mg": 38.4,
+        "potassium_mg": 43.2,
+        "sodium_mg": 0.9359999999999999,
+        "iron_mg": 0.26
+      },
+      "missing": [],
+      "p_absorbable": [
+        7.68,
+        19.2
+      ],
+      "warnings": [
+        "IFCT values for Rice, raw, milled are for the raw food; enter the raw weight, or log the cooked dish as a recipe.",
+        "rice: Raw milled rice. Parboiled rice is IFCT:A014."
+      ],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "lunch",
+      "query": "F006",
+      "food_id": "IFCT:F006",
+      "food_name": "Potato, brown skin, big",
+      "amount": 50.0,
+      "unit": "g",
+      "grams": 50.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 34.894837476099426,
+        "protein_g": 0.77,
+        "fat_g": 0.115,
+        "carb_g": 7.445,
+        "fibre_g": 0.855,
+        "water_g": 40.36,
+        "calcium_mg": 4.760000000000001,
+        "phosphorus_mg": 21.71,
+        "potassium_mg": 270.5,
+        "sodium_mg": 2.055,
+        "iron_mg": 0.285
+      },
+      "missing": [],
+      "p_absorbable": [
+        4.3420000000000005,
+        10.855
+      ],
+      "warnings": [
+        "IFCT values for Potato, brown skin, big are for the raw food; enter the raw weight, or log the cooked dish as a recipe.",
+        "Potato, brown skin, big marked as leached, but no approved leaching factor exists; potassium shown unleached."
+      ],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "lunch",
+      "query": "curd",
+      "food_id": "CUSTOM:CURD",
+      "food_name": "Curd, cow milk (proxy)",
+      "amount": 100.0,
+      "unit": "ml",
+      "grams": 103.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 75.08365200764818,
+        "protein_g": 3.3577999999999997,
+        "fat_g": 4.614400000000001,
+        "carb_g": 5.0882000000000005,
+        "fibre_g": 0.0,
+        "water_g": 89.2392,
+        "calcium_mg": 121.54,
+        "phosphorus_mg": 99.4568,
+        "potassium_mg": 118.45,
+        "sodium_mg": 26.2238,
+        "iron_mg": 0.1545
+      },
+      "missing": [],
+      "p_absorbable": [
+        39.782720000000005,
+        69.61976
+      ],
+      "warnings": [],
+      "provenance": [
+        "CUSTOM:CURD Curd, cow milk (proxy): all values proxy:IFCT L002 whole cow milk"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "lunch",
+      "query": "salt",
+      "food_id": "CUSTOM:SALT",
+      "food_name": "Salt, table (sodium chloride)",
+      "amount": 0.5,
+      "unit": "tsp",
+      "grams": 2.5,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 0.0,
+        "protein_g": 0.0,
+        "fat_g": 0.0,
+        "carb_g": 0.0,
+        "fibre_g": 0.0,
+        "water_g": 0.0,
+        "calcium_mg": 0.0,
+        "phosphorus_mg": 0.0,
+        "potassium_mg": 0.0,
+        "sodium_mg": 983.5,
+        "iron_mg": 0.0
+      },
+      "missing": [],
+      "p_absorbable": [
+        0.0,
+        0.0
+      ],
+      "warnings": [],
+      "provenance": [
+        "CUSTOM:SALT Salt, table (sodium chloride): all values derived:stoichiometry"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "evening",
+      "query": "rice moong feed",
+      "food_id": "RECIPE:RICE_MOONG_FEED",
+      "food_name": "Rice-moong homemade feed",
+      "amount": 1.0,
+      "unit": "serving",
+      "grams": 195.0,
+      "fluid_ml": 195.0,
+      "nutrients": {
+        "energy_kcal": 188.66405353728487,
+        "protein_g": 3.976,
+        "fat_g": 5.239,
+        "carb_g": 30.907,
+        "fibre_g": 1.4989999999999999,
+        "water_g": 152.963,
+        "calcium_mg": 5.811,
+        "phosphorus_mg": 60.8,
+        "potassium_mg": 148.4,
+        "sodium_mg": 1.482,
+        "iron_mg": 0.523
+      },
+      "missing": [],
+      "p_absorbable": [
+        12.16,
+        30.4
+      ],
+      "warnings": [],
+      "provenance": [
+        "CUSTOM:RICE_FLOUR Rice flour (proxy): all values proxy:IFCT A015 rice raw milled",
+        "CUSTOM:SUGAR Sugar, white (sucrose): all values derived:100 g available carbohydrate x 17 kJ/g (IFCT energy factor)",
+        "IFCT:T005 Groundnut oil: energy derived:fat x 37 kJ/g (IFCT energy factor)",
+        "CUSTOM:WATER Water, drinking: all values derived:assumed",
+        "RECIPE:RICE_MOONG_FEED: recipe (rn4kids PRINT course homemade feed (rice flour 20 g, moong dal flour 10 g, sugar 10 g, oil 5 g, water 150 mL); course states about 170 kcal and 4 to 5 g protein.)"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "evening",
+      "query": "coconut water",
+      "food_id": "IFCT:K002",
+      "food_name": "Coconut water",
+      "amount": 100.0,
+      "unit": "ml",
+      "grams": 100.0,
+      "fluid_ml": 100.0,
+      "nutrients": {
+        "energy_kcal": 15.296367112810707,
+        "protein_g": 0.26,
+        "fat_g": 0.16,
+        "carb_g": 3.16,
+        "fibre_g": 0.0,
+        "water_g": 95.77,
+        "calcium_mg": 27.470000000000006,
+        "phosphorus_mg": 18.05,
+        "potassium_mg": 215.0,
+        "sodium_mg": 28.09,
+        "iron_mg": 0.06000000000000001
+      },
+      "missing": [],
+      "p_absorbable": [
+        3.6100000000000003,
+        9.025
+      ],
+      "warnings": [],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "dinner",
+      "query": "roti",
+      "food_id": "RECIPE:ROTI_EXAMPLE",
+      "food_name": "Roti, atta (example, calibrate per household)",
+      "amount": 2.0,
+      "unit": "serving",
+      "grams": 50.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 160.13384321223708,
+        "protein_g": 5.285,
+        "fat_g": 0.765,
+        "carb_g": 32.085,
+        "fibre_g": 5.68,
+        "water_g": 5.55,
+        "calcium_mg": 15.47,
+        "phosphorus_mg": 157.5,
+        "potassium_mg": 155.5,
+        "sodium_mg": 1.02,
+        "iron_mg": 2.0500000000000003
+      },
+      "missing": [],
+      "p_absorbable": [
+        31.5,
+        78.75
+      ],
+      "warnings": [
+        "Roti, atta (example, calibrate per household): recipe status is 'example only'."
+      ],
+      "provenance": [
+        "RECIPE:ROTI_EXAMPLE: recipe (Example. Weigh the atta used for a known number of rotis in each household and replace these values.)"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "dinner",
+      "query": "palak",
+      "food_id": "IFCT:C033",
+      "food_name": "Spinach",
+      "amount": 1.0,
+      "unit": "katori_medium",
+      "grams": 26.7,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 6.509082217973231,
+        "protein_g": 0.57138,
+        "fat_g": 0.17088,
+        "carb_g": 0.5473499999999999,
+        "fibre_g": 0.6354599999999999,
+        "water_g": 24.11277,
+        "calcium_mg": 21.97143,
+        "phosphorus_mg": 8.70153,
+        "potassium_mg": 166.875,
+        "sodium_mg": 11.360849999999997,
+        "iron_mg": 0.7876499999999999
+      },
+      "missing": [],
+      "p_absorbable": [
+        1.7403060000000001,
+        4.350765
+      ],
+      "warnings": [
+        "IFCT values for Spinach are for the raw food; enter the raw weight, or log the cooked dish as a recipe."
+      ],
+      "provenance": []
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "dinner",
+      "query": "ghee",
+      "food_id": "IFCT:T013",
+      "food_name": "Ghee",
+      "amount": 1.0,
+      "unit": "tsp",
+      "grams": 5.0,
+      "fluid_ml": 0.0,
+      "nutrients": {
+        "energy_kcal": 44.21606118546844,
+        "protein_g": 0.0,
+        "fat_g": 5.0,
+        "carb_g": 0.0,
+        "fibre_g": 0.0,
+        "water_g": 0.0,
+        "calcium_mg": 0.0,
+        "phosphorus_mg": 0.0,
+        "potassium_mg": 0.0,
+        "sodium_mg": 0.0,
+        "iron_mg": 0.0
+      },
+      "missing": [],
+      "p_absorbable": [
+        0.0,
+        0.0
+      ],
+      "warnings": [],
+      "provenance": [
+        "IFCT:T013 Ghee: energy derived:fat x 37 kJ/g (IFCT energy factor)"
+      ]
+    },
+    {
+      "date": "2026-10-16",
+      "slot": "dinner",
+      "query": "water",
+      "food_id": "CUSTOM:WATER",
+      "food_name": "Water, drinking",
+      "amount": 600.0,
+      "unit": "ml",
+      "grams": 600.0,
+      "fluid_ml": 600.0,
+      "nutrients": {
+        "energy_kcal": 0.0,
+        "protein_g": 0.0,
+        "fat_g": 0.0,
+        "carb_g": 0.0,
+        "fibre_g": 0.0,
+        "water_g": 600.0,
+        "calcium_mg": 0.0,
+        "phosphorus_mg": 0.0,
+        "potassium_mg": 0.0,
+        "sodium_mg": 0.0,
+        "iron_mg": 0.0
+      },
+      "missing": [],
+      "p_absorbable": [
+        0.0,
+        0.0
+      ],
+      "warnings": [],
+      "provenance": [
+        "CUSTOM:WATER Water, drinking: all values derived:assumed"
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "row": 18,
+      "entry": {
+        "date": "2026-10-16",
+        "slot": "dinner",
+        "food": "dal",
+        "amount": "1",
+        "unit": "katori",
+        "leached": "",
+        "note": "deliberately ambiguous unit"
+      },
+      "error": "'katori' is ambiguous. Use katori_large (360 mL), katori_medium (200 mL), katori_small_155 (155 mL), katori_small (115 mL) or glass_small (100 mL)."
+    }
+  ],
+  "days": {
+    "2026-10-16": {
+      "meals": {
+        "early morning": {
+          "energy_kcal": 112.62547801147228,
+          "protein_g": 5.0367,
+          "fat_g": 6.921600000000001,
+          "carb_g": 7.6323,
+          "fibre_g": 0.0,
+          "water_g": 133.8588,
+          "calcium_mg": 182.31,
+          "phosphorus_mg": 149.1852,
+          "potassium_mg": 177.675,
+          "sodium_mg": 39.3357,
+          "iron_mg": 0.23175,
+          "fluid_ml": 150.0,
+          "phosphorus_absorbable_mg": [
+            59.674080000000004,
+            104.42964
+          ],
+          "missing_counts": {},
+          "p_absorbable_incomplete": 0,
+          "n_entries": 1
+        },
+        "breakfast": {
+          "energy_kcal": 226.3193116634799,
+          "protein_g": 3.91125,
+          "fat_g": 7.29035,
+          "carb_g": 35.617149999999995,
+          "fibre_g": 2.4751000000000003,
+          "water_g": 39.38665,
+          "calcium_mg": 7.7219999999999995,
+          "phosphorus_mg": 88.255,
+          "potassium_mg": 227.95499999999998,
+          "sodium_mg": 1.74845,
+          "iron_mg": 1.6328,
+          "fluid_ml": 0.0,
+          "phosphorus_absorbable_mg": [
+            17.651000000000003,
+            44.1275
+          ],
+          "missing_counts": {},
+          "p_absorbable_incomplete": 0,
+          "n_entries": 4
+        },
+        "lunch": {
+          "energy_kcal": 516.2045889101338,
+          "protein_g": 18.558799999999998,
+          "fat_g": 8.539900000000001,
+          "carb_g": 89.0617,
+          "fibre_g": 10.0015,
+          "water_g": 266.5637,
+          "calcium_mg": 155.5485,
+          "phosphorus_mg": 421.06679999999994,
+          "potassium_mg": 904.6500000000001,
+          "sodium_mg": 1016.2698,
+          "iron_mg": 3.7320000000000007,
+          "fluid_ml": 0.0,
+          "phosphorus_absorbable_mg": [
+            104.10472000000001,
+            230.42476
+          ],
+          "missing_counts": {},
+          "p_absorbable_incomplete": 0,
+          "n_entries": 6
+        },
+        "evening": {
+          "energy_kcal": 203.96042065009559,
+          "protein_g": 4.236,
+          "fat_g": 5.399,
+          "carb_g": 34.067,
+          "fibre_g": 1.4989999999999999,
+          "water_g": 248.733,
+          "calcium_mg": 33.281000000000006,
+          "phosphorus_mg": 78.85,
+          "potassium_mg": 363.4,
+          "sodium_mg": 29.572,
+          "iron_mg": 0.5830000000000001,
+          "fluid_ml": 295.0,
+          "phosphorus_absorbable_mg": [
+            15.77,
+            39.425
+          ],
+          "missing_counts": {},
+          "p_absorbable_incomplete": 0,
+          "n_entries": 2
+        },
+        "dinner": {
+          "energy_kcal": 210.85898661567876,
+          "protein_g": 5.85638,
+          "fat_g": 5.93588,
+          "carb_g": 32.63235,
+          "fibre_g": 6.31546,
+          "water_g": 629.66277,
+          "calcium_mg": 37.441430000000004,
+          "phosphorus_mg": 166.20153,
+          "potassium_mg": 322.375,
+          "sodium_mg": 12.380849999999997,
+          "iron_mg": 2.83765,
+          "fluid_ml": 600.0,
+          "phosphorus_absorbable_mg": [
+            33.240306,
+            83.100765
+          ],
+          "missing_counts": {},
+          "p_absorbable_incomplete": 0,
+          "n_entries": 4
+        }
+      },
+      "total": {
+        "energy_kcal": 1269.9687858508598,
+        "protein_g": 37.59913,
+        "fat_g": 34.08673,
+        "carb_g": 199.0105,
+        "fibre_g": 20.291059999999998,
+        "water_g": 1318.20492,
+        "calcium_mg": 416.30293000000006,
+        "phosphorus_mg": 903.55853,
+        "potassium_mg": 1996.055,
+        "sodium_mg": 1099.3067999999998,
+        "iron_mg": 9.017199999999999,
+        "fluid_ml": 1045.0,
+        "phosphorus_absorbable_mg": [
+          230.44010600000007,
+          501.507665
+        ],
+        "missing_counts": {},
+        "p_absorbable_incomplete": 0,
+        "n_entries": 17
+      },
+      "per_kg": {
+        "energy_kcal_per_kg": 63.49843929254299,
+        "protein_g_per_kg": 1.8799565,
+        "fluid_ml_per_kg": 52.25
+      },
+      "assessment": {
+        "energy_kcal": {
+          "value": 1269.9687858508598,
+          "min": 1280.0,
+          "max": 1800.0,
+          "basis": "64-90 per kg x 20 kg",
+          "status": "below range",
+          "source": "PRINT SDI, 6-year-old girl (spec v4, section 2)"
+        },
+        "protein_g": {
+          "value": 37.59913,
+          "min": 17.0,
+          "max": 19.0,
+          "basis": "0.85-0.95 per kg x 20 kg",
+          "status": "above range",
+          "source": "PRINT SDI, 6-year-old girl (spec v4, section 2)"
+        },
+        "sodium_mg": {
+          "value": 1099.3067999999998,
+          "min": null,
+          "max": 1500,
+          "basis": "per day",
+          "status": "within range",
+          "source": "EXAMPLE value; enter the child's prescription"
+        },
+        "potassium_mg": {
+          "value": 1996.055,
+          "min": null,
+          "max": 1500,
+          "basis": "per day",
+          "status": "above range",
+          "source": "EXAMPLE value; enter the child's prescription"
+        },
+        "phosphorus_mg": {
+          "value": 903.55853,
+          "min": null,
+          "max": 800,
+          "basis": "per day",
+          "status": "above range",
+          "source": "EXAMPLE value; enter the child's prescription"
+        },
+        "fluid_ml": {
+          "value": 1045.0,
+          "min": null,
+          "max": 1200,
+          "basis": "per day",
+          "status": "within range",
+          "source": "EXAMPLE value; enter the child's prescription"
+        }
+      }
+    }
+  }
+}

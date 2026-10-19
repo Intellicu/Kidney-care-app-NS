@@ -1,0 +1,644 @@
+guide,nutrient,food,category,portion,mg_per_portion,mg_per_100g,notes
+K_general_2023,potassium,Idli,High,60 g (2 pieces),288,480,
+K_general_2023,potassium,Ragi idli,High,35 g (1 piece),204,583,
+K_general_2023,potassium,Mini idli,Lower,10 g (1 piece),13,130,category label normalised from Low to Lower
+K_general_2023,potassium,Idli uppuma,High,100 g (1 bowl),293,293,
+K_general_2023,potassium,Idli podi,High,20 g (1 Tbsp),222,1112,
+K_general_2023,potassium,Rava idli,High,80 g (2 pieces),181,226,
+K_general_2023,potassium,Dosa,Moderate,29 g (1 piece),60,207,
+K_general_2023,potassium,Rava dosa,High,67 g (1 piece),246,367,
+K_general_2023,potassium,Egg dosa,Moderate,41 g (1 piece),115,281,
+K_general_2023,potassium,Ada dosa,High,55 g (1 piece),301,547,
+K_general_2023,potassium,Onion uthappam,High,42 g (1 piece),130,310,
+K_general_2023,potassium,Masala dosa with tomato chutney,High,201 g (1 piece),595,296,
+K_general_2023,potassium,Ghee roast,High,70 g (1 piece),593,847,
+K_general_2023,potassium,Vermicelli upma,Moderate,100 g (1 bowl),101,101,
+K_general_2023,potassium,Upma,Moderate,70 g (1/2 bowl),64,91,
+K_general_2023,potassium,Broken wheat with rice flakes upma,High,120 g (1 bowl),139,116,
+K_general_2023,potassium,Puri potato masala,High,178 g (1 piece with 1 bowl),530,298,
+K_general_2023,potassium,Alu (potato) paratha,High,70 g (1 small piece),273,390,
+K_general_2023,potassium,Paneer paratha,High,70 g (1 piece),140,200,
+K_general_2023,potassium,Plain paratha,Moderate,53 g (1 piece),112,211,
+K_general_2023,potassium,Vegetable roti,High,43 g (1 piece),189,440,
+K_general_2023,potassium,Rice roti,High,75 g (1 piece),137,183,
+K_general_2023,potassium,Idyappam with paya,Moderate,70 g (1 piece with 1/2 bowl paya),116,165,
+K_general_2023,potassium,Appam,High,125 g (3 pieces),206,165,
+K_general_2023,potassium,French toast/egg toast,High,142 g (2 pieces),160,113,
+K_general_2023,potassium,Poha,Moderate,45 g (1/2 bowl),60,133,
+K_general_2023,potassium,Pongal (savoury),High,110 g (1 bowl),737,670,
+K_general_2023,potassium,Pongal (sweet),High,75 g (1 bowl),400,533,
+K_general_2023,potassium,Puttu with banana,High,170 g (1 piece with 1 banana),266,157,
+K_general_2023,potassium,Sabudana kichdi,Moderate,45 g (1/2 bowl),51,113,
+K_general_2023,potassium,Sheera/halwa,Moderate,100 g (1 bowl),85,85,
+K_general_2023,potassium,Chole bhature,High,100 g (1 piece),240,240,
+K_general_2023,potassium,Dahi chura,High,150 g (1 bowl),227,163,
+K_general_2023,potassium,Pudina chutney,Moderate,20 g (1 Tbsp),73,365,
+K_general_2023,potassium,Tomato chutney,Moderate,25 g (1/4 bowl),56,223,
+K_general_2023,potassium,Coconut chutney,Moderate,28 g (1 Tbsp),57,204,
+K_general_2023,potassium,Rajmah curry,High,126 g (1/2 bowl),299,237,
+K_general_2023,potassium,Black chana curry,High,132 g (1/2 bowl),290,220,
+K_general_2023,potassium,Pea potato/potato green chickpea curry,High,132 g (1/2 bowl),323,245,
+K_general_2023,potassium,Mutton curry,High,167 g (1/2 bowl),370,222,
+K_general_2023,potassium,Bottle gourd curd curry,High,50 g (1/2 bowl),261,521,
+K_general_2023,potassium,Chicken curry,High,75 g (1/2 bowl),235,313,
+K_general_2023,potassium,Egg curry,High,60 g (1/2 bowl),173,288,
+K_general_2023,potassium,Dal makhni (black gram whole),High,65 g (1/2 bowl),227,349,
+K_general_2023,potassium,Green gram (whole) dal,High,129 g (1/2 bowl),243,188,
+K_general_2023,potassium,Moong dal khichri,High,85 g (1 bowl),478,562,
+K_general_2023,potassium,Paneer bhurji,High,135 g (1/2 bowl),177,131,
+K_general_2023,potassium,Kadhai paneer,High,144 g (1/2 bowl),143,99,
+K_general_2023,potassium,Butter chicken,High,130 g (1/2 bowl),264,203,
+K_general_2023,potassium,Palak paneer,High,115 g (1/2 bowl),506,440,
+K_general_2023,potassium,Wheat chapati without ghee,Moderate,25 g (1 piece),78,312,
+K_general_2023,potassium,Whole wheat flour poori,Moderate,25 g (1 piece),50,200,
+K_general_2023,potassium,Naan,Moderate,45 g (1 piece),60,134,
+K_general_2023,potassium,Chapathi,Moderate,30 g (3/4 piece),62,207,
+K_general_2023,potassium,Ragi ball/mudde,High,130 g (1 piece),665,512,
+K_general_2023,potassium,Rice sambar/huli,High,180 g (1 bowl),929,516,
+K_general_2023,potassium,Lemon rice,Moderate,69 g (1/2 bowl),91,132,
+K_general_2023,potassium,Carrot rice,Moderate,70 g (1/2 bowl),102,147,
+K_general_2023,potassium,Bisibelebath,High,100 g (1 bowl),673,673,
+K_general_2023,potassium,Sambar rice,High,58 g (1/2 bowl),347,604,
+K_general_2023,potassium,Curd rice,Moderate,137 g (1/2 bowl),101,74,
+K_general_2023,potassium,Chicken biryani,High,102 g (1/2 bowl),177,174,
+K_general_2023,potassium,Mutton biryani,High,102 g (1/2 bowl),196,192,
+K_general_2023,potassium,Vegetable biryani,High,100 g (1/2 bowl),245,245,
+K_general_2023,potassium,Vegetable pulao,High,115 g (1/2 bowl),241,210,
+K_general_2023,potassium,Onion tomato raita,Moderate,75 g (1/2 bowl),107,143,
+K_general_2023,potassium,Onion raita,High,150 g (1/2 bowl),154,103,
+K_general_2023,potassium,Cucumber raita,High,150 g (1/2 bowl),143,95,
+K_general_2023,potassium,Boondi raita,Moderate,57 g (1/2 bowl),80,140,
+K_general_2023,potassium,Sambar,High,60 g (1 bowl),201,335,
+K_general_2023,potassium,Butter milk,High,100 g (1/2 glass),151,151,
+K_general_2023,potassium,Cabbage potato vegetable,High,95 g (1/2 bowl),401,422,
+K_general_2023,potassium,Potato cauliflower vegetable,High,100 g (1/2 bowl),433,433,
+K_general_2023,potassium,Bottle gourd/ridge gourd vegetable curry,High,125 g (1/2 bowl),289,231,
+K_general_2023,potassium,Sarson palak saag,High,72 g (1/2 bowl),275,382,
+K_general_2023,potassium,Brinjal bharta,High,128 g (1/2 bowl),362,283,
+K_general_2023,potassium,Stuffed brinjal,Moderate,33 g (1 piece),104,315,
+K_general_2023,potassium,Vegetable salad,High,53 g (1/2 bowl),122,232,
+K_general_2023,potassium,Paneer tikka,High,83 g (1/2 plate),135,161,
+K_general_2023,potassium,Chicken tikka,High,83 g (1/2 plate),205,231,
+K_general_2023,potassium,Mushroom tikka,High,60 g (1/2 plate),163,272,
+K_general_2023,potassium,Tandoori chicken,Moderate,52 g (1/2 plate),107,204,
+K_general_2023,potassium,Mutton kebabs,High,60 g (1 piece),282,470,
+K_general_2023,potassium,Vegetable momos,Moderate,35 g (1 piece),67,191,
+K_general_2023,potassium,Samosa,High,85 g (1 piece),313,368,
+K_general_2023,potassium,Vegetable noodles,Moderate,75 g (1 bowl),113,151,
+K_general_2023,potassium,Boiled corn chat,High,53 g (1/2 bowl),199,376,
+K_general_2023,potassium,Bhel puri,High,75 g (1/2 bowl),163,217,
+K_general_2023,potassium,Pani puri,High,50 g (1/2 plate),300,599,
+K_general_2023,potassium,Onion pakoda,High,103 g (1/2 plate),414,402,
+K_general_2023,potassium,Masala vada,High,38 g (1 piece),283,745,
+K_general_2023,potassium,Potato bonda,High,35 g (1 piece),235,672,
+K_general_2023,potassium,Mixture,Moderate,35 g (1/4 bowl),75,214,
+K_general_2023,potassium,Mysore bonda,Moderate,35 g (1 piece),48,138,
+K_general_2023,potassium,Rice flour murukku,High,47 g (2 pieces),261,555,
+K_general_2023,potassium,Rice flakes kozhukattai,High,50 g (1 piece),230,460,
+K_general_2023,potassium,Chivda,Moderate,25 g (1 small cup),98,390,
+K_general_2023,potassium,Barfi,High,50 g (1 piece),167,334,
+K_general_2023,potassium,Besan ladoo,High,38 g (1 piece),150,394,
+K_general_2023,potassium,Carrot halwa,High,195 g (1/2 bowl),452,232,
+K_general_2023,potassium,Moong dal halwa,High,75 g (1 bowl),401,534,
+K_general_2023,potassium,Gulab jamun,Moderate,40 g (1 piece),81,202,
+K_general_2023,potassium,Rosogulla,Moderate,145 g (1 piece),107,74,
+K_general_2023,potassium,Soan papdi,High,212 g (1 piece),845,291,
+K_general_2023,potassium,Basundi,High,75 g (1/2 bowl),200,266,
+K_general_2023,potassium,Rava ladoo,Moderate,70 g (2 pieces),109,156,
+K_general_2023,potassium,Rava kesari,Moderate,50 g (1 piece),45,90,
+K_general_2023,potassium,Bhadhusha,Moderate,103 g (1 piece),77,35,
+K_general_2023,potassium,Mysore pauk,Moderate,30 g (1 piece),68,227,
+K_general_2023,potassium,Jangri,High,50 g (1 piece),232,464,
+K_general_2023,potassium,Rice kheer,High,115 g (1/2 bowl),130,113,
+K_general_2023,potassium,Rice flakes balls,High,40 g (2 pieces),176,439,
+K_general_2023,potassium,Paruppu payasam,Moderate,101 g (1/2 bowl),113,218,
+K_general_2023,potassium,Sago payasam,Lower,81 g (1/2 bowl),21,50,category label normalised from Low to Lower
+K_general_2023,potassium,Vermicelli payasam,Moderate,91 g (1/2 bowl),41,85,
+K_general_2023,potassium,Fruit custard,Moderate,145 g (1/2 bowl),91,62,
+K_north_2023,potassium,Alu (potato) paratha,,70 g (1 small piece),273,390,
+K_north_2023,potassium,Mooli (radish) paratha,,70 g (1 small piece),266,380,
+K_north_2023,potassium,Methi (fenugreek) paratha,,65 g (1 piece),163,251,
+K_north_2023,potassium,Besan (gram flour) paratha,,55 g (1 piece),221,402,
+K_north_2023,potassium,Gobi (cauliflower) paratha,,80 g (1 small piece),208,260,
+K_north_2023,potassium,Paneer paratha,,70 g (1 piece),140,200,
+K_north_2023,potassium,Plain paratha,,53 g (1 piece),112,211,
+K_north_2023,potassium,Omelette,,85 g (1 egg),84,99,
+K_north_2023,potassium,Potato curry and poori,,105 g (2 poories + 1/2 bowl curry),486,462,
+K_north_2023,potassium,Chole bhature,,100 g (bhature 40 g + chole 60 g),240,240,
+K_north_2023,potassium,Milk daliya (porridge),,85 g (1 bowl),226,265,
+K_north_2023,potassium,Chana ghugni,,100 g (1 bowl),270,270,
+K_north_2023,potassium,Dahi chura,,150 g (1 bowl),227,163,
+K_north_2023,potassium,Sattu paratha,,70 g (1 piece),156,400,
+K_north_2023,potassium,Plain daliya (porridge),,100 g (1 bowl),117,117,
+K_north_2023,potassium,Vermicelli upma,,100 g (1 bowl),101,101,
+K_north_2023,potassium,Rajma curry,,126 g (1/2 bowl),299,237,
+K_north_2023,potassium,Black chana curry,,132 g (1/2 bowl),290,220,
+K_north_2023,potassium,Egg bhurji,,84 g (1/2 bowl),181,215,
+K_north_2023,potassium,Dal makhni,,65 g (1/2 bowl),227,349,
+K_north_2023,potassium,Green gram (whole) dal,,129 g (1/2 bowl),243,188,
+K_north_2023,potassium,Moong dal khichri,,85 g (1 bowl),478,562,
+K_north_2023,potassium,Sarson palak saag,,72 g (1/2 bowl),275,382,
+K_north_2023,potassium,Brinjal bharta,,128 g (1/2 bowl),362,283,
+K_north_2023,potassium,Cabbage potato vegetable,,95 g (1/2 bowl),401,422,
+K_north_2023,potassium,Potato cauliflower vegetable,,100 g (1/2 bowl),433,433,
+K_north_2023,potassium,Fenugreek potato vegetable,,82 g (1/2 bowl),430,524,
+K_north_2023,potassium,Pea potato / green chickpea curry,,132 g (1/2 bowl),323,245,
+K_north_2023,potassium,Bottle gourd / ridge gourd vegetable,,125 g (1/2 bowl),289,231,
+K_north_2023,potassium,Stuffed brinjal,,33 g (1 piece),104,315,
+K_north_2023,potassium,Paneer bhurji,,135 g (1/2 bowl),177,131,
+K_north_2023,potassium,Kadhai paneer,,144 g (1/2 bowl),143,99,
+K_north_2023,potassium,Palak paneer,,115 g (1/2 bowl),506,440,
+K_north_2023,potassium,Shahi paneer,,105 g (1/2 bowl),141,134,
+K_north_2023,potassium,Chicken curry,,145 g (1/2 bowl),291,201,
+K_north_2023,potassium,Butter chicken,,130 g (1/2 bowl),264,203,
+K_north_2023,potassium,Mutton curry,,167 g (1/2 bowl),370,222,
+K_north_2023,potassium,Kadhi pakora,,52 g (1/2 bowl),195,375,
+K_north_2023,potassium,Onion tomato raita,,75 g (1/2 bowl),107,143,
+K_north_2023,potassium,Boondi raita,,57 g (1/2 bowl),80,140,
+K_north_2023,potassium,Vegetable pulao,,115 g (1/2 bowl),241,210,
+K_north_2023,potassium,Kale chana pulao,,82 g (1 bowl),241,294,
+K_north_2023,potassium,Chicken biryani,,102 g (1/2 bowl),177,174,
+K_north_2023,potassium,Mutton biryani,,102 g (1/2 bowl),196,192,
+K_north_2023,potassium,Samak khichri,,100 g (1 bowl),113,113,
+K_north_2023,potassium,Dal peetha,,40 g (1 piece),117,293,
+K_north_2023,potassium,Litti chokha,,125 g (1 piece),407,326,
+K_north_2023,potassium,Mutton rista,,130 g (1/2 bowl),267,205,
+K_north_2023,potassium,Sukhi kadam ki sabzi,,140 g (1/2 bowl),347,248,
+K_north_2023,potassium,Kashmir nadru yakhni,,85 g (1 bowl),354,417,
+K_north_2023,potassium,Nadru vasta hak,,120 g (1 bowl),382,318,
+K_north_2023,potassium,Wheat chapati without ghee,,25 g (1 piece),78,312,
+K_north_2023,potassium,Naan,,45 g (1 piece),60,134,
+K_north_2023,potassium,Laccha paratha,,50 g (1 piece),124,248,
+K_north_2023,potassium,Missi roti,,35 g (1 piece),223,637,
+K_north_2023,potassium,Makki roti,,40 g (1 piece),92,230,
+K_north_2023,potassium,Wheat poori,,25 g (1 piece),50,200,
+K_north_2023,potassium,Dal stuffed poori,,28 g (1 piece),85,304,
+K_north_2023,potassium,Amritsari kulcha with potato stuffing,,40 g (1/2 piece),115,287,
+K_north_2023,potassium,Bhatura,,40 g (1 piece),46,115,
+K_north_2023,potassium,Poha uttapam,,70 g (1 piece),83,119,
+K_north_2023,potassium,Paneer tikka,,83 g (1/2 plate),135,161,
+K_north_2023,potassium,Chicken tikka,,83 g (1/2 plate),205,231,
+K_north_2023,potassium,Tandoori chicken,,52 g (1/2 plate),107,204,
+K_north_2023,potassium,Mutton kebabs,,60 g (1 piece),282,470,
+K_north_2023,potassium,Amritsari fish,,95 g (1/2 plate),374,394,
+K_north_2023,potassium,Mushroom tikka,,60 g (1/2 plate),163,272,
+K_north_2023,potassium,Samosa,,85 g (1 piece),313,368,
+K_north_2023,potassium,Potato patty (alu tikki),,60 g (1/2 piece),277,461,
+K_north_2023,potassium,Papdi chaat,,55 g (1/2 plate),100,180,
+K_north_2023,potassium,Dahi bhalle,,72 g (1/2 plate),371,512,
+K_north_2023,potassium,Golgappe with water,,60 g (2 pieces),274,457,
+K_north_2023,potassium,Vegetable pakora,,42 g (2 pieces),208,489,
+K_north_2023,potassium,Paneer pakora,,53 g (1 piece),163,307,
+K_north_2023,potassium,Rice farre,,35 g (1 piece),109,311,
+K_north_2023,potassium,Vegetable momos,,35 g (1 piece),67,191,
+K_north_2023,potassium,Vegetable noodles,,75 g (1 bowl),113,151,
+K_north_2023,potassium,Barfi,,50 g (1 piece),167,334,
+K_north_2023,potassium,Besan ladoo,,38 g (1 piece),150,394,
+K_north_2023,potassium,Panjeeri,,70 g (1/2 bowl),134,191,
+K_north_2023,potassium,Rice kheer,,115 g (1/2 bowl),130,113,
+K_north_2023,potassium,Suji/vermicelli kheer,,115 g (1/2 bowl),146,127,
+K_north_2023,potassium,Shahi tukda,,72 g (1 serving),81,112,
+K_north_2023,potassium,Fruit custard,,145 g (1/2 bowl),91,62,
+K_north_2023,potassium,Fruit cream,,87 g (1/2 bowl),70,80,
+K_north_2023,potassium,Carrot halwa,,195 g (1/2 bowl),452,232,
+K_north_2023,potassium,Moong dal halwa,,75 g (1 bowl),401,534,
+K_north_2023,potassium,Wheat flour halwa (kada prashad),,60 g (1 bowl),78,130,
+K_north_2023,potassium,Gulab jamun,,40 g (1 piece),81,202,
+K_north_2023,potassium,Malpua,,38 g (1/2 piece),76,200,
+K_north_2023,potassium,Sweet vermicelli,,50 g (1/2 bowl),89,178,
+K_north_2023,potassium,Samai kheer,,100 g (1/2 bowl),194,194,
+K_north_2023,potassium,Thekua,,45 g (1 piece),109,242,
+K_north_2023,potassium,Makhana kheer,,100 g (1/2 bowl),223,223,
+K_north_2023,potassium,Aloo doodh peetha,,100 g (1/2 bowl),235,235,
+P_phosphate_guide_2026,phosphate,Idli,High,60 g (2 pieces),131,218,Rice; urad dal
+P_phosphate_guide_2026,phosphate,Ragi idli,Lower,35 g (1 piece),90,257,Ragi; parboiled rice powder
+P_phosphate_guide_2026,phosphate,Mini idli,Lower,10 g (1 piece),7,70,Parboiled rice; urad dal
+P_phosphate_guide_2026,phosphate,Idli uppuma,High,100 g (1 bowl),200,200,Moong dal; oil
+P_phosphate_guide_2026,phosphate,Idli podi,Lower,20 g (1 Tbsp),55,275,Dried spice/lentil powder
+P_phosphate_guide_2026,phosphate,Rava idli,Lower,80 g (2 pieces),87,109,Semolina; curd
+P_phosphate_guide_2026,phosphate,Dosa,Lower,29 g (1 piece),35,121,Parboiled rice; urad dal
+P_phosphate_guide_2026,phosphate,Rava dosa,Lower,67 g (1 piece),71,106,Semolina; rice flour; maida
+P_phosphate_guide_2026,phosphate,Egg dosa,Lower,41 g (1 piece),15,37,Egg white; dosa batter
+P_phosphate_guide_2026,phosphate,Ada dosa,Lower,55 g (1 piece),81,148,Dosa batter; green gram
+P_phosphate_guide_2026,phosphate,Onion uthappam,Lower,42 g (1 piece),61,145,Rice; black gram; onion
+P_phosphate_guide_2026,phosphate,Masala dosa,Lower,201 g (1 piece),138,69,Potato filling; see portion note
+P_phosphate_guide_2026,phosphate,Ghee roast,High,70 g (1 piece),202,289,Rice; urad dal; ghee
+P_phosphate_guide_2026,phosphate,Vermicelli upma,High,100 g (1 bowl),151,151,Vermicelli; peas; carrot
+P_phosphate_guide_2026,phosphate,Upma,Lower,70 g (1/2 bowl),22,31,Semolina; onion
+P_phosphate_guide_2026,phosphate,Broken wheat with rice flakes upma,Lower,120 g (1 bowl),57,48,Broken wheat; rice flakes
+P_phosphate_guide_2026,phosphate,Puri potato masala,Lower,178 g (1 puri + 1 bowl),57,32,Wheat flour; potato
+P_phosphate_guide_2026,phosphate,Alu (potato) paratha,Lower,70 g (1 small piece),77,110,Whole wheat flour; potato
+P_phosphate_guide_2026,phosphate,Paneer paratha,High,70 g (1 piece),208,297,Paneer
+P_phosphate_guide_2026,phosphate,Plain paratha,High,53 g (1 piece),110,207,Whole wheat flour; oil
+P_phosphate_guide_2026,phosphate,Vegetable roti,Lower,43 g (1 piece),81,189,Wheat flour; vegetables
+P_phosphate_guide_2026,phosphate,Rice roti,Lower,75 g (1 piece),84,112,Rice flour; leaves
+P_phosphate_guide_2026,phosphate,Idyappam with paya,Lower,70 g (1 piece + 1/2 bowl paya),43,61,Rice flour; paya
+P_phosphate_guide_2026,phosphate,Appam,High,125 g (3 pieces),171,137,Rice; fresh coconut
+P_phosphate_guide_2026,phosphate,French toast/egg toast,High,142 g (2 pieces),218,153,Bread; egg; milk
+P_phosphate_guide_2026,phosphate,Poha,Lower,45 g (1/2 bowl),43,96,Rice flakes; peanuts
+P_phosphate_guide_2026,phosphate,Pongal (savoury),High,110 g (1 bowl),303,276,Rice; moong dal; ghee
+P_phosphate_guide_2026,phosphate,Pongal (sweet),High,75 g (1 bowl),136,181,Jaggery; raisins; cashews
+P_phosphate_guide_2026,phosphate,Puttu with banana,Lower,170 g (1 piece + 1 banana),67,39,Puttu flour; coconut
+P_phosphate_guide_2026,phosphate,Sabudana khichdi,Lower,45 g (1/2 small bowl),31,69,Sago; peanuts; ghee
+P_phosphate_guide_2026,phosphate,Sheera/halwa,Lower,100 g (1 bowl),36,36,Semolina; milk
+P_phosphate_guide_2026,phosphate,Chole bhature,Lower,100 g (1 piece),80,80,Maida; chickpeas
+P_phosphate_guide_2026,phosphate,Dahi chura,High,150 g (1 bowl),172,115,Curd; rice flakes; almonds
+P_phosphate_guide_2026,phosphate,Pudina chutney,Lower,20 g (1 Tbsp),11,56,Mint; coconut
+P_phosphate_guide_2026,phosphate,Tomato chutney,Lower,25 g (1/4 bowl),6,24,Tomato; ginger; garlic
+P_phosphate_guide_2026,phosphate,Coconut chutney,Lower,28 g (1 Tbsp),17,62,Coconut; roasted gram
+P_phosphate_guide_2026,phosphate,Rajmah curry,Lower,126 g (1/2 bowl),76,60,Soaked kidney beans
+P_phosphate_guide_2026,phosphate,Black chana curry,Lower,132 g (1/2 bowl),71,53,Soaked black chickpeas
+P_phosphate_guide_2026,phosphate,Pea potato/potato green chickpea curry,Lower,132 g (1/2 bowl),40,31,Potato; green peas
+P_phosphate_guide_2026,phosphate,Mutton curry,High,167 g (1/2 bowl),312,187,Mutton; curd
+P_phosphate_guide_2026,phosphate,Bottle gourd curd curry,Lower,50 g (1/2 bowl),63,126,Bottle gourd; curd
+P_phosphate_guide_2026,phosphate,Chicken curry,High,75 g (1/2 bowl),202,269,Chicken; curd
+P_phosphate_guide_2026,phosphate,Egg curry,Lower,60 g (1/2 bowl),66,109,One egg
+P_phosphate_guide_2026,phosphate,Dal makhni,Lower,65 g (1/2 bowl),60,92,Black gram; cream
+P_phosphate_guide_2026,phosphate,Green gram (whole) dal,Lower,129 g (1/2 bowl),65,50,Whole green gram
+P_phosphate_guide_2026,phosphate,Moong dal khichri,High,85 g (1 bowl),155,182,Moong dal; rice; ghee
+P_phosphate_guide_2026,phosphate,Paneer bhurji,High,135 g (1/2 bowl),223,165,Paneer; peas
+P_phosphate_guide_2026,phosphate,Kadhai paneer,High,144 g (1/2 bowl),181,126,Paneer; capsicum
+P_phosphate_guide_2026,phosphate,Butter chicken,High,130 g (1/2 bowl),276,212,Chicken; cream; cashews
+P_phosphate_guide_2026,phosphate,Palak paneer,High,115 g (1/2 bowl),222,193,Paneer; spinach
+P_phosphate_guide_2026,phosphate,Wheat chapati without ghee,Lower,25 g (1 piece),79,316,Whole wheat flour
+P_phosphate_guide_2026,phosphate,Whole wheat flour poori,Lower,25 g (1 piece),60,240,Whole wheat flour; oil/ghee
+P_phosphate_guide_2026,phosphate,Naan,Lower,45 g (1 piece),42,93,Maida; curd
+P_phosphate_guide_2026,phosphate,Chapati,Lower,30 g (3/4 piece),63,210,Wheat flour; oil
+P_phosphate_guide_2026,phosphate,Ragi ball/mudde,High,130 g (1 piece),315,242,Ragi flour; ghee
+P_phosphate_guide_2026,phosphate,Rice sambar/huli,High,180 g (1 bowl),259,144,Rice; toor dal
+P_phosphate_guide_2026,phosphate,Lemon rice,Lower,69 g (1/2 bowl),47,68,Rice; peanuts; lemon
+P_phosphate_guide_2026,phosphate,Carrot rice,Lower,70 g (1/2 bowl),44,63,Rice; carrot
+P_phosphate_guide_2026,phosphate,Bisibelebath,High,100 g (1 bowl),188,188,Rice; toor dal; cashews
+P_phosphate_guide_2026,phosphate,Sambar rice,High,58 g (1/2 bowl),108,188,Rice; lentils; peanuts
+P_phosphate_guide_2026,phosphate,Curd rice,Lower,137 g (1/2 bowl),61,45,Rice; curd
+P_phosphate_guide_2026,phosphate,Chicken biryani,Lower,102 g (1/2 bowl),90,88,Rice; chicken (50 g)
+P_phosphate_guide_2026,phosphate,Mutton biryani,High,102 g (1/2 bowl),138,135,Rice; mutton (50 g)
+P_phosphate_guide_2026,phosphate,Vegetable biryani,Lower,100 g (1/2 bowl),39,39,Rice; vegetables
+P_phosphate_guide_2026,phosphate,Vegetable pulao,Lower,115 g (1 bowl),42,36,Rice; vegetables
+P_phosphate_guide_2026,phosphate,Onion tomato raita,Lower,75 g (1/2 bowl),52,70,Curd; onion; tomato
+P_phosphate_guide_2026,phosphate,Onion raita,Lower,150 g (1/2 bowl),91,61,Curd; onion
+P_phosphate_guide_2026,phosphate,Cucumber raita,Lower,150 g (1/2 bowl),97,65,Curd; cucumber
+P_phosphate_guide_2026,phosphate,Boondi raita,Lower,57 g (1/2 bowl),52,91,Curd; boondi
+P_phosphate_guide_2026,phosphate,Sambar,Lower,60 g (1 bowl),68,113,Toor dal; vegetables
+P_phosphate_guide_2026,phosphate,Butter milk,High,100 g (100 ml glass),154,154,Curd; mint; cumin
+P_phosphate_guide_2026,phosphate,Cabbage potato vegetable,Lower,95 g (1/2 bowl),45,48,Cabbage; potato
+P_phosphate_guide_2026,phosphate,Potato cauliflower vegetable,Lower,100 g (1/2 bowl),50,50,Potato; cauliflower
+P_phosphate_guide_2026,phosphate,Bottle gourd/ridge gourd vegetable curry,Lower,125 g (1/2 bowl),68,54,Gourd; tomato
+P_phosphate_guide_2026,phosphate,Sarson palak saag,Lower,72 g (1/2 bowl),43,59,Mustard leaves; spinach
+P_phosphate_guide_2026,phosphate,Brinjal bharta,Lower,128 g (1/2 bowl),52,40,Brinjal; onion
+P_phosphate_guide_2026,phosphate,Stuffed brinjal,Lower,33 g (1 piece),17,51,Brinjal; dry masala
+P_phosphate_guide_2026,phosphate,Vegetable salad,Lower,53 g (1/2 bowl),22,42,Carrot; onion; curd
+P_phosphate_guide_2026,phosphate,Paneer tikka,High,83 g (1/2 plate),269,324,Paneer; hung curd
+P_phosphate_guide_2026,phosphate,Chicken tikka,High,83 g (1/2 plate),205,233,Chicken; hung curd
+P_phosphate_guide_2026,phosphate,Mushroom tikka,Lower,60 g (1/2 plate),95,158,Mushrooms; besan
+P_phosphate_guide_2026,phosphate,Tandoori chicken,High,52 g (1/2 plate),146,281,Chicken; curd
+P_phosphate_guide_2026,phosphate,Mutton kebabs,High,60 g (1 piece),129,215,Mutton (50 g); besan
+P_phosphate_guide_2026,phosphate,Vegetable momos,Lower,35 g (1 piece),22,6,Maida; cabbage
+P_phosphate_guide_2026,phosphate,Samosa,Lower,85 g (1 piece),47,55,Maida; potato; peas
+P_phosphate_guide_2026,phosphate,Vegetable noodles,Lower,75 g (1 bowl),43,57,Noodles; vegetables
+P_phosphate_guide_2026,phosphate,Boiled corn chat,Lower,53 g (1/2 bowl),62,117,Sweet corn; besan
+P_phosphate_guide_2026,phosphate,Bhel puri,High,75 g (1/2 bowl),138,183,Puffed rice; potato
+P_phosphate_guide_2026,phosphate,Pani puri,Lower,50 g (1/2 plate),91,182,Peas; onion; tamarind
+P_phosphate_guide_2026,phosphate,Onion pakoda,High,103 g (1/2 plate),136,133,Onion; besan; oil
+P_phosphate_guide_2026,phosphate,Masala vada,Lower,38 g (1 piece),88,232,Chana dal; onion
+P_phosphate_guide_2026,phosphate,Potato bonda,Lower,35 g (1 piece),57,162,Besan; potato
+P_phosphate_guide_2026,phosphate,Mixture,Lower,35 g (1/4 bowl),28,79,Besan; rice flour; peanuts
+P_phosphate_guide_2026,phosphate,Mysore bonda,Lower,35 g (1 piece),38,109,Curd; maida
+P_phosphate_guide_2026,phosphate,Rice flour murukku,Lower,47 g (2 pieces),64,137,Rice flour; chilli
+P_phosphate_guide_2026,phosphate,Rice flakes kozhukattai,High,50 g (1 piece),103,206,Rice flakes; nuts; coconut
+P_phosphate_guide_2026,phosphate,Chivda,Lower,25 g (150 ml cup),78,312,Rice flakes; groundnuts
+P_phosphate_guide_2026,phosphate,Barfi,High,50 g (1 piece),139,278,Khoya; milk; pistachios
+P_phosphate_guide_2026,phosphate,Besan ladoo,Lower,38 g (1 piece),51,134,Besan; semolina; ghee
+P_phosphate_guide_2026,phosphate,Carrot halwa,High,195 g (1/2 bowl),217,168,Carrot; milk; nuts
+P_phosphate_guide_2026,phosphate,Moong dal halwa,High,75 g (1 bowl),143,190,Moong dal; semolina; nuts
+P_phosphate_guide_2026,phosphate,Gulab jamun,Lower,40 g (1 piece),65,162,Khoya; maida
+P_phosphate_guide_2026,phosphate,Rosogulla,Lower,145 g (1 piece),65,139,Milk; sugar
+P_phosphate_guide_2026,phosphate,Soan papdi,High,212 g (1 piece),427,201,Besan; milk; ghee
+P_phosphate_guide_2026,phosphate,Basundi,High,75 g (1/2 bowl),274,365,Milk; condensed milk; nuts
+P_phosphate_guide_2026,phosphate,Rava ladoo,Lower,70 g (2 pieces),78,111,Semolina; coconut; ghee
+P_phosphate_guide_2026,phosphate,Rava kesari,Lower,50 g (1 piece),18,36,Semolina; ghee
+P_phosphate_guide_2026,phosphate,Bhadhusha,Lower,103 g (1 piece),35,34,Maida; curd
+P_phosphate_guide_2026,phosphate,Mysore pauk,Lower,30 g (1 piece),25,84,Besan; ghee
+P_phosphate_guide_2026,phosphate,Jangri,Lower,50 g (1 piece),75,150,Urad dal; rice flour
+P_phosphate_guide_2026,phosphate,Rice kheer,Lower,115 g (1/2 bowl),88,77,Rice; milk
+P_phosphate_guide_2026,phosphate,Rice flakes balls,Lower,40 g (2 pieces),84,210,Rice flakes; parboiled rice
+P_phosphate_guide_2026,phosphate,Paruppu payasam,High,101 g (1/2 bowl),113,113,Paruppu; coconut milk
+P_phosphate_guide_2026,phosphate,Sago payasam,Lower,81 g (1/2 bowl),17,21,Sago; milk
+P_phosphate_guide_2026,phosphate,Vermicelli payasam,Lower,91 g (1/2 bowl),38,41,Vermicelli; milk
+P_phosphate_guide_2026,phosphate,Fruit custard,Lower,145 g (1/2 bowl),96,66,Milk; custard powder; fruit
+K_west_central_2023,potassium,Poha,Moderate,45g (½ bowl),60,133,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Moong dal chilla,High,50g (1 bowl),211,422,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Sabudana kichdi,Moderate,45g (½ bowl),51,113,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Thepla,Moderate,50g (1 piece),79,158,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Thalipeeth,High,50g (½ piece),125,250,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Misal paav,High,100g (½ bowl),313,313,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Amboli,Moderate,50g (1 piece),71,142,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Raab,Moderate,110g (½ bowl),91,83,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Muthiya,High,60g (½ bowl),256,427,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Upma,Moderate,70g (½ bowl),64,91,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Sabudana vada,High,110g (2 pieces),372,338,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Varicha dosa,High,80g (1 piece),533,666,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Sheera/halwa,Moderate,100g (½ bowl),85,85,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Ghaarge,High,60g (3 pieces),197,328,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Upvasachi/farali misal,High,100g (½ bowl),303,303,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dhapate,High,90g (1 piece),242,269,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Sabudana dosa,High,80g (2 pieces),541,676,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dadpe pohe,High,100g (½ bowl),244,244,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Ghavne,Moderate,50g (2 pieces),43,86,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Fodnicha bhaat,High,100g (½ bowl),118,118,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Gul pohe,High,100g (½ bowl),187,187,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Appe,High,45g (4 pieces),361,802,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Hatphodva (idli),High,75g (2 pieces),206,275,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Angakar roti,Moderate,50g (2 pieces),49,97,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Goan sanna,Moderate,75g (2 pieces),101,134,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Goan neureos,High,45g (2 pieces),131,292,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Chapathi,Moderate,30g (¾ piece),62,207,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bhakri,Moderate,25g (½ piece),82,328,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Masala bhaat,High,75g (½ bowl),138,184,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Mirchi thecha,Lower,10g (1 Tbsp),33,330,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Matki usal,High,90g (½ bowl),297,330,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bharli waangi (stufed),High,50g (¾ bowl),388,776,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kadhi pakoda,High,75g (½ bowl),289,385,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Khichdi kadhi,High,95g (½ bowl),299,315,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Puranpoli,High,75g (1 piece),337,449,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dal baati,High,135g (1 baati + ½ bowl dal),442,327,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Amti/varan,High,70g (½ bowl),226,323,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Gatte ki sabzi,High,75g (½ bowl),192,256,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dana methi,High,90g (½ bowl),486,540,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bajra roti + lasun chutney,Moderate,30g (½ roti + 1 Tbsp chutney),114,380,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Laal maans,High,125g (½ bowl),252,202,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Malwani fsh curry,Moderate,100g (½ bowl),99,99,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kombadi wade,High,175g (2 wade + ½ bowl curry),261,149,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Sev tamatar sabzi,High,100g (½ bowl),191,191,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Prawn pulav,High,100g (½ bowl),123,123,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Solkadhi,Moderate,100g (½ glass),92,92,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Butter milk,High,100g (½ glass),151,151,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Pithla,High,50g (½ bowl),143,286,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Poori bhaji,High,145g (2 poories + ½ bowl bhaji),255,176,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Ragi bakri,Moderate,25g (½ piece),111,444,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Rice bakri,Lower,25g (½ piece),27,108,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bhendichi bhaji,High,75g (½ bowl),291,388,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kurkurit bhendi,High,60g (½ bowl),251,334,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Flower chi bhaji,High,100g (½ bowl),407,543,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bhoplyachi bhaji,High,75g (½ bowl),190,380,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Padwalchi bhaji,High,60g (½ bowl),123,164,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bhoplyacha bharit,High,100g (½ bowl),301,602,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dudhichi bhaji,High,75g (½ bowl),172,344,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dubki kadhi,High,150g (1 bowl),289,289,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Chausela,Moderate,80g (2 pieces),84,168,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dalpithi,High,75g (½ bowl),303,303,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Khatkhate,High,90g (½ bowl),291,323,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Mooga ghathi,High,125g (½ bowl),427,427,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Khaman,High,100g (2½ pieces),478,478,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bhel puri,High,75g (½ bowl),163,217,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Pyaaz ki kachori,Moderate,37g (½ piece),70,189,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Mirchi bada,High,50g (1 stufed chilli),336,672,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Fafda,High,37g (1½ strips),215,581,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Khakra,Moderate,20g (1 piece),46,230,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Locho,High,62g (½ bowl),389,627,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Gathiya,High,37g (½ bowl),236,638,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Patra/aluvadi,High,60g (8 pieces),442,737,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dabeli,High,75g (½ piece),222,296,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bhadang,Moderate,37g (½ bowl),85,230,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Batata vada pav,High,100g (½ piece),279,279,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Ragda pattice,High,87g (½ bowl),295,339,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kothambir wadi,High,100g (3 pieces),315,315,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Bakarwadi/phoolwadi,High,60g (3 pieces),188,313,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kaanda bhajji,High,37g (3 pieces),282,762,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Chivda,Moderate,25g (¼ bowl),98,390,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Muthiya,Lower,40g (2 pieces),32,81,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Faraa,Moderate,60g (4 pieces),63,105,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Thethri,High,50g (2 pieces),176,352,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Goan kanyachi bhakri,Moderate,55g (1 piece),98,178,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Sheera,Moderate,50g (½ bowl),85,170,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Shrikhand,High,75g (1 bowl),130,173,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Basundi,Moderate,75g (½ bowl),110,146,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Ghevar,High,200g (1 bowl),144,72,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Mohan thaal,High,60g (1 piece),168,280,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Besan ladoo,High,37g (1 ladoo),174,470,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kohlyachi wadi,High,60g (2 pieces),186,310,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Ananas sheera,High,100g (½ bowl),136,136,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Rava ladoo,High,60g (1 piece),196,327,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Modak,Moderate,70g (1 piece),100,143,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dudhpaak/tasmai,High,100g (½ bowl),131,131,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Sanjorya,High,80g (2 pieces),184,230,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dhondas/Goan tavsali,High,75g (1 piece),344,458,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Tandalachya shevayanchi kheer,High,100g (½ bowl),156,156,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kurmuryacha ladoo,High,40g (2 pieces),192,480,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dudhi halwa,High,100g (½ bowl),239,319,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Anarsa/arsa,High,125g (2 pieces),184,245,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Papchi,Moderate,75g (2 pieces),110,146,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Meethi khurmi,Moderate,45g (6 pieces),87,193,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Gulgula,High,80g (1 piece),179,358,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Dehrauri,Moderate,60g (1 piece),97,162,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Tikhur (halwa/barf/kheer),High,75g (1 piece),232,464,category derived from printed mg bands (colour not in text layer); name split across PDF cells
+K_west_central_2023,potassium,Patoli,High,100g (2 pieces),183,305,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Kul kul/kalkals/kidiyo,High,60g (2 pieces),122,202,category derived from printed mg bands (colour not in text layer)
+K_west_central_2023,potassium,Perad,High,60g (1 piece),270,450,category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Idli,High,60g (2 pieces),188,314,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Dibba roti,High,55g (2 pieces),157,285,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Saggubiyam upma,High,150g (½ bowl),267,178,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Borugulu upma,High,110g (1 bowl),267,243,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Miriyalu beeyam nuca upma,High,75g (1 bowl),240,320,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Idli upma,High,100g (1 bowl),293,293,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Attukulu upma,High,190g (1 bowl),737,388,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Akki roti with bottle gourd,High,85g (1 piece),773,909,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chanagapapu idli,High,65g (1 piece),354,545,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,More kali,High,235g (1 bowl),545,232,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kothi mera chutney,Moderate,20g (1 tbsp),78,391,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pudina chutney,Moderate,20g (1 tbsp),73,365,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Onion chutney,Moderate,25g (¼ bowl),48,183,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Tomato chutney,Moderate,25g (¼ bowl),56,223,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ulligeddera karam,High,125g (1 bowl),454,363,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ragi idli,High,35g (1 piece),204,583,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Broken wheat with rice fakes upma,High,120g (1 bowl),139,116,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable puttu,High,111g (1 bowl),383,345,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable roti,High,43g (1 piece),189,440,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ilayada,Moderate,35g (1 piece),111,259,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rice pidi kozhukattai,High,120g (1 bowl),165,156,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Egg dosa,Moderate,111g (1 bowl),115,281,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ada dosa,High,43g (1 piece),301,547,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mixed upma,High,43g (1 piece),139,185,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mixed puttu,High,106g (1 bowl),205,512,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Multi grain dosa,High,41g (1 piece),305,678,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Idli with coconut chutney,High,"125g (2 pieces, ½ bowl)",445,356,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Dosa with peanut chutney,High,"65g (2 pieces, ½ bowl)",286,440,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rava/sooji upma,High,75g (1 bowl),267,356,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vermicelli upma,High,80g (1 bowl),240,300,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Avalakki/poha,High,135g (1 bowl),293,217,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pongal (savoury),High,110g (1 bowl),737,670,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pongal (sweet),High,75g (1 bowl),400,533,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Paddu,High,195g (6 pieces),354,182,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Poori,High,95g (2 pieces),201,212,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Potato palya,High,50g (1 bowl),227,454,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rice roti,High,75g (1 piece),137,183,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rava idli,High,80g (2 pieces),181,226,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rava dosa,High,67g (1 piece),246,367,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pongal,High,130g (1 bowl),171,132,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Idyappam with paya,Moderate,70g (1 piece with ½ bowl paya),116,165,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Puttu with channa curry,High,238g (1 piece with ½ bowl curry),340,143,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Puttu with banana,High,170g (1 piece with 1 banana),266,157,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Egg dosa,High,89g (1 piece),210,236,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Dosa,Moderate,29g (1 piece),91,314,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Podi dosa,High,46g (1 piece),235,511,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mini idli,Lower,10g (1 piece),31,314,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kuzhi paniyaram with coconut chutney,High,55g (1 piece),259,471,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Onion uthappam,High,42g (1 piece),130,310,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chicken masala dosa,High,84g (½ piece),204,243,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Masala dosa with tomato chutney,High,201g (1 piece),595,296,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ghee roast,High,70g (1 piece),593,847,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ragi koozh,High,110g (1 bowl),308,280,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Puri potato masala,High,178g (1 piece with 1 bowl),530,298,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Coconut chutney,Moderate,28g (1 tbsp),57,204,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chettinad tomato chutney,Moderate,25g (¼ bowl),96,382,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Brinjal sambar,High,40g (¼ bowl),271,678,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Radish chutney,High,25g (¼ bowl),132,530,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Majjiga pulusu,High,78g (¼ bowl),149,191,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bitter gourd gojju,High,49g (¼ bowl),158,323,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chow chow koora,High,83g (½ bowl),131,158,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Dondakaya pacchadi,High,58g (¼ bowl),159,276,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Miriyala chaaru/ pepper rasam,High,43g (½ bowl),493,1160,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chaapala pulusu,High,95 (¼ bowl),215,227,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Beans koora,High,48g (⅓ bowl),207,429,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pullihoral/ tamarind rice,High,50g (1 bowl),372,744,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Beerakaya koora,High,66g (¼ bowl),159,240,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Tomato chaaru,High,105g (1 bowl),204,194,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Beetroot koora,Moderate,59g (¼ bowl),50,85,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Venkaya pachadi,High,80g (¼ bowl),193,240,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Doosakaya koora,High,80g (¼ bowl),164,205,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Fenugreek leaves masiyal,High,93g (½ bowl),373,403,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ridge gourd chutney,High,25g (¼ bowl),159,240,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bottle gourd chutney,Moderate,25g (¼ bowl),92,141,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pesarattu,High,105g (1 piece),591,563,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ginger chutney,High,25g (1 tbsp),181,726,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Serva pindi with bottle and ridge gourd,High,125g (1 piece),293,234,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Uppindi,High,100g ( 1 bowl),708,708,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chintapandu chutney,High,100g (½ cup),706,706,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable masala,High,50g (½ bowl),121,242,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable salad,Moderate,26g (¼ bowl),55,212,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Moong dal curry,High,50g (1 bowl),128,256,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Cucumber kichdi,High,90g (1 bowl),189,210,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Egg curry,High,100g ( 1 bowl),210,210,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Eruserry,High,21g (¼ bowl),148,704,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable theyal,Moderate,24g (¼ bowl),71,296,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Cluster beans pugath,Moderate,42g (½ bowl),110,263,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Onion chutney,High,20g (½ serving),135,675,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Sambar,High,60g (1 bowl),201,335,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bottle gourd curd curry,High,50g (½ bowl),261,521,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable pulav,High,70g (1 bowl),165,236,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chicken biryani,High,80g (1 bowl),202,253,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,"Rice, sambar/huli",High,180g (1 bowl),929,516,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Lemon rice,High,135g (1 bowl),179,133,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bisibelebath,High,100g (1 bowl),673,673,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Jowar roti,Lower,80g (2 pieces),33,41,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ragi roti,High,80g (2 pieces),354,443,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable pulav,High,125g (1 bowl),323,258,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chicken biriyani,High,125g (1 bowl),141,113,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Tomato bath,High,160g (1 bowl),242,151,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vangi bath/brinjal rice,High,125g (1 bowl),235,188,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ragi ball/ mudde,High,130g (1),665,512,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chicken sambar/curry,High,70g (1 bowl),160,228,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Soppu/greens sambar,High,145g (1 bowl),942,650,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Huruli/ horsegram sambar,High,95g (1 bowl),719,757,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Majjige huli curd sambar,High,130g (1 bowl),220,169,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bassaru/greens and sprouts sambar,High,140g (1 bowl),933,667,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Lemon rice,Moderate,69g (½ bowl),91,132,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Carrot rice,Moderate,70g (½ bowl),102,147,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Beet root poriyal,High,53g (½ bowl),186,353,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Beans poriyal,High,45g (½ bowl),148,332,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mutton liver,High,73g (½ bowl),206,284,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Beetroot rice,High,70g (½ bowl),142,202,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Curry leaves rice,High,80g (½ bowl),501,626,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chicken curry,High,75g (½ bowl),235,313,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable poriyal,High,58g (½ bowl),189,328,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable biryani,High,100g (½ bowl),245,245,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ennai kathirikai kulambu,High,60g (½ bowl),293,488,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mutton paya,High,63g (½ bowl),249,398,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chicken biryani,High,78g (½ bowl),213,274,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable salad,High,53g (½ bowl),122,232,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Sambar rice,High,58g (½ bowl),347,604,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Coconut rice,Moderate,75g (½ bowl),103,137,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Tomato rice,Moderate,75g (½ bowl),84,112,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Curd rice,Moderate,137g (½ bowl),101,74,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Egg curry,High,60g (½ bowl),173,288,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rice four murukku,High,47g (2 peices),261,555,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Sweet potato cutlet,High,100g (1 piece),285,285,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Palakayalu,High,65g (5 pieces),240,369,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kudumulu with vegetables,High,120g (2 pieces),282,235,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Undrallu or kudumulu,High,65g (2 pieces),248,382,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Saggubeeyam raita,Moderate,60g (½ cup),101,168,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Masala puri,High,100g (½ plate),514,514,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Egg white unniyappam,Moderate,20g (1 piece),82,410,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rice fakes kozhukattai,High,50g (1 piece),230,460,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Masala puri,High,103g (½ plate),529,514,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Dry bhel/churmuri,High,60g (½ plate),181,301,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pani puri,High,50g (½ plate),300,599,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Onion pakoda,High,103g (½ plate),414,402,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Masala vada,High,38g (1 piece),283,745,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Potato bonda,High,35g (1 piece),235,672,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mangalore/ goli baje,Moderate,50g (2 pieces),70,140,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Chakli,Moderate,50g (2 pieces),57,114,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kodubale,Moderate,45g (2 pieces),82,182,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mixture,Moderate,35g (¼ bowl),75,214,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rice murukku,High,47g (1 piece),176,122,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Butter/besan murukku,High,36g (1 piece),265,734,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Keerai vada,High,38g (1 piece),180,474,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ulunthu vada,High,45g (1 piece),185,412,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Egg bonda,High,102g (1 piece),530,519,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Potato bonda,High,50g (1 piece),336,672,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Paruppu vadai,High,50g (1 piece),261,521,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kara chutney,High,50g (¼ cup),147,294,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kothamali sevai,Moderate,100g (½ plate),53,53,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vegetable rice four momos,High,110 (3 peice),126,114,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Seedai,Moderate,35g (1 pieces),97,278,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Egg white stufed with seasoned carrot and potato masala (bheja),High,200g (4 pieces),509,255,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Tawa paneer,Moderate,60g (4 pieces),73,121,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mysore bonda,Moderate,35g (1 pieces),48,138,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Saggubeeyam payasam,Moderate,130g (½ bowl),93,72,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Borugula,Moderate,35g (2 pieces),84,240,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bellam kudumulu,High,70g (2 pieces),203,290,region: Andhra; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rice fakes balls,High,40g (2 pieces),176,439,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Multigrain kesari,High,65g (1 bowl),185,285,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Nutriball,High,50g (1 piece),124,248,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Multigrain kozhukattai,Moderate,45g (1 piece),106,236,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Moong dal kesari,Moderate,50g (¾ bowl),49,97,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Aravanai payasam,High,45g (½ bowl),183,406,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Adai payasam,Moderate,85g (½ bowl),97,114,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Arisakari payasam,High,75g (½ bowl),150,200,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Aval payasam,Moderate,85 (½ bowl),117,137,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Dates payasam,Moderate,85g (½ bowl),88,103,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Jack fruit payasam,Moderate,85g (½ bowl),77,89,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kadalai payasam,High,85g (½ bowl),120,141,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mango payasam,Moderate,85g (½ bowl),74,86,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Palada pradaman,Moderate,90g (½ bowl),48,53,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Palada milk payasam,Lower,65g (½ bowl),23,35,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Paruppu payasam,Moderate,100g (½ bowl),113,113,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Sago payasam,Lower,80g (½ bowl),21,26,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vermicelli payasam,Moderate,90g (½bowl),41,46,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Wheat payasam,Moderate,85g (½ bowl),99,116,region: Kerala; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kesari bath/sajjige,Moderate,70g (1 bowl),110,157,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bele obattu,High,75g (1 piece),285,597,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Belgavi kunda,Moderate,125g (½ bowl),111,89,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Bhadhusha,Moderate,102g (1 piece),77,75,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Boondhi,High,57g (½ bowl),388,680,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Dharwad peda,Moderate,115g (1 piece),69,60,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Karijikkai,High,97g (1 piece),278,286,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kayi obattu,High,68g (1 piece),215,316,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mysore pauk,High,75g (1 piece),287,382,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Oma podi,High,42g (½ bowl),225,535,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rava halbai,High,80g (½ bowl),404,505,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Uddin vada,High,52g (1 piece),342,657,region: Karnataka; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kamarkatt,Moderate,45g (2 pieces),105,233,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Coconut burf,Moderate,51g (1 piece),98,193,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Pori urundai,High,40g (2 pieces),131,328,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Poli,High,70g (1 piece),509,727,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Coconut poli,High,80g (1 piece),583,729,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Mysore Pak,Moderate,30g (1 piece),68,227,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,"Adhirasam both (sugar, jaggery)",High,50g (1 piece),285,570,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Vellam appam,High,100g (2 pieces),218,218,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Ash gourd halwa,High,100g (½ bowl),404,404,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rava kesari,Moderate,50g (1 piece),45,90,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Rava ladoo,Moderate,70g (2 pieces),109,156,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Apple raita,High,150g (½ bowl),230,153,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Jangri,High,50g (1 piece),232,464,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)
+K_south_2024,potassium,Kadalai urundai,High,60g (2 pieces),127,211,region: Tamil Nadu; category derived from printed mg bands (colour not in text layer)

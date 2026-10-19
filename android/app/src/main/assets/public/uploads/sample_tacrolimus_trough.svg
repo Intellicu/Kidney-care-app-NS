@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="100%" height="100%">
+  <rect width="600" height="360" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2"/>
+  <!-- Hospital Header -->
+  <rect x="0" y="0" width="600" height="70" fill="#0E3D46"/>
+  <text x="30" y="30" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="15" font-weight="700">ALL INDIA INSTITUTE OF MEDICAL SCIENCES, PATNA</text>
+  <text x="30" y="48" fill="#99F6E4" font-family="system-ui, sans-serif" font-size="11">Therapeutic Drug Monitoring (TDM) Lab · Tacrolimus Assay</text>
+  <text x="570" y="42" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="20" font-weight="700" text-anchor="end">🧪</text>
+
+  <!-- Demographic Bar -->
+  <rect x="25" y="85" width="550" height="55" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+  <text x="40" y="106" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Patient:</text>
+  <text x="90" y="106" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="700">Aarav Kumar (CR 2026/0412)</text>
+  <text x="340" y="106" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Date / Time:</text>
+  <text x="420" y="106" fill="#0F172A" font-family="system-ui, sans-serif" font-size="11">28-Sep-2026, 08:30 AM (12h Trough)</text>
+  <text x="40" y="126" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Current Dose:</text>
+  <text x="125" y="126" fill="#0F172A" font-family="system-ui, sans-serif" font-size="11">Tacrolimus 1 mg Twice Daily</text>
+  <text x="340" y="126" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">Attending:</text>
+  <text x="420" y="126" fill="#0F172A" font-family="system-ui, sans-serif" font-size="11">Dr. Swarnim</text>
+
+  <!-- Test Results -->
+  <rect x="25" y="155" width="550" height="30" fill="#E2E8F0"/>
+  <text x="40" y="175" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">ASSAY</text>
+  <text x="260" y="175" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">MEASURED VALUE</text>
+  <text x="420" y="175" fill="#334155" font-family="system-ui, sans-serif" font-size="11" font-weight="700">TARGET RANGE</text>
+
+  <text x="40" y="210" fill="#0F172A" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Blood Tacrolimus Level (CMIA)</text>
+  <text x="260" y="210" fill="#15803D" font-family="system-ui, sans-serif" font-size="13" font-weight="800">5.6 ng/mL (Optimal)</text>
+  <text x="420" y="210" fill="#64748B" font-family="system-ui, sans-serif" font-size="11">4.0 - 7.0 ng/mL</text>
+  <line x1="25" y1="230" x2="575" y2="230" stroke="#F1F5F9"/>
+
+  <rect x="25" y="250" width="550" height="75" rx="6" fill="#DCFCE7" stroke="#86EFAC"/>
+  <text x="40" y="272" fill="#166534" font-family="system-ui, sans-serif" font-size="11" font-weight="700">DOCTOR ASSESSMENT (DR. SWARNIM):</text>
+  <text x="40" y="292" fill="#14532D" font-family="system-ui, sans-serif" font-size="11">Therapeutic level achieved. No nephrotoxicity noted (Creatinine stable 0.4 mg/dL).</text>
+  <text x="40" y="310" fill="#14532D" font-family="system-ui, sans-serif" font-size="11">Plan: Continue Tacrolimus 1 mg BD (12-hour gap strictly at 8:00 AM and 8:00 PM). Check BP weekly.</text>
+</svg>

@@ -1,0 +1,48 @@
+alias,food_id,note
+atta,IFCT:A019,
+maida,IFCT:A018,
+suji,IFCT:A022,
+rava,IFCT:A022,
+chawal,IFCT:A015,Raw milled rice. Parboiled rice is IFCT:A014.
+rice,IFCT:A015,Raw milled rice. Parboiled rice is IFCT:A014.
+poha,IFCT:A011,
+chuda,IFCT:A011,
+moong dal,IFCT:B010,
+mung dal,IFCT:B010,
+arhar dal,IFCT:B021,
+toor dal,IFCT:B021,
+tur dal,IFCT:B021,
+chana dal,IFCT:B001,
+urad dal,IFCT:B003,
+masoor dal,IFCT:B013,
+rajma,IFCT:B020,Red rajmah. Black and brown are B018 and B019.
+paneer,IFCT:L003,
+ghee,IFCT:T013,
+sarson tel,IFCT:T006,
+mustard oil,IFCT:T006,
+milk,IFCT:L002,Ambiguous between cow and buffalo milk.
+milk,IFCT:L001,Ambiguous between cow and buffalo milk.
+doodh,IFCT:L002,Ambiguous between cow and buffalo milk.
+doodh,IFCT:L001,Ambiguous between cow and buffalo milk.
+cow milk,IFCT:L002,
+buffalo milk,IFCT:L001,
+egg,IFCT:M001,Whole raw poultry egg. Boiled is M004.
+anda,IFCT:M001,Whole raw poultry egg. Boiled is M004.
+palak,IFCT:C033,
+methi,IFCT:C020,Fenugreek leaves. Seeds are G026.
+nariyal pani,IFCT:K002,
+coconut water,IFCT:K002,
+gud,IFCT:I001,
+jaggery,IFCT:I001,
+chini,CUSTOM:SUGAR,
+sugar,CUSTOM:SUGAR,
+namak,CUSTOM:SALT,
+salt,CUSTOM:SALT,
+pani,CUSTOM:WATER,
+water,CUSTOM:WATER,
+dahi,CUSTOM:CURD,
+curd,CUSTOM:CURD,
+chhach,CUSTOM:BUTTERMILK,
+mattha,CUSTOM:BUTTERMILK,
+buttermilk,CUSTOM:BUTTERMILK,
+rice flour,CUSTOM:RICE_FLOUR,

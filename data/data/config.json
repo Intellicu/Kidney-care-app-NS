@@ -1,0 +1,29 @@
+{
+  "_note": "Engine settings. Clinician and dietitian sign-off is required before any value is used for care.",
+  "phosphorus_absorption": {
+    "_note": "Fractions absorbed by phosphorus source. Two published sets are kept; the engine reports the range across both.",
+    "polderman_2026": {
+      "citation": "Polderman N, Shaw V et al. Clin Kidney J 2026;19(4):sfag046",
+      "additive": [1.0, 1.0],
+      "animal": [0.4, 0.6],
+      "plant": [0.2, 0.4]
+    },
+    "print_course": {
+      "citation": "rn4kids PRINT course",
+      "additive": [0.9, 1.0],
+      "animal": [0.4, 0.7],
+      "plant": [0.2, 0.5]
+    }
+  },
+  "potassium_leaching": {
+    "_note": "No leaching factor is approved. Entries marked as leached are reported unleached (the conservative value) until a dietitian approves a factor here.",
+    "approved_by": null,
+    "approved_on": null,
+    "factors": {}
+  },
+  "fluid_densities_note": "Grams for a fluid entered in mL use the food's density_g_per_ml (milk 1.03; others 1.0).",
+  "nutrients": [
+    "energy_kcal", "protein_g", "fat_g", "carb_g", "fibre_g", "water_g",
+    "calcium_mg", "phosphorus_mg", "potassium_mg", "sodium_mg", "iron_mg"
+  ]
+}

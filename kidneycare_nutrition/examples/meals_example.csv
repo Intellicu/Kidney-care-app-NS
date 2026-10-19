@@ -1,0 +1,19 @@
+date,slot,food,amount,unit,leached,note
+2026-10-16,early morning,cow milk,150,ml,,
+2026-10-16,breakfast,poha,30,g,,raw weight
+2026-10-16,breakfast,ground nut,10,piece,,
+2026-10-16,breakfast,mustard oil,1,tsp,,
+2026-10-16,breakfast,E012,1,piece,,banana robusta
+2026-10-16,lunch,roti,2,serving,,example recipe
+2026-10-16,lunch,moong dal cooked,150,g,,example recipe with weighed batch
+2026-10-16,lunch,rice,40,g,,raw weight
+2026-10-16,lunch,F006,50,g,yes,leached potato
+2026-10-16,lunch,curd,100,ml,,
+2026-10-16,lunch,salt,0.5,tsp,,added at table
+2026-10-16,evening,rice moong feed,1,serving,,
+2026-10-16,evening,coconut water,100,ml,,
+2026-10-16,dinner,roti,2,serving,,
+2026-10-16,dinner,palak,1,katori_medium,,raw leaves
+2026-10-16,dinner,ghee,1,tsp,,
+2026-10-16,dinner,water,600,ml,,
+2026-10-16,dinner,dal,1,katori,,deliberately ambiguous unit

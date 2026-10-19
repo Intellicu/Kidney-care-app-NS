@@ -1,0 +1,49 @@
+{
+  "recipes": [
+    {
+      "recipe_id": "RECIPE:RICE_MOONG_FEED",
+      "name": "Rice-moong homemade feed",
+      "aliases": ["rice moong feed", "homemade feed"],
+      "status": "course recipe",
+      "source": "rn4kids PRINT course homemade feed (rice flour 20 g, moong dal flour 10 g, sugar 10 g, oil 5 g, water 150 mL); course states about 170 kcal and 4 to 5 g protein.",
+      "servings": 1,
+      "batch_cooked_g": null,
+      "is_fluid": true,
+      "ingredients": [
+        {"food": "CUSTOM:RICE_FLOUR", "g": 20},
+        {"food": "IFCT:B010", "g": 10, "note": "Moong dal flour; IFCT green gram dal used."},
+        {"food": "CUSTOM:SUGAR", "g": 10},
+        {"food": "IFCT:T005", "g": 5, "note": "Any vegetable oil; groundnut oil used."},
+        {"food": "CUSTOM:WATER", "g": 150}
+      ]
+    },
+    {
+      "recipe_id": "RECIPE:ROTI_EXAMPLE",
+      "name": "Roti, atta (example, calibrate per household)",
+      "aliases": ["roti", "chapati", "phulka"],
+      "status": "example only",
+      "source": "Example. Weigh the atta used for a known number of rotis in each household and replace these values.",
+      "servings": 1,
+      "batch_cooked_g": null,
+      "is_fluid": false,
+      "ingredients": [
+        {"food": "IFCT:A019", "g": 25}
+      ]
+    },
+    {
+      "recipe_id": "RECIPE:MOONG_DAL_EXAMPLE",
+      "name": "Moong dal, plain, no salt (example, calibrate per household)",
+      "aliases": ["moong dal cooked", "dal"],
+      "status": "example only",
+      "source": "Example. Weigh the raw ingredients and the cooked pot in each household and replace these values.",
+      "servings": 4,
+      "batch_cooked_g": 600,
+      "is_fluid": false,
+      "ingredients": [
+        {"food": "IFCT:B010", "g": 100},
+        {"food": "IFCT:T013", "g": 10},
+        {"food": "CUSTOM:WATER", "g": 500}
+      ]
+    }
+  ]
+}

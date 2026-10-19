@@ -1,0 +1,7 @@
+food_id,name,food_group,p_class,is_fluid,density_g_per_ml,proxy_of,proxy_scale,derivation,energy_kcal,protein_g,fat_g,carb_g,fibre_g,water_g,calcium_mg,phosphorus_mg,potassium_mg,sodium_mg,iron_mg,note
+CUSTOM:SALT,"Salt, table (sodium chloride)",Condiments and Spices,none,0,,,,derived:stoichiometry,0,0,0,0,0,0,0,0,0,39340,0,"Na = 22.99/58.44 of NaCl. Iodised and rock/black salts are also mostly NaCl (ICMR-NIN DGI 2024, guideline 11)."
+CUSTOM:SUGAR,"Sugar, white (sucrose)",Sugars,none,0,,,,derived:100 g available carbohydrate x 17 kJ/g (IFCT energy factor),406,0,0,100,0,0,0,0,0,0,0,Minerals assumed negligible; not analysed.
+CUSTOM:WATER,"Water, drinking",Beverages,none,1,1.0,,,derived:assumed,0,0,0,0,0,100,0,0,0,0,0,"Sodium and minerals vary by source (RO, tap, borewell); counted as zero."
+CUSTOM:RICE_FLOUR,Rice flour (proxy),Cereals and Millets,plant,0,,IFCT:A015,1,proxy:IFCT A015 rice raw milled,,,,,,,,,,,,Not in IFCT 2017. Values copied from raw milled rice. Replace with analysed value when available.
+CUSTOM:CURD,"Curd, cow milk (proxy)",Milk and Milk Products,animal,0,1.03,IFCT:L002,1,proxy:IFCT L002 whole cow milk,,,,,,,,,,,,Not in IFCT 2017. Values copied from whole cow milk. Curd differs in lactose and sometimes in fat; replace with analysed value.
+CUSTOM:BUTTERMILK,"Buttermilk, thin (proxy, 1 part curd : 1 part water)",Milk and Milk Products,animal,1,1.0,IFCT:L002,0.5,proxy:half the values of IFCT L002 whole cow milk,,,,,,,,,,,,Not in IFCT 2017. Dilution assumed 1:1; salt added separately. Replace with analysed value.

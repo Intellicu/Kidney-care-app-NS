@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>KidneyCare AI · AIIMS Patna Pediatric Nephrology</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0E3D46">
+  <meta name="description" content="KidneyCare AI: AIIMS Patna pediatric nephrology home monitoring app prototype. Camera dipstick reader, relapse watch, blood pressure, weight and steroid course tracker.">
+</head>
+<body>
+
+  <div class="prototype-outer-wrapper">
+
+    <!-- Top Viewport Control Bar -->
+    <div class="viewport-switch-bar">
+      <div class="title">
+        <span>🏥</span> <strong>KidneyCare AI</strong> · AIIMS Patna
+      </div>
+      <div class="view-mode-pills">
+        <button id="viewPhoneBtn" class="view-mode-btn active" title="Smartphone View">📱 Mobile App</button>
+        <button id="viewClinicBtn" class="view-mode-btn" title="AIIMS OPD Clinic View">🖥️ Clinic OPD</button>
+      </div>
+    </div>
+
+    <!-- Smartphone Frame Device Shell -->
+    <div class="smartphone-device">
+
+      <!-- Status Bar (09:15 KidneyCare 4G ▮▮▮) -->
+      <div class="phone-status-bar">
+        <span>09:15</span>
+        <div class="status-bar-icons">
+          <span>KidneyCare</span>
+          <span>4G</span>
+          <span>▮▮▮</span>
+        </div>
+      </div>
+
+      <!-- App Header Bar (KidneyCare AI | EN / हिं) -->
+      <header class="app-header">
+        <div class="app-brand-title" id="appBrandTitle">KidneyCare AI</div>
+        <div class="lang-switch-group">
+          <button class="lang-pill active" id="langBtnEn" onclick="setLanguage('en')">EN</button>
+          <button class="lang-pill" id="langBtnHi" onclick="setLanguage('hi')">हिं</button>
+        </div>
+      </header>
+
+      <!-- Patient CR Number Row (Patient CR [number] Scan new) -->
+      <div class="patient-row" id="patientInfoRow">
+        <div class="patient-info-left">
+          <div class="label" data-i18n="patientLabel">Patient</div>
+          <div class="cr-code" id="displayCrNumber">CR 2026/0412</div>
+        </div>
+        <a class="patient-action-link" onclick="navigateToScreen('screen-scan-patient')" data-i18n="scanNewLink">Scan new</a>
+      </div>
+
+      <!-- Quick Nav Tabs Scroll Carousel (Dipstick, Docs, BP, Weight, Trend) -->
+      <div class="quick-tabs-container" id="quickTabsBar">
+        <button class="tabs-nav-arrow" onclick="scrollTabs(-60)">◀</button>
+        <div class="tabs-scroll-wrapper" id="tabsScrollWrapper">
+          <button class="quick-tab-pill" data-target="screen-dipstick-camera" onclick="navigateToScreen('screen-dipstick-camera')"><span data-i18n="pillDipstick">Dipstick</span></button>
+          <button class="quick-tab-pill" data-target="screen-docs-scan" onclick="navigateToScreen('screen-docs-scan')"><span data-i18n="pillDocs">Docs</span></button>
+          <button class="quick-tab-pill" data-target="screen-bp" onclick="navigateToScreen('screen-bp')"><span data-i18n="pillBP">BP</span></button>
+          <button class="quick-tab-pill" data-target="screen-weight" onclick="navigateToScreen('screen-weight')"><span data-i18n="pillWeight">Weight</span></button>
+          <button class="quick-tab-pill" data-target="screen-trends" onclick="navigateToScreen('screen-trends')"><span data-i18n="pillTrend">Trend</span></button>
+          <button class="quick-tab-pill" data-target="screen-diary" onclick="navigateToScreen('screen-diary')"><span data-i18n="pillDiary">Diary</span></button>
+          <button class="quick-tab-pill" data-target="screen-doctor" onclick="navigateToScreen('screen-doctor')"><span data-i18n="pillDoctor">Doctor</span></button>
+          <button class="quick-tab-pill" data-target="screen-reminders" onclick="navigateToScreen('screen-reminders')"><span data-i18n="pillReminders">Reminders</span></button>
+        </div>
+        <button class="tabs-nav-arrow" onclick="scrollTabs(60)">▶</button>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 1 & 2: HOME DASHBOARD (TODAY)
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-home">
+
+        <!-- Watch Alert Banner -->
+        <div class="alert-banner-watch" id="homeAlertBanner">
+          <div class="alert-content">
+            <div class="alert-headline" data-i18n="alertWatchTitle">Watch: protein 2+ for 3 days</div>
+            <div class="alert-subline" data-i18n="alertWatchSub">See the trend and tell your doctor</div>
+          </div>
+          <button class="alert-action-btn" onclick="navigateToScreen('screen-trends')" data-i18n="openBtn">Open</button>
+        </div>
+
+        <h2 class="section-title" data-i18n="todayTitle">Today</h2>
+
+        <div class="today-cards-list">
+          <!-- Last Dipstick Card -->
+          <div class="today-summary-card" onclick="navigateToScreen('screen-dipstick-verify')">
+            <div class="card-info-group">
+              <div class="card-timestamp" id="homeDipstickTime">Last dipstick, 8:10 am</div>
+              <div class="card-primary-val" id="homeDipstickGrade">Protein 2+</div>
+            </div>
+            <div class="card-badge-tag" id="homeDipstickMethod">Camera</div>
+          </div>
+
+          <!-- Blood Pressure Card -->
+          <div class="today-summary-card" onclick="navigateToScreen('screen-bp')">
+            <div class="card-info-group">
+              <div class="card-timestamp" id="homeBpTime">Blood pressure, 8:20 am</div>
+              <div class="card-primary-val" id="homeBpVal">104 / 66, pulse 82</div>
+            </div>
+            <div class="card-badge-tag" id="homeBpSource">Bluetooth</div>
+          </div>
+
+          <!-- Weight Card -->
+          <div class="today-summary-card" onclick="navigateToScreen('screen-weight')">
+            <div class="card-info-group">
+              <div class="card-timestamp" id="homeWeightTime">Weight, 8:25 am</div>
+              <div class="card-primary-val" id="homeWeightVal">21.4 kg</div>
+            </div>
+            <div class="card-badge-tag" id="homeWeightSource">Manual</div>
+          </div>
+
+          <!-- Medicines Today Card -->
+          <div class="today-summary-card" onclick="navigateToScreen('screen-diary')">
+            <div class="card-info-group">
+              <div class="card-timestamp" data-i18n="medicinesTodayLabel">Medicines today</div>
+              <div class="card-primary-val" id="homeMedsCount">2 of 3 taken</div>
+            </div>
+            <a class="card-action-link" data-i18n="seeDiaryLink">See diary</a>
+          </div>
+        </div>
+
+        <!-- Big Primary Bottom Action Button: Read a dipstick -->
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="navigateToScreen('screen-dipstick-camera')" data-i18n="readDipstickBtn">
+            Read a dipstick
+          </button>
+          <div class="sync-footer-bar" onclick="syncWaitingReadings()">
+            <span class="sync-dot" id="syncStatusDot"></span>
+            <span id="syncStatusText" data-i18n="syncStatusMsg">Saved on this phone. 2 readings waiting to sync.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================
+           SCREEN 3: SCAN THE PATIENT (BARCODE SCANNER)
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-scan-patient" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" data-i18n="step1of2">Step 1 of 2</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="scanPatientTitle">Scan the patient</h2>
+        <p class="section-subtitle" data-i18n="scanPatientSubtitle">Point the camera at the barcode on the OPD sticker.</p>
+
+        <div class="camera-viewfinder-box" id="barcodeViewfinder">
+          <video id="barcodeVideo" class="camera-preview-video" playsinline style="display: none;"></video>
+          <div class="viewfinder-barcode-target">
+            <div class="simulated-barcode-bars">
+              <span></span><span class="w"></span><span></span><span class="m"></span><span></span>
+              <span class="w"></span><span class="m"></span><span></span><span class="w"></span><span></span>
+            </div>
+          </div>
+          <div class="viewfinder-status-pill" data-i18n="barcodeFound">Barcode found</div>
+        </div>
+
+        <div class="readout-card">
+          <div class="readout-label" data-i18n="crNumberReadLabel">CR number read</div>
+          <div class="readout-value" id="scannedCrDisplay">2026/0412</div>
+          <div class="privacy-notice-text" data-i18n="privacyNotice">Only the CR number is saved. No name or phone number.</div>
+        </div>
+
+        <div class="dual-button-row">
+          <button class="btn-pill-action" onclick="simulateOcrScan()" data-i18n="readPrintedNumber">Read printed number</button>
+          <button class="btn-pill-action" onclick="openTypeCrModal()" data-i18n="typeIt">Type it</button>
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="confirmScannedCr()" data-i18n="confirmCrBtn">Confirm this CR number</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 4: DIPSTICK CAMERA READER & 60-SEC TIMER
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-dipstick-camera" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="cameraScreenCr">CR [number]</span>
+        </div>
+
+        <!-- Camera alignment viewfinder with image capture -->
+        <div class="camera-viewfinder-dipstick">
+          <video id="dipstickVideo" class="camera-preview-video" playsinline style="display: none;"></video>
+          <canvas id="dipstickCanvas" style="display: none;"></canvas>
+          <input type="file" id="dipstickFileInput" accept="image/*" capture="environment" style="display: none;" onchange="handleDipstickFileInput(event)">
+          <div class="strip-alignment-frame"></div>
+          <div class="condition-pills-row">
+            <span class="condition-pill" data-i18n="lightOk">Light OK</span>
+            <span class="condition-pill" data-i18n="glareOk">Glare OK</span>
+            <span class="condition-pill" data-i18n="alignedOk">Aligned</span>
+          </div>
+        </div>
+
+        <div class="camera-snap-bar">
+          <button type="button" class="btn-camera-snap" onclick="captureDipstickPhoto()">📸 Snap Photo</button>
+          <button type="button" class="btn-camera-snap" style="background: #475569;" onclick="document.getElementById('dipstickFileInput').click()">📁 Choose Image</button>
+        </div>
+
+        <!-- Circular 60s Countdown Timer Widget -->
+        <div class="timer-circle-widget">
+          <svg class="timer-svg" width="130" height="130" viewBox="0 0 130 130">
+            <circle class="timer-circle-bg" cx="65" cy="65" r="56" stroke-width="8"></circle>
+            <circle class="timer-circle-progress" id="timerProgressRing" cx="65" cy="65" r="56" stroke-width="8" stroke-dasharray="351.85" stroke-dashoffset="105"></circle>
+          </svg>
+          <div class="timer-display-text" id="timerDisplayDigits">00:42</div>
+        </div>
+
+        <!-- Strip Guidance Card -->
+        <div class="guide-card-note">
+          <div class="guide-label" data-i18n="stripLabel">Strip</div>
+          <div class="guide-text" data-i18n="stripInstructions">Urine strip, read at 60 seconds. Keep the phone still.</div>
+        </div>
+
+        <div class="dual-button-row">
+          <button class="btn-pill-action" onclick="navigateToScreen('screen-how-to-test')" data-i18n="howToTestBtn">How to test</button>
+          <button class="btn-pill-action" onclick="navigateToScreen('screen-color-picker')" data-i18n="cannotScanBtn">Cannot scan? Pick colour</button>
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" id="startTimerBtn" onclick="toggleDipstickTimer()" data-i18n="startTimerBtn">Start timer</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 5: DIPSTICK RESULT VERIFICATION
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-dipstick-verify" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="verifyScreenCr">CR [number]</span>
+        </div>
+
+        <!-- Protein Reading Presentation Box -->
+        <div class="reading-presentation-box">
+          <div class="dipstick-vertical-strip">
+            <div class="strip-pad-swatch" style="background: #E5E7EB;"></div>
+            <div class="strip-pad-swatch" style="background: #E8D4C0;"></div>
+            <div class="strip-pad-swatch" style="background: #F1E5AC;"></div>
+            <div class="strip-pad-swatch" id="verifyStripPadColor" style="background: #6BA357;"></div>
+            <div class="strip-pad-swatch" style="background: #E8B987;"></div>
+            <div class="strip-pad-swatch" style="background: #DAA06D;"></div>
+            <div class="strip-pad-swatch" style="background: #D8D2C2;"></div>
+            <div class="strip-pad-swatch" style="background: #E4C868;"></div>
+            <div class="strip-pad-swatch" style="background: #F4C430;"></div>
+            <div class="strip-pad-swatch" style="background: #0284C7;"></div>
+          </div>
+
+          <div class="reading-details-right">
+            <div class="label" data-i18n="proteinReadingLabel">Protein reading</div>
+            <div class="grade-value" id="verifiedGradeValue">2+</div>
+            <div class="confidence-note" data-i18n="readerConfidence">Reader confidence: high</div>
+          </div>
+        </div>
+
+        <!-- Captured Image Snapshot Thumbnail Preview -->
+        <div id="verifyCapturedImagePreview" class="guide-card-note" style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <img id="verifySnapshotThumb" src="/uploads/sample_dipstick_strip.svg" style="width: 54px; height: 54px; border-radius: 6px; object-fit: cover; border: 1px solid #CBD5E1;">
+          <div>
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--brand-teal);">📸 Photo Attached &amp; Timestamped</div>
+            <div id="verifySnapshotMeta" style="font-size: 0.75rem; color: var(--text-muted);">Tagged to CR [2026/0412] · 08:10 AM</div>
+          </div>
+        </div>
+
+        <!-- Grade Selection Override -->
+        <div class="grade-picker-selector">
+          <div class="grade-picker-title" data-i18n="correctIfWrong">Correct it if it looks wrong</div>
+          <div class="grade-selector-chips">
+            <button class="grade-chip-btn" data-grade="Neg" onclick="selectVerifyGrade('Neg')">Neg</button>
+            <button class="grade-chip-btn" data-grade="Trace" onclick="selectVerifyGrade('Trace')">Trace</button>
+            <button class="grade-chip-btn" data-grade="1+" onclick="selectVerifyGrade('1+')">1+</button>
+            <button class="grade-chip-btn active" data-grade="2+" onclick="selectVerifyGrade('2+')">2+</button>
+            <button class="grade-chip-btn" data-grade="3+" onclick="selectVerifyGrade('3+')">3+</button>
+            <button class="grade-chip-btn" data-grade="4+" onclick="selectVerifyGrade('4+')">4+</button>
+          </div>
+        </div>
+
+        <div class="disclaimer-card" data-i18n="researchDisclaimer">
+          Research use reading. It is not a diagnosis. Show it to your doctor.
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="saveVerifiedReading()" data-i18n="saveReadingBtn">Save reading</button>
+          <button class="btn-secondary-outline" onclick="navigateToScreen('screen-dipstick-camera')" data-i18n="retakeStripBtn">Retake with a new strip</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 6: DOCUMENT / PRESCRIPTION SCANNER & ATTACHED REPORTS
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-docs-scan" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="docsScreenCr">CR [number]</span>
+        </div>
+
+        <!-- Sub-view switcher: Gallery of Attached Reports vs Live Document Scanner -->
+        <div class="segmented-control-group" style="margin-bottom: 14px;">
+          <div class="segmented-chips">
+            <button class="segmented-btn active" id="btnDocsSubGallery" onclick="switchDocsSubTab('gallery')">📁 Attached Reports (<span id="docsTotalCountBadge">4</span>)</button>
+            <button class="segmented-btn" id="btnDocsSubScan" onclick="switchDocsSubTab('scan')">📷 Camera Scanner</button>
+          </div>
+        </div>
+
+        <!-- SUB-TAB 1: PATIENT DOCUMENTS & ATTACHED REPORTS GALLERY -->
+        <div id="docsGallerySection">
+          <div class="docs-header-bar">
+            <div>
+              <div style="font-size: 0.82rem; color: var(--text-muted);">Data Collection Archive</div>
+              <div style="font-size: 1.1rem; font-weight: 700; color: var(--brand-teal-dark);">Patient Reports &amp; Media</div>
+            </div>
+            <button class="btn-upload-report" onclick="openUploadReportModal()">
+              <span>📤</span> <span>Upload Report</span>
+            </button>
+          </div>
+
+          <!-- Category filter pills -->
+          <div class="doc-filter-pills">
+            <button class="doc-filter-btn active" onclick="filterDocsGallery('all', this)">All Files</button>
+            <button class="doc-filter-btn" onclick="filterDocsGallery('lab_report', this)">Lab Reports</button>
+            <button class="doc-filter-btn" onclick="filterDocsGallery('dipstick', this)">Dipstick Photos</button>
+            <button class="doc-filter-btn" onclick="filterDocsGallery('prescription', this)">Prescriptions</button>
+          </div>
+
+          <!-- Document Cards List Container -->
+          <div class="docs-gallery-list" id="docsGalleryList">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+        <!-- SUB-TAB 2: DOCUMENT / PRESCRIPTION SCANNER (SCREEN 6 MOCKUP) -->
+        <div id="docsScannerSection" style="display: none;">
+          <!-- Document edges viewfinder -->
+          <div class="doc-scanner-preview">
+            <div class="paper-sheet-graphic">
+              <div class="paper-sheet-line long"></div>
+              <div class="paper-sheet-line"></div>
+              <div class="paper-sheet-line"></div>
+              <div class="paper-sheet-line short"></div>
+              <div style="height: 12px;"></div>
+              <div class="paper-sheet-line long"></div>
+              <div class="paper-sheet-line"></div>
+            </div>
+            <div class="viewfinder-status-pill" data-i18n="pageEdgesFound">Page edges found</div>
+          </div>
+
+          <div class="doc-type-selection-block">
+            <div class="title" data-i18n="thisIsALabel">This is a</div>
+            <div class="doc-type-chips">
+              <button class="doc-type-chip active" data-type="Prescription" onclick="selectDocType(this, 'Prescription')" data-i18n="docPrescription">Prescription</button>
+              <button class="doc-type-chip" data-type="Report" onclick="selectDocType(this, 'Report')" data-i18n="docReport">Report</button>
+              <button class="doc-type-chip" data-type="Other" onclick="selectDocType(this, 'Other')" data-i18n="docOther">Other</button>
+            </div>
+          </div>
+
+          <div class="page-counter-row">
+            <div class="page-thumb-pill">1</div>
+            <div class="page-thumb-pill">2</div>
+            <div class="pages-scanned-label" id="pagesScannedCountText" data-i18n="pagesScannedMsg">2 pages scanned</div>
+          </div>
+
+          <div class="bottom-action-container">
+            <button class="btn-primary-rust" onclick="navigateToScreen('screen-check-medicines')" data-i18n="doneReadMedsBtn">Done, read the medicines</button>
+            <button class="btn-secondary-outline" onclick="addAnotherScannedPage()" data-i18n="addAnotherPageBtn">Add another page</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================
+           SCREEN 7: CHECK THE MEDICINES (PRESCRIPTION OCR)
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-check-medicines" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-docs-scan')" data-i18n="backToScan">Back to scan</button>
+          <span class="subscreen-badge" id="medsScreenCr">CR [number]</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="checkMedsTitle">Check the medicines</h2>
+        <p class="section-subtitle" data-i18n="checkMedsSubtitle">Read from the prescription. Tick each line only after you have checked it.</p>
+
+        <div class="meds-checklist-container" id="medsPrescriptionList">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <a class="add-medicine-link" onclick="openAddMedicineModal()" data-i18n="addMedicineLink">+ Add a medicine</a>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="saveCheckedMedicines()" data-i18n="saveCheckedMedsBtn">Save checked medicines</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 8: BLOOD PRESSURE MONITOR
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-bp" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="bpScreenCr">CR [number]</span>
+        </div>
+
+        <div class="device-status-header">
+          <div class="title" data-i18n="bpMonitorTitle">Blood pressure monitor</div>
+          <div class="conn-status-indicator">
+            <span class="sync-dot"></span> <span id="bpConnText" data-i18n="connectedStatus">Connected</span>
+          </div>
+        </div>
+
+        <p class="section-subtitle" data-i18n="bpSubtitle">Start a reading on the cuff. The numbers will appear here. Or type the reading</p>
+
+        <div class="bp-input-row">
+          <div class="bp-input-box">
+            <div class="label" data-i18n="systolicLabel">Systolic</div>
+            <input type="number" id="inputBpSys" value="104" onchange="evaluateBpNormals()">
+          </div>
+          <div class="bp-input-box">
+            <div class="label" data-i18n="diastolicLabel">Diastolic</div>
+            <input type="number" id="inputBpDia" value="66" onchange="evaluateBpNormals()">
+          </div>
+        </div>
+
+        <div class="pediatric-staging-card" id="bpStagingCard">
+          <div class="badge-line">
+            <span class="sync-dot" id="bpStageDot"></span>
+            <span id="bpStageText" data-i18n="bpNormalBadge">Normal for age and height</span>
+          </div>
+          <div class="rule-desc" data-i18n="bpRuleDesc">
+            Green is normal. Yellow is stage 1 high BP. Red is stage 2 high BP. Two high readings in a row notify the doctor.
+          </div>
+        </div>
+
+        <div class="segmented-control-group">
+          <div class="segmented-title" data-i18n="armLabel">Arm</div>
+          <div class="segmented-chips">
+            <button class="segmented-btn active" id="btnArmLeft" onclick="selectSegment('arm', 'Left')">Left</button>
+            <button class="segmented-btn" id="btnArmRight" onclick="selectSegment('arm', 'Right')">Right</button>
+          </div>
+        </div>
+
+        <div class="segmented-control-group">
+          <div class="segmented-title" data-i18n="postureLabel">Posture</div>
+          <div class="segmented-chips">
+            <button class="segmented-btn active" id="btnPostureSit" onclick="selectSegment('posture', 'Sitting')">Sitting</button>
+            <button class="segmented-btn" id="btnPostureStand" onclick="selectSegment('posture', 'Standing')">Standing</button>
+            <button class="segmented-btn" id="btnPostureLie" onclick="selectSegment('posture', 'Lying')">Lying</button>
+          </div>
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="saveBpReading()" data-i18n="saveReadingBtn">Save reading</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 9: WEIGHT & GROWTH (PEDIATRIC SD)
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-weight" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="weightScreenCr">CR [number]</span>
+        </div>
+
+        <div class="device-status-header">
+          <div class="title" data-i18n="scaleTitle">Weighing scale</div>
+          <div class="conn-status-indicator" style="color: var(--text-muted);">
+            <span class="sync-dot" style="background: #9CA3AF;"></span> <span data-i18n="notConnected">Not connected</span>
+          </div>
+        </div>
+
+        <a class="patient-action-link" style="display: block; margin-bottom: 14px;" onclick="simulateBluetoothScale()" data-i18n="connectBtLink">Connect by Bluetooth</a>
+
+        <div class="bp-input-row" style="margin-top: 0;">
+          <div class="bp-input-box">
+            <div class="label" data-i18n="weightInKg">Weight in kg</div>
+            <input type="number" step="0.1" id="inputWeightKg" value="21.4" onchange="calculateGrowthSd()">
+          </div>
+          <div class="bp-input-box">
+            <div class="label" data-i18n="heightInCm">Height in cm</div>
+            <input type="number" id="inputHeightCm" value="118" onchange="calculateGrowthSd()">
+          </div>
+        </div>
+
+        <div class="growth-evaluation-card">
+          <div class="growth-card-title" data-i18n="growthForAgeTitle">Growth for age (sample, age 7, boy)</div>
+          
+          <div class="growth-stat-row">
+            <span class="growth-stat-name" data-i18n="growthHeightLabel">Height</span>
+            <div class="growth-stat-right">
+              <span id="growthHeightSdVal">-0.8 SD</span>
+              <span class="growth-badge-chip normal">● <span data-i18n="normalLabel">Normal</span></span>
+            </div>
+          </div>
+
+          <div class="growth-stat-row">
+            <span class="growth-stat-name" data-i18n="growthWeightLabel">Weight</span>
+            <div class="growth-stat-right">
+              <span id="growthWeightSdVal">+0.4 SD</span>
+              <span class="growth-badge-chip normal">● <span data-i18n="normalLabel">Normal</span></span>
+            </div>
+          </div>
+
+          <div class="growth-stat-row">
+            <span class="growth-stat-name" id="growthBmiLabel">BMI 15.4</span>
+            <div class="growth-stat-right">
+              <span id="growthBmiSdVal">+1.2 SD</span>
+              <span class="growth-badge-chip watch">● <span data-i18n="watchLabel">Watch</span></span>
+            </div>
+          </div>
+
+          <div class="growth-explainer-text" data-i18n="growthRuleDesc">
+            Yellow is 1 to 2 SD from the median. Red is 2 SD or more. BMI is worked out from weight and height. The growth chart is chosen by the doctor.
+          </div>
+        </div>
+
+        <div class="segmented-control-group">
+          <div class="segmented-title" data-i18n="swellingLabel">Swelling (edema)</div>
+          <div class="segmented-chips">
+            <button class="segmented-btn active" id="btnEdemaNone" onclick="selectSegment('edema', 'None')">None</button>
+            <button class="segmented-btn" id="btnEdemaMild" onclick="selectSegment('edema', 'Mild')">Mild</button>
+            <button class="segmented-btn" id="btnEdemaMod" onclick="selectSegment('edema', 'Moderate')">Moderate</button>
+            <button class="segmented-btn" id="btnEdemaSev" onclick="selectSegment('edema', 'Severe')">Severe</button>
+          </div>
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="saveWeightAndHeight()" data-i18n="saveWeightHeightBtn">Save weight and height</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 10: DIARY TIMELINE
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-diary" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="diaryScreenCr">CR [number]</span>
+        </div>
+
+        <div id="diaryTimelineContainer">
+          <!-- Loaded dynamically via JS -->
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="navigateToScreen('screen-export')" data-i18n="exportDiaryBtn">Export this diary</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 11: EXPORT THE RECORD
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-export" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="exportScreenCr">CR [number]</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="exportRecordTitle">Export the record</h2>
+
+        <div class="date-range-grid">
+          <div class="date-input-box">
+            <div class="label" data-i18n="fromLabel">From</div>
+            <input type="date" id="exportFromDate" value="2026-09-04">
+          </div>
+          <div class="date-input-box">
+            <div class="label" data-i18n="toLabel">To</div>
+            <input type="date" id="exportToDate" value="2026-10-04">
+          </div>
+        </div>
+
+        <div class="export-checklist-box">
+          <label class="export-check-item">
+            <input type="checkbox" id="chkExportReadings" checked class="med-checkbox-input">
+            <span data-i18n="exportReadingsChk">Readings (dipstick, BP, weight)</span>
+          </label>
+          <label class="export-check-item">
+            <input type="checkbox" id="chkExportMeds" checked class="med-checkbox-input">
+            <span data-i18n="exportMedsChk">Medicines and doses taken</span>
+          </label>
+          <label class="export-check-item">
+            <input type="checkbox" id="chkExportDocs" class="med-checkbox-input">
+            <span data-i18n="exportDocsChk">Scanned documents</span>
+          </label>
+        </div>
+
+        <div class="segmented-control-group">
+          <div class="segmented-title" data-i18n="fileTypeLabel">File type</div>
+          <div class="segmented-chips">
+            <button class="segmented-btn active" id="btnExportExcel" onclick="selectExportFileType('Excel')">Excel</button>
+            <button class="segmented-btn" id="btnExportCsv" onclick="selectExportFileType('CSV')">CSV</button>
+          </div>
+        </div>
+
+        <div class="privacy-notice-text" style="margin-bottom: 14px;" data-i18n="exportPrivacyNotice">
+          The file holds the CR number only. No name, phone number or sticker image.
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="shareOnWhatsApp()" data-i18n="shareWhatsappBtn">Share on WhatsApp</button>
+          <div class="export-actions-row">
+            <button class="btn-secondary-outline" onclick="shareViaEmail()" data-i18n="emailBtn">Email</button>
+            <button class="btn-secondary-outline" onclick="downloadExportFile()" data-i18n="saveToPhoneBtn">Save to phone</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 12: HOW TO TEST (TUTORIAL)
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-how-to-test" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-dipstick-camera')" data-i18n="backNav">Back</button>
+          <span class="subscreen-badge" id="howToTestCr">CR [number]</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="howToTestTitle">How to test</h2>
+        <p class="section-subtitle" data-i18n="howToTestSubtitle">Use first morning urine when you can. Read the colour only after the wait time.</p>
+
+        <div class="tutorial-steps-list">
+          <!-- Step 1 -->
+          <div class="tutorial-step-card">
+            <div class="step-num-circle">1</div>
+            <div class="step-body-content">
+              <div class="step-title-line">
+                <span class="step-title" data-i18n="tutStep1Title">Wash your hands</span>
+                <span class="duration-chip" data-i18n="tutStep1Time">About 30 sec</span>
+              </div>
+              <div class="step-desc" data-i18n="tutStep1Desc">
+                Wash with soap and water, then dry. Keep the strip bottle closed until you are ready.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="tutorial-step-card">
+            <div class="step-num-circle">2</div>
+            <div class="step-body-content">
+              <div class="step-title-line">
+                <span class="step-title" data-i18n="tutStep2Title">Collect midstream urine</span>
+                <span class="duration-chip" data-i18n="tutStep2Time">Sample</span>
+              </div>
+              <div class="step-desc" data-i18n="tutStep2Desc">
+                Start urinating, then catch the middle of the stream in a clean cup. First morning urine is best.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="tutorial-step-card">
+            <div class="step-num-circle">3</div>
+            <div class="step-body-content">
+              <div class="step-title-line">
+                <span class="step-title" data-i18n="tutStep3Title">Dip the strip</span>
+                <span class="duration-chip" data-i18n="tutStep3Time">2 sec</span>
+              </div>
+              <div class="step-desc" data-i18n="tutStep3Desc">
+                Dip the pads for 1 to 2 seconds only. Do not leave the strip sitting in the cup.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="tutorial-step-card">
+            <div class="step-num-circle">4</div>
+            <div class="step-body-content">
+              <div class="step-title-line">
+                <span class="step-title" data-i18n="tutStep4Title">Wait, then place the strip</span>
+                <span class="duration-chip" data-i18n="tutStep4Time">60 sec</span>
+              </div>
+              <div class="step-desc" data-i18n="tutStep4Desc">
+                Tap off extra drops. Lay the strip flat on the reading card under the holder.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="navigateToScreen('screen-dipstick-camera')" data-i18n="readyCameraBtn">I am ready, open camera</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 13: MANUAL COLOUR PICKER
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-color-picker" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-dipstick-camera')" data-i18n="backNav">Back</button>
+          <span class="subscreen-badge" id="colorPickerCr">CR [number]</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="pickColourTitle">Pick the colour</h2>
+        <p class="section-subtitle" data-i18n="pickColourSubtitle">Hold the strip next to the bottle chart after the wait time. Tap the box that matches the protein pad.</p>
+
+        <div class="color-picker-list">
+          <div class="color-option-card" onclick="selectColorSwatch(this, 'Neg')">
+            <div class="color-radio-indicator"></div>
+            <div class="color-swatch-box" style="background: var(--dip-neg);"></div>
+            <div class="color-option-label" data-i18n="swatchNeg">Negative</div>
+          </div>
+
+          <div class="color-option-card" onclick="selectColorSwatch(this, 'Trace')">
+            <div class="color-radio-indicator"></div>
+            <div class="color-swatch-box" style="background: var(--dip-trace);"></div>
+            <div class="color-option-label" data-i18n="swatchTrace">Trace</div>
+          </div>
+
+          <div class="color-option-card active" onclick="selectColorSwatch(this, '1+')">
+            <div class="color-radio-indicator"></div>
+            <div class="color-swatch-box" style="background: var(--dip-1plus);"></div>
+            <div class="color-option-label">1+</div>
+          </div>
+
+          <div class="color-option-card" onclick="selectColorSwatch(this, '2+')">
+            <div class="color-radio-indicator"></div>
+            <div class="color-swatch-box" style="background: var(--dip-2plus);"></div>
+            <div class="color-option-label">2+</div>
+          </div>
+
+          <div class="color-option-card" onclick="selectColorSwatch(this, '3+')">
+            <div class="color-radio-indicator"></div>
+            <div class="color-swatch-box" style="background: var(--dip-3plus);"></div>
+            <div class="color-option-label">3+</div>
+          </div>
+
+          <div class="color-option-card" onclick="selectColorSwatch(this, '4+')">
+            <div class="color-radio-indicator"></div>
+            <div class="color-swatch-box" style="background: var(--dip-4plus);"></div>
+            <div class="color-option-label">4+</div>
+          </div>
+        </div>
+
+        <div class="disclaimer-card" data-i18n="swatchGuideNotice">
+          Swatch colours are only a guide here. In the app the real chart on the bottle is the reference. This reading is saved as entered by hand.
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="saveManualColorGrade()" data-i18n="saveGradeBtn">Save this grade</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 14: PROTEIN TRENDS & RELAPSE WATCH
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-trends" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="trendScreenCr">CR [number]</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="trend14DaysTitle">Protein, last 14 days</h2>
+
+        <div class="alert-banner-watch" id="trendAlertBanner">
+          <div class="alert-content">
+            <div class="alert-headline" data-i18n="trendWatchAlertHeadline">Watch: 2+ for 3 days in a row</div>
+            <div class="alert-subline" data-i18n="trendWatchAlertSub">This can mean a relapse. Tell your doctor today. Your doctor can change this rule.</div>
+          </div>
+        </div>
+
+        <!-- 14-Day Bar Chart Graphic -->
+        <div class="trend-chart-card">
+          <div class="trend-bars-container" id="trendBarsContainer">
+            <div class="trend-y-axis-labels">
+              <span>3+</span>
+              <span>2+</span>
+              <span>1+</span>
+              <span>Neg</span>
+            </div>
+            <!-- 14 bars generated dynamically via JS to match Sep 21 - Oct 4 -->
+          </div>
+        </div>
+
+        <div class="trend-legend-row">
+          <div class="trend-legend-item"><span class="legend-swatch neg"></span> <span data-i18n="legendNeg">Negative</span></div>
+          <div class="trend-legend-item"><span class="legend-swatch watch"></span> <span data-i18n="legend1Watch">1+ Watch</span></div>
+          <div class="trend-legend-item"><span class="legend-swatch act"></span> <span data-i18n="legend2Act">2+ or more, Act</span></div>
+        </div>
+
+        <div class="trend-stats-summary-grid">
+          <div class="trend-stat-widget">
+            <div class="label" data-i18n="daysOf2PlusLabel">Days of 2+ or more</div>
+            <div class="val" id="statDays2Plus">3</div>
+          </div>
+          <div class="trend-stat-widget">
+            <div class="label" data-i18n="lastNegDateLabel">Last negative or trace</div>
+            <div class="val" id="statLastNegDate">29 Sep</div>
+          </div>
+        </div>
+
+        <div class="disclaimer-card" data-i18n="relapseCriteriaExplanation">
+          Yellow is 1+ and red is 2+ or more. Default rules: 2+ or more for 3 days in a row is a possible relapse. Negative or trace for 3 days in a row is a possible remission. The doctor confirms both.
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="sendTrendToDoctor()" data-i18n="sendTrendDoctorBtn">Send this trend to my doctor</button>
+          <button class="btn-secondary-outline" onclick="navigateToScreen('screen-reminders')" data-i18n="setRemindersBtn">Set reminders</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 15: REMINDERS
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-reminders" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="backNav">Back</button>
+          <span class="subscreen-badge" id="remindersScreenCr">CR [number]</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="remindersTitle">Reminders</h2>
+        <p class="section-subtitle" data-i18n="remindersSubtitle">The phone rings at these times, even with no internet.</p>
+
+        <div class="reminders-list-box" id="remindersListContainer">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <a class="patient-action-link" onclick="navigateToScreen('screen-check-medicines')" data-i18n="medTimesFromPrescription">Medicine times come from the checked prescription</a>
+        </div>
+
+        <div class="bottom-action-container">
+          <button class="btn-primary-rust" onclick="navigateToScreen('screen-home')" data-i18n="doneBtn">Done</button>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SCREEN 16: FROM YOUR DOCTOR & LAB TESTS
+           ======================================================== -->
+      <div class="screen-content-area" id="screen-doctor" style="display: none;">
+        <div class="subscreen-header">
+          <button class="subscreen-nav-btn" onclick="navigateToScreen('screen-home')" data-i18n="homeNav">Home</button>
+          <span class="subscreen-badge" id="doctorScreenCr">CR [number]</span>
+        </div>
+
+        <h2 class="section-title" data-i18n="fromDoctorTitle">From your doctor</h2>
+
+        <div class="doctor-messages-list" id="doctorMessagesList">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <h2 class="section-title" data-i18n="testsToGetDoneTitle">Tests to get done</h2>
+
+        <div class="lab-orders-list" id="labOrdersList">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <div class="disclaimer-card" data-i18n="adviceArrivalNote">
+          Advice arrives when the phone next connects. Tick a test when it is done. Reports can be sent from Docs.
+        </div>
+
+        <div class="bottom-action-container">
+          <div class="dual-button-row" style="margin-bottom: 0;">
+            <button class="btn-primary-rust" onclick="navigateToScreen('screen-docs-scan')" data-i18n="sendReportBtn">Send a report</button>
+            <button class="btn-pill-action" onclick="openDoctorChatModal()" data-i18n="askQuestionBtn">Ask a question</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /smartphone-device -->
+
+  </div><!-- /prototype-outer-wrapper -->
+
+  <!-- Modal: Type CR Number -->
+  <div class="modal-overlay" id="modalTypeCr" style="display: none;">
+    <div class="modal-dialog-content">
+      <div class="modal-header-line">
+        <h3 class="modal-title" data-i18n="enterCrTitle">Enter CR Number</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalTypeCr')">&times;</button>
+      </div>
+      <div class="med-field-group" style="margin-bottom: 16px;">
+        <label class="label">Patient CR / Hospital ID</label>
+        <input type="text" id="manualCrInput" class="med-field-input" placeholder="e.g. 2026/0412" value="2026/0412">
+      </div>
+      <button class="btn-primary-rust" onclick="submitManualCr()" data-i18n="saveBtn">Save CR Number</button>
+    </div>
+  </div>
+
+  <!-- Modal: Add Medicine -->
+  <div class="modal-overlay" id="modalAddMed" style="display: none;">
+    <div class="modal-dialog-content">
+      <div class="modal-header-line">
+        <h3 class="modal-title" data-i18n="addMedModalTitle">Add Medicine</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalAddMed')">&times;</button>
+      </div>
+      <div class="med-field-group" style="margin-bottom: 12px;">
+        <label class="label">Medicine Name</label>
+        <input type="text" id="newMedName" class="med-field-input" placeholder="e.g. Enalapril">
+      </div>
+      <div class="med-field-group" style="margin-bottom: 12px;">
+        <label class="label">Dose</label>
+        <input type="text" id="newMedDose" class="med-field-input" placeholder="e.g. 2.5 mg">
+      </div>
+      <div class="med-field-group" style="margin-bottom: 16px;">
+        <label class="label">When / Frequency</label>
+        <input type="text" id="newMedTiming" class="med-field-input" placeholder="e.g. Once daily, morning">
+      </div>
+      <button class="btn-primary-rust" onclick="submitNewMedicine()" data-i18n="addMedicineBtn">Add to Prescription</button>
+    </div>
+  </div>
+
+  <!-- Modal: Ask Doctor AI / Teleconsult Assistant -->
+  <div class="modal-overlay" id="modalDoctorChat" style="display: none;">
+    <div class="modal-dialog-content">
+      <div class="modal-header-line">
+        <h3 class="modal-title">👨‍⚕️ Ask Dr. Swarnim / AIIMS Clinic</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalDoctorChat')">&times;</button>
+      </div>
+      <div class="chat-messages-container" id="chatMessagesBox">
+        <div class="chat-bubble bot">
+          Namaste. I am your Nephrotic Care Assistant at AIIMS Patna. Ask any question regarding your child's urine protein test, medicine timings, blood pressure, or diet.
+        </div>
+      </div>
+      <div class="chat-input-bar">
+        <input type="text" id="chatInputMessage" class="chat-input-field" placeholder="Ask a question..." onkeydown="if(event.key==='Enter') sendChatMessage()">
+        <button class="btn-pill-action" onclick="sendChatMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Upload Doctor Report / Attach Medical Media -->
+  <div class="modal-overlay" id="modalUploadReport" style="display: none;">
+    <div class="modal-dialog-content">
+      <div class="modal-header-line">
+        <h3 class="modal-title">📤 Upload &amp; Attach Report</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalUploadReport')">&times;</button>
+      </div>
+
+      <div style="background: #F8FAFC; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 14px; font-size: 0.85rem;">
+        <span style="color: var(--text-muted);">Tagged Patient:</span> <strong id="uploadModalCrTag">CR [2026/0412] · Aarav Kumar</strong>
+      </div>
+
+      <form id="uploadReportForm" onsubmit="submitDoctorReportUpload(event)">
+        <div class="med-field-group" style="margin-bottom: 12px;">
+          <label class="label">Report Title / Test Name *</label>
+          <input type="text" id="reportTitleInp" class="med-field-input" placeholder="e.g. Spot UPCR Lab Report" required>
+        </div>
+
+        <div class="med-fields-grid" style="margin-bottom: 12px;">
+          <div class="med-field-group">
+            <label class="label">Category</label>
+            <select id="reportCategoryInp" class="med-field-input" style="height: 42px;">
+              <option value="lab_report">Lab Report (Pathology / Blood / Urine)</option>
+              <option value="prescription">Prescription / OPD Advice</option>
+              <option value="clinical_photo">Clinical Photo (Edema / Skin)</option>
+              <option value="dipstick">Dipstick Test Image</option>
+              <option value="other">Other Medical Document</option>
+            </select>
+          </div>
+          <div class="med-field-group">
+            <label class="label">Test Result Tag (Optional)</label>
+            <input type="text" id="reportResultTagInp" class="med-field-input" placeholder="e.g. UPCR 2.40 (High)">
+          </div>
+        </div>
+
+        <!-- File selector / Drop zone -->
+        <div class="upload-drop-zone" onclick="document.getElementById('reportFileInput').click()">
+          <div class="drop-zone-icon">📁</div>
+          <div class="drop-zone-text" id="uploadFileSelectedName">Click to select PDF report or Image</div>
+          <div class="drop-zone-subtext">PDF, PNG, JPG, JPEG up to 25MB</div>
+          <input type="file" id="reportFileInput" accept="image/*,application/pdf" style="display: none;" onchange="handleReportFileSelected(event)" required>
+        </div>
+
+        <div class="med-field-group" style="margin-bottom: 12px;">
+          <label class="label">Doctor Assessment / Clinical Notes</label>
+          <textarea id="reportDoctorNotesInp" class="med-field-input" style="height: 64px; resize: vertical;" placeholder="Clinical interpretation, dosage instructions, and doctor remarks..."></textarea>
+        </div>
+
+        <div class="med-field-group" style="margin-bottom: 16px;">
+          <label class="label">Uploaded By</label>
+          <input type="text" id="reportUploaderInp" class="med-field-input" value="Dr. Swarnim (Division of Pediatric Nephrology)">
+        </div>
+
+        <button type="submit" class="btn-primary-rust">Attach to Patient Record</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Fullscreen Document & Report Viewer -->
+  <div class="modal-overlay" id="modalDocViewer" style="display: none;">
+    <div class="modal-dialog-content modal-doc-viewer">
+      <div class="modal-header-line">
+        <h3 class="modal-title" id="docViewerTitle">Document Preview</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalDocViewer')">&times;</button>
+      </div>
+
+      <div class="doc-full-preview-container" id="docViewerMediaContainer">
+        <img id="docViewerImg" class="doc-full-preview-img" src="" alt="Document Preview">
+      </div>
+
+      <div style="background: #F8FAFC; border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 14px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span class="doc-badge-pill" id="docViewerBadge">LAB REPORT</span>
+          <span style="font-size: 0.8rem; color: var(--text-muted);" id="docViewerTimestamp">2026-10-04 09:30:00</span>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);" id="docViewerMeta">Tagged to Patient: CR 2026/0412 · Uploaded by Dr. Swarnim</div>
+        <div id="docViewerNotesBox" style="margin-top: 8px; font-size: 0.88rem; color: #0E3D46; background: #E0F2F1; padding: 8px 10px; border-radius: 4px;">
+          Doctor Notes: UPCR 2.40 confirms persistent proteinuria.
+        </div>
+      </div>
+
+      <div class="dual-button-row" style="margin-bottom: 0;">
+        <a id="docViewerDownloadBtn" href="#" download class="btn-pill-action" style="text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px;">
+          <span>📥</span> <span>Download Original</span>
+        </a>
+        <button class="btn-primary-rust" onclick="closeModal('modalDocViewer')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notice -->
+  <div class="toast-notice" id="toastNotice">Saved successfully</div>
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+</body>
+</html>

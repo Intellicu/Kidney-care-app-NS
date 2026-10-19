@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14615f">
+<title>KidneyCare Nutrition</title>
+<style>
+:root {
+  --bg: #f4f2ec; --card: #ffffff; --ink: #1b2124; --muted: #5f686c; --line: #e2dfd6;
+  --brand: #14615f; --brand-ink: #ffffff; --brand-soft: #e3efed;
+  --ok: #24764a; --ok-bg: #e2f2e8; --near: #8a5b00; --near-bg: #fbefd4;
+  --over: #b13a22; --over-bg: #f9e3dc; --track: #ebe8e0; --info-bg: #eef3f8; --info: #2b5a85;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 4px 14px rgba(0,0,0,.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121618; --card: #1b2023; --ink: #e8ecec; --muted: #9ba5a8; --line: #2c3337;
+    --brand: #4fb3aa; --brand-ink: #0b1615; --brand-soft: #1d3331;
+    --ok: #7fd3a0; --ok-bg: #1b3326; --near: #eac36f; --near-bg: #362c15; --over: #f29c86; --over-bg: #3b221b;
+    --track: #2a3134; --info-bg: #1a2836; --info: #8fbbe6; --shadow: none;
+  }
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15.5px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Devanagari", sans-serif; }
+button, input, select, textarea { font: inherit; color: inherit; }
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; padding-bottom: 84px; }
+header.top { position: sticky; top: 0; z-index: 10; background: var(--brand); color: var(--brand-ink);
+  padding: 12px 16px 12px; display: flex; align-items: center; gap: 10px; }
+header.top .title { flex: 1; min-width: 0; }
+header.top h1 { font-size: 17px; margin: 0; line-height: 1.2; }
+header.top .who { font-size: 12.5px; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hbtn { background: rgba(255,255,255,.16); border: 0; color: inherit; border-radius: 10px; padding: 7px 10px; font-size: 13.5px; cursor: pointer; }
+main { padding: 12px 16px; display: grid; gap: 12px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; box-shadow: var(--shadow); min-width: 0; }
+.card h2 { font-size: 15.5px; margin: 0 0 10px; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.row { display: flex; gap: 8px; align-items: center; }
+.between { justify-content: space-between; }
+.wrap { flex-wrap: wrap; }
+.datebar { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.datebar button { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); font-size: 18px; cursor: pointer; }
+.datebar input { border: 0; background: none; font-weight: 700; font-size: 16px; text-align: center; }
+/* progress bars */
+.bar { display: grid; gap: 4px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.bar:last-child { border-bottom: 0; }
+.bar .lab { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+.bar .lab b { font-weight: 650; }
+.track { height: 10px; background: var(--track); border-radius: 99px; position: relative; overflow: hidden; }
+.fill { height: 100%; border-radius: 99px; }
+.fill.ok { background: var(--ok); } .fill.near { background: var(--near); } .fill.over { background: var(--over); } .fill.none { background: var(--muted); opacity: .5; }
+.mark { position: absolute; top: -2px; bottom: -2px; width: 2px; background: var(--ink); opacity: .55; }
+.pill { display: inline-block; font-size: 12px; font-weight: 650; padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
+.pill.ok { background: var(--ok-bg); color: var(--ok); } .pill.near { background: var(--near-bg); color: var(--near); }
+.pill.over { background: var(--over-bg); color: var(--over); } .pill.info { background: var(--info-bg); color: var(--info); }
+.pill.neutral { background: var(--track); color: var(--muted); }
+.left { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.left div { background: var(--brand-soft); border-radius: 12px; padding: 10px; text-align: center; }
+.left b { display: block; font-size: 18px; }
+.left span { font-size: 12px; color: var(--muted); }
+.rules li { margin: 4px 0; }
+.rules { margin: 0; padding-left: 18px; }
+.alert { border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+.alert.over { background: var(--over-bg); color: var(--over); }
+.alert.near { background: var(--near-bg); color: var(--near); }
+.alert.info { background: var(--info-bg); color: var(--info); }
+/* chips & buttons */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); background: var(--card); border-radius: 99px; padding: 8px 13px; cursor: pointer; font-size: 14px; }
+.chip.on { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.btn { border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 10px 14px; cursor: pointer; font-weight: 600; }
+.btn.primary { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.btn.block { width: 100%; padding: 13px; font-size: 16px; }
+.btn.danger { color: var(--over); }
+.link { border: 0; background: none; color: var(--brand); cursor: pointer; padding: 4px; font-weight: 600; }
+input.field, select.field, textarea.field { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+input.field:focus, select.field:focus, textarea.field:focus { outline: 2px solid var(--brand); outline-offset: 0; }
+label.f { display: block; font-size: 12.5px; color: var(--muted); margin: 0 0 4px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid2 > * { min-width: 0; }
+/* lists */
+.list { display: grid; }
+.item { display: flex; gap: 10px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.item .main { flex: 1; min-width: 0; }
+.item .name { font-weight: 600; }
+.item .sub { font-size: 12.5px; color: var(--muted); }
+.item button.go { border: 0; background: var(--brand-soft); color: var(--brand); border-radius: 10px; padding: 8px 12px; font-weight: 700; cursor: pointer; }
+.nums { display: flex; gap: 10px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+/* portion picker */
+.units { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.unit { flex: 0 0 auto; border: 1px solid var(--line); background: var(--card); border-radius: 12px; padding: 8px 10px; text-align: center; cursor: pointer; min-width: 74px; }
+.unit.on { border-color: var(--brand); outline: 2px solid var(--brand); }
+.unit svg { display: block; margin: 0 auto 2px; }
+.unit small { display: block; color: var(--muted); font-size: 11px; }
+.stepper { display: flex; align-items: center; gap: 8px; }
+.stepper button { width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--card); font-size: 22px; cursor: pointer; }
+.stepper input { width: 90px; text-align: center; font-size: 18px; font-weight: 700; }
+.preview { background: var(--brand-soft); border-radius: 12px; padding: 10px 12px; font-size: 14px; }
+/* tables */
+.tw { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { padding: 6px 6px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; }
+thead th { color: var(--muted); font-weight: 600; font-size: 11.5px; }
+td.c-ok { color: var(--ok); } td.c-near { color: var(--near); font-weight: 700; } td.c-over { color: var(--over); font-weight: 700; }
+/* nav */
+nav.bottom { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; background: var(--card); border-top: 1px solid var(--line);
+  display: flex; justify-content: center; padding-bottom: env(safe-area-inset-bottom); }
+nav.bottom .in { display: grid; grid-template-columns: repeat(4, 1fr); width: 100%; max-width: 480px; }
+nav.bottom button { border: 0; background: none; padding: 8px 0 10px; cursor: pointer; color: var(--muted); font-size: 12px; font-weight: 600; }
+nav.bottom button svg { display: block; margin: 0 auto 2px; }
+nav.bottom button.on { color: var(--brand); }
+.toast { position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%); width: calc(100% - 32px); max-width: 448px; z-index: 60;
+  background: var(--ink); color: var(--bg); border-radius: 14px; padding: 12px 14px; font-size: 14px; display: none; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+.toast .link { color: inherit; text-decoration: underline; }
+.sheet-bg { position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 49; display: none; }
+.sheet { position: fixed; left: 50%; bottom: 0; transform: translateX(-50%); width: 100%; max-width: 480px; max-height: 88vh; overflow: auto;
+  background: var(--card); border-radius: 18px 18px 0 0; z-index: 50; padding: 16px 16px calc(20px + env(safe-area-inset-bottom)); display: none; }
+.sheet .grab { width: 40px; height: 4px; background: var(--line); border-radius: 9px; margin: -4px auto 12px; }
+.hidden { display: none !important; }
+.kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.kpi div { border: 1px solid var(--line); border-radius: 12px; padding: 8px; text-align: center; }
+.kpi b { display: block; font-size: 18px; }
+.kpi span { font-size: 11.5px; color: var(--muted); }
+.mealrow { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+.mealrow:last-child { border-bottom: 0; }
+.foot { text-align: center; font-size: 11.5px; color: var(--muted); padding: 4px 16px 16px; }
+/* onboarding */
+.onb { position: fixed; inset: 0; z-index: 40; background: var(--bg); overflow: auto; display: none; }
+.onb .in { max-width: 480px; margin: 0 auto; min-height: 100%; display: flex; flex-direction: column; padding: 18px 20px calc(18px + env(safe-area-inset-bottom)); }
+.dots { display: flex; gap: 6px; justify-content: center; margin: 4px 0 18px; }
+.dots i { width: 22px; height: 5px; border-radius: 9px; background: var(--line); }
+.dots i.on { background: var(--brand); }
+.onb h2 { font-size: 24px; line-height: 1.25; margin: 6px 0 6px; text-align: center; }
+.onb .lead { text-align: center; color: var(--muted); margin: 0 0 18px; }
+.onb .body { flex: 1; display: grid; gap: 10px; align-content: start; }
+.onb .navrow { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--line); margin-top: 16px; }
+.onb .navrow button { border: 0; background: none; color: var(--brand); font-weight: 700; font-size: 16px; padding: 10px 6px; cursor: pointer; }
+.onb .navrow button:disabled { color: var(--muted); opacity: .5; }
+.opt { display: flex; align-items: center; gap: 12px; padding: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; cursor: pointer; text-align: left; width: 100%; }
+.opt.on { border-color: var(--brand); outline: 2px solid var(--brand); background: var(--brand-soft); }
+.opt .ic { font-size: 22px; width: 30px; text-align: center; }
+.opt b { display: block; } .opt span { font-size: 13px; color: var(--muted); }
+.subh { font-weight: 700; margin: 8px 0 2px; }
+.pick3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; }
+.pick3 .opt { flex-direction: column; text-align: center; gap: 4px; padding: 10px 6px; }
+.tip svg { width: 100%; height: auto; border-radius: 14px; background: var(--brand-soft); }
+.tipgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tipgrid figure { margin: 0; position: relative; }
+.tipgrid figcaption { font-size: 12.5px; text-align: center; margin-top: 4px; font-weight: 650; }
+.tipgrid figcaption.yes { color: var(--ok); } .tipgrid figcaption.no { color: var(--over); }
+.photos { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.photos img { width: 76px; height: 76px; object-fit: cover; border-radius: 10px; border: 1px solid var(--line); cursor: pointer; }
+.codebox { font-family: ui-monospace, Menlo, monospace; font-size: 12px; word-break: break-all; background: var(--track); padding: 10px; border-radius: 10px; }
+@media print { nav.bottom, header.top .hbtn, .noprint { display: none !important; } .app { padding: 0; max-width: none; } }
+</style>
+</head>
+<body>
+<div class="onb" id="onb"><div class="in" id="onbIn"></div></div>
+<div class="app">
+  <header class="top">
+    <div class="title"><h1 data-t="app_title">KidneyCare Nutrition</h1><div class="who" id="who"></div></div>
+    <button class="hbtn" id="langBtn">हिंदी</button>
+    <button class="hbtn" id="docBtn" aria-label="Clinician">🔒 <span data-t="doctor">Doctor</span></button>
+  </header>
+
+  <!-- TODAY -->
+  <main id="v-today">
+    <div class="card">
+      <div class="datebar"><button id="dPrev" aria-label="Previous day">‹</button><input type="date" id="dPick"><button id="dNext" aria-label="Next day">›</button></div>
+    </div>
+    <div id="todayAlerts" class="row wrap" style="display:grid;gap:8px"></div>
+    <div class="card" id="noRx"><h2 data-t="no_rx_t">Waiting for the doctor's plan</h2><p class="muted small" data-t="no_rx">Limits appear here once the doctor enters the prescription (Doctor button, top right). You can log meals now.</p><button class="btn" id="enterCode" data-t="enter_code">Enter the doctor's code</button></div>
+    <div class="card" id="leftCard"><h2 data-t="left_today">Left for today</h2><div class="left" id="leftBox"></div></div>
+    <div class="card"><div class="row between"><h2 data-t="today_vs">Today against the plan</h2><span class="small muted" id="nEntries"></span></div><div id="bars"></div></div>
+    <div class="card"><div class="row between"><h2 data-t="meals">Meals</h2><button class="link" id="goLog" data-t="add_food">+ Add food</button></div><div id="mealList"></div></div>
+    <div class="card" id="rulesCard"><h2 data-t="rules">Today's rules from your doctor</h2><ul class="rules" id="rules"></ul></div>
+    <div class="card">
+      <h2 data-t="daily_check">Daily check</h2>
+      <div class="grid2">
+        <div><label class="f" for="wt" data-t="weight_kg">Weight (kg)</label><input class="field" id="wt" type="number" step="0.1" inputmode="decimal"></div>
+        <div><label class="f" for="dip" data-t="dipstick">Urine dipstick</label>
+          <select class="field" id="dip"><option value=""></option><option>Nil</option><option>Trace</option><option>1+</option><option>2+</option><option>3+</option><option>4+</option></select></div>
+      </div>
+      <label class="f" style="margin-top:10px" data-t="symptoms">Any of these today?</label>
+      <div class="chips" id="symChips"></div>
+    </div>
+  </main>
+
+  <!-- LOG -->
+  <main id="v-log" class="hidden">
+    <div class="card">
+      <div class="datebar"><button id="dPrev2" aria-label="Previous day">‹</button><input type="date" id="dPick2"><button id="dNext2" aria-label="Next day">›</button></div>
+      <div class="chips" id="slotChips" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <input class="field" id="q" placeholder="Search food: dal, roti, doodh, A019" autocomplete="off" data-tp="search_ph">
+      <div id="results" class="list"></div>
+      <div id="quick">
+        <p class="small muted" style="margin:12px 0 8px" data-t="frequent">Frequent and favourite foods</p>
+        <div class="chips" id="quickChips"></div>
+        <div class="row" style="margin-top:12px"><button class="btn" id="repeatBtn" data-t="repeat">↻ Repeat yesterday's meal</button></div>
+      </div>
+    </div>
+    <div class="card"><h2 id="slotTitle"></h2><div id="slotItems" class="list"></div>
+      <div class="row" style="margin-top:10px"><label class="btn" style="cursor:pointer"><input type="file" id="photoIn" accept="image/*" capture="environment" class="hidden"><span data-t="add_photo">📷 Add meal photo</span></label><button class="link" id="photoTips" data-t="photo_tips">Photo tips</button></div>
+      <div class="photos" id="slotPhotos"></div>
+      <p class="small muted" data-t="photo_note">Photos are saved for the doctor and dietitian to see. They are not analysed, so please also add the foods.</p></div>
+  </main>
+
+  <!-- FOODS -->
+  <main id="v-foods" class="hidden">
+    <div class="card">
+      <input class="field" id="fq" placeholder="Search any food" autocomplete="off" data-tp="search_any">
+      <p class="small muted" style="margin:8px 0 0" id="foodsLegend"></p>
+      <div id="fResults" class="list"></div>
+    </div>
+    <div class="card">
+      <h2 data-t="label_check">Check a packet label</h2>
+      <p class="small muted" style="margin-top:-4px" data-t="label_help">Type or paste the ingredients list, including the INS or E numbers.</p>
+      <textarea class="field" id="ingr" rows="3" placeholder="e.g. wheat flour, edible oil, salt, INS 451, INS 508, flavour"></textarea>
+      <div id="ingrOut" style="margin-top:10px"></div>
+    </div>
+  </main>
+
+  <!-- REPORT -->
+  <main id="v-report" class="hidden">
+    <div class="card">
+      <div class="row between"><h2 data-t="week">Last 7 days</h2><span class="small muted" id="weekRange"></span></div>
+      <div class="kpi" id="weekKpi"></div>
+    </div>
+    <div class="card"><h2 data-t="by_day">Day by day</h2><div class="tw" id="weekTable"></div><p class="small muted" data-t="colour_key">Green within limit, amber close (90 to 100%) or below a minimum, red over the limit.</p></div>
+    <div class="card"><h2 data-t="top_sources">Main sources this week</h2><div id="topSrc"></div></div>
+    <div class="card"><h2 data-t="checks">Weight, dipstick and symptoms</h2><div id="checkList"></div></div>
+    <div class="card"><h2 data-t="week_photos">Meal photos this week</h2><div class="photos" id="weekPhotos"></div></div>
+    <div class="card noprint">
+      <div class="grid2">
+        <button class="btn" id="shareBtn" data-t="share">Share on WhatsApp</button>
+        <button class="btn" onclick="window.print()" data-t="print">Print / PDF</button>
+        <button class="btn" id="csvBtn" data-t="csv">Export CSV</button>
+        <label class="btn" style="text-align:center;cursor:pointer"><input type="file" id="csvIn" accept=".csv" class="hidden"><span data-t="import">Import CSV</span></label>
+      </div>
+    </div>
+  </main>
+
+  <!-- CLINICIAN -->
+  <main id="v-doc" class="hidden">
+    <div class="card" id="pinCard">
+      <h2>Clinician access</h2>
+      <p class="small muted" id="pinMsg"></p>
+      <input class="field" id="pin" type="password" inputmode="numeric" placeholder="PIN">
+      <button class="btn primary block" id="pinGo" style="margin-top:10px">Continue</button>
+      <p class="small muted">This PIN only stops casual changes on this phone. It is not security for patient data.</p>
+    </div>
+    <div id="docBody" class="hidden" style="display:grid;gap:12px">
+      <div class="card"><h2>Review flags</h2><div id="flags"></div></div>
+      <div class="card">
+        <h2>Child</h2>
+        <div class="grid2">
+          <div><label class="f">Child ID (pseudonymous)</label><input class="field" id="p_id"></div>
+          <div><label class="f">Sex</label><select class="field" id="p_sex"><option value=""></option><option value="F">Girl</option><option value="M">Boy</option></select></div>
+          <div><label class="f">Date of birth</label><input class="field" id="p_dob" type="date"></div>
+          <div><label class="f">Height (cm)</label><input class="field" id="p_ht" type="number" step="0.1"></div>
+          <div><label class="f">Dry weight (kg)</label><input class="field" id="p_wt" type="number" step="0.1"></div>
+          <div><label class="f">Age now</label><input class="field" id="p_age" disabled></div>
+        </div>
+        <label class="f" style="margin-top:10px">Condition</label>
+        <select class="field" id="p_cond">
+          <option value="ns_rem">Nephrotic syndrome, remission</option>
+          <option value="ns_rel">Nephrotic syndrome, relapse</option>
+          <option value="ckd23">CKD stage 2-3</option>
+          <option value="ckd45">CKD stage 4-5, not on dialysis</option>
+          <option value="pd">Peritoneal dialysis</option>
+          <option value="hd">Haemodialysis</option>
+        </select>
+      </div>
+      <div class="card">
+        <h2>Prescription (daily)</h2>
+        <div class="grid2">
+          <div><label class="f">Energy kcal/kg, min</label><input class="field" id="x_elo" type="number" step="any"></div>
+          <div><label class="f">Energy kcal/kg, max</label><input class="field" id="x_ehi" type="number" step="any"></div>
+          <div><label class="f">Protein g/kg, min</label><input class="field" id="x_plo" type="number" step="any"></div>
+          <div><label class="f">Protein g/kg, max</label><input class="field" id="x_phi" type="number" step="any"></div>
+          <div><label class="f">Sodium max, mg</label><input class="field" id="x_na" type="number" step="any"></div>
+          <div><label class="f">Fluid max, mL</label><input class="field" id="x_fl" type="number" step="any"></div>
+          <div><label class="f">Potassium max, mg</label><input class="field" id="x_k" type="number" step="any"></div>
+          <div><label class="f">Phosphorus max, mg</label><input class="field" id="x_ph" type="number" step="any"></div>
+          <div><label class="f">Calcium min, mg</label><input class="field" id="x_ca" type="number" step="any"></div>
+        </div>
+        <div class="chips" style="margin-top:12px">
+          <label class="chip"><input type="checkbox" id="x_krest"> Potassium restriction active</label>
+          <label class="chip"><input type="checkbox" id="x_prest"> Phosphate restriction active</label>
+        </div>
+        <label class="f" style="margin-top:10px">Note for the family (shown on Today)</label>
+        <input class="field" id="x_note" placeholder="e.g. Give phosphate binder with each meal">
+        <p class="small muted">Leave a limit blank to skip it. Enter values from the child's own assessment; the app does not set targets. Potassium leaching advice is not shown to families until a dietitian factor is approved (spec conflict C6).</p>
+        <button class="btn primary block" id="saveRx">Save and send to family view</button>
+      </div>
+      <div class="card">
+        <h2>Labs</h2>
+        <div class="grid2">
+          <div><label class="f">Date</label><input class="field" id="lb_d" type="date"></div>
+          <div><label class="f">K (mmol/L)</label><input class="field" id="lb_k" type="number" step="0.1"></div>
+          <div><label class="f">P (mg/dL)</label><input class="field" id="lb_p" type="number" step="0.1"></div>
+          <div><label class="f">Na (mmol/L)</label><input class="field" id="lb_na" type="number" step="0.1"></div>
+          <div><label class="f">Albumin (g/dL)</label><input class="field" id="lb_alb" type="number" step="0.1"></div>
+          <div><label class="f">Hb (g/dL)</label><input class="field" id="lb_hb" type="number" step="0.1"></div>
+        </div>
+        <button class="btn" id="addLab" style="margin-top:10px">Add result</button>
+        <div class="tw" id="labTable" style="margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <h2>Data</h2>
+        <div class="grid2">
+          <button class="btn" id="loadDemo">Load demo child and week</button>
+          <button class="btn primary" id="sharePlan">Share plan with family</button>
+          <button class="btn" id="redoSetup">Redo family setup</button>
+          <button class="btn danger" id="wipe">Delete all data</button>
+          <button class="btn" id="changePin">Change PIN</button>
+          <button class="btn" id="lockDoc">Lock and exit</button>
+        </div>
+        <p class="small muted">Data stays in this browser only. The demo uses example values, not a prescription.</p>
+      </div>
+    </div>
+  </main>
+
+  <div class="foot">Food values: IFCT 2017 (ICMR-NIN, Hyderabad), raw foods; household measures: ICMR-NIN DGI 2024. Personal use. Clinician sign-off is needed before any value is used for care.</div>
+</div>
+
+<nav class="bottom"><div class="in">
+  <button data-v="today" class="on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 7 4-14 3 7h4"/></svg><span data-t="nav_today">Today</span></button>
+  <button data-v="log"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span data-t="nav_log">Log</span></button>
+  <button data-v="foods"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11h16a8 8 0 0 1-16 0zM9 4c0 2 2 2 2 4M14 4c0 2 2 2 2 4"/></svg><span data-t="nav_foods">Foods</span></button>
+  <button data-v="report"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 20V10M12 20V4M19 20v-7"/></svg><span data-t="nav_report">Report</span></button>
+</div></nav>
+
+<div class="toast" id="toast"></div>
+<div class="sheet-bg" id="sheetBg"></div>
+<div class="sheet" id="sheet"><div class="grab"></div><div id="sheetBody"></div></div>
+
+<script>/*__DATA__*/</script>
+<script>/*__ENGINE__*/</script>
+<script>
+(function () {
+"use strict";
+const D = window.KC_DATA, E = KCEngine.make(D);
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const NI = Object.fromEntries(D.nutrients.map((n, i) => [n, i]));
+const NA_PER_TSP_SALT = 5 * 393.4; // mg sodium in 5 g salt
+
+// ---------- storage ----------
+const KEY = "kc_app_v1";
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+let S = Object.assign({ profile: null, pin: null, entries: [], daily: {}, labs: [], lang: "en", onboarded: false, spoken: [], who: "", kitchen: {}, consent: null, reminders: {}, photos: [], seenTips: false }, load());
+function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* storage unavailable */ } }
+
+// ---------- language ----------
+const HI = {
+  app_title: "किडनीकेयर पोषण", doctor: "डॉक्टर", nav_today: "आज", nav_log: "दर्ज करें", nav_foods: "भोजन", nav_report: "रिपोर्ट",
+  no_rx_t: "डॉक्टर की योजना का इंतज़ार", no_rx: "डॉक्टर द्वारा पर्चा भरने के बाद सीमाएँ यहाँ दिखेंगी। आप अभी से भोजन दर्ज कर सकते हैं।",
+  left_today: "आज के लिए बचा", today_vs: "आज बनाम योजना", meals: "भोजन", add_food: "+ भोजन जोड़ें",
+  rules: "डॉक्टर के आज के नियम", daily_check: "रोज़ की जाँच", weight_kg: "वज़न (किलो)", dipstick: "पेशाब डिपस्टिक",
+  symptoms: "क्या आज इनमें से कुछ हुआ?", frequent: "अक्सर खाए जाने वाले भोजन", repeat: "↻ कल का भोजन दोहराएँ",
+  label_check: "पैकेट का लेबल जाँचें", label_help: "सामग्री सूची लिखें या चिपकाएँ, INS या E नंबर सहित।",
+  week: "पिछले 7 दिन", by_day: "दिन के अनुसार", top_sources: "इस हफ़्ते के मुख्य स्रोत", checks: "वज़न, डिपस्टिक और लक्षण",
+  share: "व्हाट्सऐप पर भेजें", print: "प्रिंट / PDF", csv: "CSV निकालें", import: "CSV लाएँ",
+  colour_key: "हरा सीमा में, पीला सीमा के पास (90 से 100%) या न्यूनतम से कम, लाल सीमा से ऊपर।",
+  search_ph: "भोजन खोजें: दाल, रोटी, दूध", search_any: "कोई भी भोजन खोजें",
+  salt: "नमक", potassium: "पोटैशियम", fluid: "पानी/तरल", energy: "ऊर्जा", protein: "प्रोटीन", sodium: "सोडियम", phosphorus: "फॉस्फोरस", calcium: "कैल्शियम",
+  tsp_left: "चम्मच बाकी", over_by: "सीमा से ऊपर", ml_left: "मि.ली. बाकी", mg_left: "मि.ग्रा. बाकी", no_limit: "कोई सीमा नहीं",
+  add: "जोड़ें", portion: "मात्रा", how_much: "कितना?", this_portion: "इस मात्रा में", of_limit: "दिन की सीमा का",
+  swap: "कम वाले विकल्प", entries: "प्रविष्टियाँ", nothing: "अभी कुछ दर्ज नहीं", remove: "हटाएँ",
+  s_early: "सुबह जल्दी", s_breakfast: "नाश्ता", s_mid: "दोपहर से पहले", s_lunch: "दोपहर का खाना", s_evening: "शाम", s_dinner: "रात का खाना", s_feed: "फ़ीड",
+  sym_appetite: "भूख कम", sym_vomit: "उल्टी", sym_loose: "दस्त", sym_constip: "कब्ज़", sym_swelling: "सूजन", sym_pain: "पेट दर्द", sym_mouth: "मुँह में छाले",
+  weight_alert: "वज़न सूखे वज़न से 7% से अधिक है। डॉक्टर को बताएँ।", dip_alert: "डिपस्टिक 3+ या अधिक। डॉक्टर को बताएँ।", sym_alert: "लक्षण दर्ज हैं। डॉक्टर को बताएँ।",
+  enter_code: "डॉक्टर का कोड डालें", add_photo: "📷 भोजन की फ़ोटो", photo_tips: "फ़ोटो सुझाव",
+  photo_note: "फ़ोटो डॉक्टर और डायटीशियन के देखने के लिए सहेजी जाती हैं। इनका विश्लेषण नहीं होता, इसलिए भोजन भी दर्ज करें।",
+  week_photos: "इस हफ़्ते की भोजन फ़ोटो",
+  added: "जोड़ा गया", undo: "वापस लें", days_logged: "दिन दर्ज", days_over: "दिन सीमा से ऊपर", avg_energy: "औसत ऊर्जा"
+};
+const tr = (k, en) => (S.lang === "hi" && HI[k]) ? HI[k] : en;
+function applyLang() {
+  document.documentElement.lang = S.lang === "hi" ? "hi" : "en";
+  document.querySelectorAll("[data-t]").forEach(el => {
+    if (!el.dataset.en) el.dataset.en = el.textContent;
+    el.textContent = tr(el.dataset.t, el.dataset.en);
+  });
+  document.querySelectorAll("[data-tp]").forEach(el => {
+    if (!el.dataset.en) el.dataset.en = el.placeholder;
+    el.placeholder = tr(el.dataset.tp, el.dataset.en);
+  });
+  $("langBtn").textContent = S.lang === "hi" ? "English" : "हिंदी";
+}
+$("langBtn").onclick = () => { S.lang = S.lang === "hi" ? "en" : "hi"; save(); applyLang(); renderAll(); };
+
+// ---------- dates & slots ----------
+const iso = d => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+let day = iso(new Date());
+const addDays = (s, n) => { const d = new Date(s + "T12:00:00"); d.setDate(d.getDate() + n); return iso(d); };
+const SLOTS = [["early morning", "s_early", "Early morning"], ["breakfast", "s_breakfast", "Breakfast"], ["mid-morning", "s_mid", "Mid-morning"],
+  ["lunch", "s_lunch", "Lunch"], ["evening", "s_evening", "Evening"], ["dinner", "s_dinner", "Dinner"], ["feed", "s_feed", "Feed / other"]];
+const slotName = s => { const x = SLOTS.find(z => z[0] === s); return x ? tr(x[1], x[2]) : s; };
+let slot = (() => { const h = new Date().getHours(); return h < 8 ? "early morning" : h < 11 ? "breakfast" : h < 13 ? "mid-morning" : h < 16 ? "lunch" : h < 19 ? "evening" : "dinner"; })();
+
+// ---------- child & limits ----------
+function child() {
+  const p = S.profile; if (!p) return null;
+  return { child_id: p.id, weight_kg: p.wt ? Number(p.wt) : null, limits: p.limits || {} };
+}
+function ageText(dob) {
+  if (!dob) return "";
+  const b = new Date(dob + "T12:00:00"), n = new Date();
+  let m = (n.getFullYear() - b.getFullYear()) * 12 + n.getMonth() - b.getMonth(); if (n.getDate() < b.getDate()) m--;
+  return m < 0 ? "" : `${Math.floor(m / 12)} y ${m % 12} m`;
+}
+// limit for a nutrient as {lo, hi} in absolute daily units
+function lim(n) {
+  const c = child(); if (!c) return null; const l = c.limits[n]; if (!l) return null;
+  if (l.per_kg) { if (!c.weight_kg) return null; return { lo: l.per_kg[0] == null ? null : l.per_kg[0] * c.weight_kg, hi: l.per_kg[1] == null ? null : l.per_kg[1] * c.weight_kg }; }
+  return { lo: l.min == null ? null : l.min, hi: l.max == null ? null : l.max };
+}
+// status: ok / near / over / low / none
+function status(n, v) {
+  const L = lim(n); if (!L) return "none";
+  const isRange = L.lo != null && L.hi != null;
+  if (L.hi != null && v > L.hi) return isRange ? "near" : "over";
+  if (L.lo != null && v < L.lo) return "near";
+  if (!isRange && L.hi != null && v >= 0.9 * L.hi) return "near";
+  return "ok";
+}
+
+// ---------- calculation helpers ----------
+const dayEntries = d => S.entries.filter(e => e.date === d);
+// Household calibration: roti size scales the example roti recipe (25 g atta per roti).
+const ROTI = "RECIPE:ROTI_EXAMPLE";
+function engEntry(e) {
+  const o = Object.assign({}, e, { food: e.food_id });
+  if (e.food_id === ROTI && S.kitchen.roti_g && (e.unit === "serving" || e.unit === "piece")) { o.amount = Number(e.amount) * S.kitchen.roti_g / 25; o.unit = "serving"; }
+  return o;
+}
+function calcDay(d) { return E.compute(dayEntries(d).map(engEntry), child()); }
+function per100(id, n) { const f = D.foods[id]; return f ? f.v[NI[n]] : null; }
+const fmt = (v, d) => v == null ? "–" : (d ? v.toFixed(d) : Math.round(v).toLocaleString("en-IN"));
+
+// ---------- navigation ----------
+let view = "today";
+function show(v) {
+  view = v;
+  ["today", "log", "foods", "report", "doc"].forEach(x => $("v-" + x).classList.toggle("hidden", x !== v));
+  document.querySelectorAll("nav.bottom button").forEach(b => b.classList.toggle("on", b.dataset.v === v));
+  window.scrollTo(0, 0); renderAll();
+}
+document.querySelectorAll("nav.bottom button").forEach(b => b.onclick = () => show(b.dataset.v));
+$("goLog").onclick = () => show("log");
+
+// ---------- TODAY ----------
+const NUT_SHOW = [["energy_kcal", "energy", "Energy", "kcal"], ["protein_g", "protein", "Protein", "g"], ["sodium_mg", "sodium", "Sodium", "mg"],
+  ["potassium_mg", "potassium", "Potassium", "mg"], ["phosphorus_mg", "phosphorus", "Phosphorus", "mg"], ["calcium_mg", "calcium", "Calcium", "mg"], ["fluid_ml", "fluid", "Fluid", "mL"]];
+function renderToday() {
+  $("dPick").value = day;
+  const res = calcDay(day), t = (res.days[day] || {}).total;
+  const has = !!t; const total = t || { missing_counts: {} };
+  const p = S.profile;
+  $("noRx").classList.toggle("hidden", !!(p && p.limits && Object.keys(p.limits).length));
+  $("nEntries").textContent = has ? `${t.n_entries} ${tr("entries", "entries")}` : "";
+  // bars
+  let h = "";
+  for (const [n, k, en, u] of NUT_SHOW) {
+    const v = has ? total[n] : 0, L = lim(n), st = status(n, v);
+    if (!L && (n === "calcium_mg" || n === "phosphorus_mg") && !has) continue;
+    let scale = L ? Math.max(L.hi || L.lo || 1, v) * (L.hi ? 1.15 : 1.3) : Math.max(v, 1);
+    const pct = L ? Math.min(100, v / scale * 100) : 0;
+    const marks = L ? [L.lo, L.hi].filter(x => x != null).map(x => `<span class="mark" style="left:${Math.min(99, x / scale * 100)}%"></span>`).join("") : "";
+    const range = L ? (L.lo != null && L.hi != null ? `${fmt(L.lo)}–${fmt(L.hi)}` : L.hi != null ? `≤ ${fmt(L.hi)}` : `≥ ${fmt(L.lo)}`) : tr("no_limit", "no limit");
+    const miss = has && total.missing_counts[n] ? ` <span class="pill neutral">${total.missing_counts[n]} n/a</span>` : "";
+    h += `<div class="bar"><div class="lab"><span>${tr(k, en)}${miss}</span><span><b>${fmt(v, n === "protein_g" ? 1 : 0)}</b> <span class="muted small">/ ${range} ${u}</span></span></div>
+      <div class="track"><div class="fill ${L ? st : "none"}" style="width:${pct}%"></div>${marks}</div></div>`;
+  }
+  $("bars").innerHTML = h;
+  // left today
+  const left = [];
+  const LNa = lim("sodium_mg"), LK = lim("potassium_mg"), LF = lim("fluid_ml");
+  if (LNa && LNa.hi != null) { const r = LNa.hi - (has ? total.sodium_mg : 0); left.push(r >= 0 ? `<div><b>${(r / NA_PER_TSP_SALT).toFixed(1)}</b><span>${tr("salt", "Salt")}: ${tr("tsp_left", "tsp left")}</span></div>` : `<div style="background:var(--over-bg)"><b style="color:var(--over)">+${fmt(-r)}</b><span>${tr("sodium", "Sodium")} mg ${tr("over_by", "over")}</span></div>`); }
+  if (LF && LF.hi != null) { const r = LF.hi - (has ? total.fluid_ml : 0); left.push(r >= 0 ? `<div><b>${fmt(r)}</b><span>${tr("fluid", "Fluid")}: ${tr("ml_left", "mL left")}</span></div>` : `<div style="background:var(--over-bg)"><b style="color:var(--over)">+${fmt(-r)}</b><span>mL ${tr("over_by", "over")}</span></div>`); }
+  if (LK && LK.hi != null && p && p.k_restrict) { const r = LK.hi - (has ? total.potassium_mg : 0); left.push(r >= 0 ? `<div><b>${fmt(r)}</b><span>${tr("potassium", "Potassium")}: ${tr("mg_left", "mg left")}</span></div>` : `<div style="background:var(--over-bg)"><b style="color:var(--over)">+${fmt(-r)}</b><span>K mg ${tr("over_by", "over")}</span></div>`); }
+  $("leftCard").classList.toggle("hidden", !left.length);
+  $("leftBox").innerHTML = left.join("");
+  $("leftBox").style.gridTemplateColumns = `repeat(${Math.max(left.length, 1)}, 1fr)`;
+  // meals
+  const bySlot = {};
+  for (const r of (res.entries || [])) (bySlot[r.slot] = bySlot[r.slot] || []).push(r);
+  $("mealList").innerHTML = SLOTS.map(([s]) => {
+    const rs = bySlot[s] || []; if (!rs.length) return "";
+    const kcal = rs.reduce((a, r) => a + (r.nutrients.energy_kcal || 0), 0);
+    return `<div class="mealrow" data-slot="${esc(s)}"><div><b>${esc(slotName(s))}</b><div class="small muted">${rs.map(r => esc(shortName(r.food_id))).join(", ")}</div></div><span class="small"><b>${fmt(kcal)}</b> kcal ›</span></div>`;
+  }).join("") || `<p class="muted small">${tr("nothing", "Nothing logged yet.")}</p>`;
+  $("mealList").querySelectorAll(".mealrow").forEach(r => r.onclick = () => { slot = r.dataset.slot; show("log"); });
+  // rules
+  const rules = rulesFor(p);
+  $("rulesCard").classList.toggle("hidden", !rules.length);
+  $("rules").innerHTML = rules.map(r => `<li>${esc(r)}</li>`).join("");
+  // daily check
+  const dc = S.daily[day] || {};
+  $("wt").value = dc.weight || ""; $("dip").value = dc.dip || "";
+  renderSym(dc.sym || []);
+  // alerts
+  const al = [];
+  if (dc.weight && p && p.wt && dc.weight > p.wt * 1.07) al.push(["over", tr("weight_alert", "Weight is more than 7% above dry weight. Tell your doctor.")]);
+  if (["3+", "4+"].includes(dc.dip)) al.push(["over", tr("dip_alert", "Dipstick 3+ or more. Tell your doctor.")]);
+  if ((dc.sym || []).length) al.push(["near", tr("sym_alert", "Symptoms recorded. Tell your doctor.")]);
+  if (p && p.note) al.push(["info", p.note]);
+  if (day === iso(new Date())) {
+    const now = new Date(), mins = now.getHours() * 60 + now.getMinutes();
+    const missed = Object.entries(S.reminders || {}).filter(([s, t]) => t && mins > toMin(t) + 60 && !dayEntries(day).some(e => e.slot === s)).map(([s]) => slotName(s));
+    if (missed.length) al.push(["info", (S.lang === "hi" ? "अभी दर्ज नहीं: " : "Not logged yet: ") + missed.join(", ")]);
+  }
+  $("todayAlerts").innerHTML = al.map(([c, m]) => `<div class="alert ${c}">${esc(m)}</div>`).join("");
+}
+const SYMS = [["appetite", "sym_appetite", "Poor appetite"], ["vomit", "sym_vomit", "Vomiting"], ["loose", "sym_loose", "Loose stools"],
+  ["constip", "sym_constip", "Constipation"], ["swelling", "sym_swelling", "Swelling"], ["pain", "sym_pain", "Tummy pain"], ["mouth", "sym_mouth", "Mouth ulcers"]];
+function renderSym(on) {
+  $("symChips").innerHTML = SYMS.map(([k, t, en]) => `<button class="chip ${on.includes(k) ? "on" : ""}" data-k="${k}">${esc(tr(t, en))}</button>`).join("");
+  $("symChips").querySelectorAll("button").forEach(b => b.onclick = () => {
+    const dc = S.daily[day] = S.daily[day] || {}; dc.sym = dc.sym || [];
+    const i = dc.sym.indexOf(b.dataset.k); if (i >= 0) dc.sym.splice(i, 1); else dc.sym.push(b.dataset.k);
+    save(); renderToday();
+  });
+}
+$("wt").onchange = () => { const dc = S.daily[day] = S.daily[day] || {}; dc.weight = $("wt").value ? Number($("wt").value) : null; save(); renderToday(); };
+$("dip").onchange = () => { const dc = S.daily[day] = S.daily[day] || {}; dc.dip = $("dip").value; save(); renderToday(); };
+function setDay(d) { day = d; renderAll(); }
+$("dPrev").onclick = () => setDay(addDays(day, -1)); $("dNext").onclick = () => setDay(addDays(day, 1));
+$("dPick").onchange = () => setDay($("dPick").value || day);
+$("dPrev2").onclick = () => setDay(addDays(day, -1)); $("dNext2").onclick = () => setDay(addDays(day, 1));
+$("dPick2").onchange = () => setDay($("dPick2").value || day);
+
+function rulesFor(p) {
+  if (!p) return [];
+  const hi = S.lang === "hi", r = [];
+  const R = {
+    ns_rel: hi ? ["खाना बिना ऊपर से नमक के बनाएँ।", "नमकीन, पापड़, अचार और पैकेट वाला खाना न दें।", "डॉक्टर के कहे बिना पानी कम न करें।"]
+      : ["Cook without added salt.", "No namkeen, papad, pickle or packaged foods.", "Do not cut water unless the doctor says so."],
+    ns_rem: hi ? ["उम्र के अनुसार सामान्य नमक वाला संतुलित भोजन।"] : ["Normal balanced food with usual salt for age."],
+    ckd23: hi ? ["संतुलित भोजन, पैकेट वाला खाना कम।", "नमक डॉक्टर की सीमा में।"] : ["Balanced food; limit packaged foods.", "Keep salt within the doctor's limit."],
+    ckd45: hi ? ["नमक, पोटैशियम और फॉस्फेट डॉक्टर के पर्चे के अनुसार।", "पैकेट वाला खाना और कोला न दें।"] : ["Salt, potassium and phosphate as per the prescription.", "Avoid packaged foods and colas."],
+    pd: hi ? ["तरल डॉक्टर की सलाह के अनुसार।", "प्रोटीन वाला भोजन रोज़ (दाल, दूध, पनीर, अंडा)।"] : ["Fluid as advised by the doctor.", "Protein foods every day (dal, milk, paneer, egg)."],
+    hd: hi ? ["डायलिसिस के बीच वज़न कम बढ़े, इसलिए पानी और नमक सीमित रखें।"] : ["Keep fluid and salt within the limit so weight gain between sessions stays small."],
+  };
+  r.push(...(R[p.cond] || []));
+  if (p.k_restrict) r.push(hi ? "नारियल पानी, लो-सोडियम नमक (पोटैशियम वाला) और पैकेट जूस न दें।" : "No coconut water, low-sodium (potassium) salt or packaged juice.");
+  if (p.p_restrict) r.push(hi ? "कोला, इंस्टेंट नूडल्स, प्रोसेस्ड चीज़ और बेकरी आइटम न दें।" : "No colas, instant noodles, processed cheese or bakery items.");
+  return r;
+}
+function shortName(id) { const f = D.foods[id]; if (S.lang === "hi" && f && f.h) return f.h; return E.nameOf(id).replace(/ \((example|proxy)[^)]*\)/, ""); }
+
+// ---------- LOG ----------
+function renderLog() {
+  $("dPick2").value = day;
+  $("slotChips").innerHTML = SLOTS.map(([s]) => `<button class="chip ${s === slot ? "on" : ""}" data-s="${esc(s)}">${esc(slotName(s))}</button>`).join("");
+  $("slotChips").querySelectorAll("button").forEach(b => b.onclick = () => { slot = b.dataset.s; renderLog(); });
+  // quick chips: frequent foods or defaults
+  const freq = {}; S.entries.forEach(e => freq[e.food_id] = (freq[e.food_id] || 0) + 1);
+  const k = S.kitchen || {};
+  const staples = k.staple === "rice" ? ["IFCT:A015", "RECIPE:ROTI_EXAMPLE"] : ["RECIPE:ROTI_EXAMPLE", "IFCT:A015"];
+  const defaults = staples.concat(["RECIPE:MOONG_DAL_EXAMPLE", "IFCT:L002", "CUSTOM:CURD"], k.diet === "veg" ? ["IFCT:L003"] : ["IFCT:M004"], ["IFCT:E012", "CUSTOM:SALT", "CUSTOM:WATER", "IFCT:T013"]);
+  const ids = Object.keys(freq).sort((a, b) => freq[b] - freq[a]).slice(0, 10);
+  for (const d of defaults) if (ids.length < 10 && !ids.includes(d)) ids.push(d);
+  $("quickChips").innerHTML = ids.filter(id => D.foods[id] || D.recipes[id]).map(id => `<button class="chip" data-id="${esc(id)}">${esc(shortName(id))}</button>`).join("");
+  $("quickChips").querySelectorAll("button").forEach(b => b.onclick = () => openPortion(b.dataset.id));
+  // items in this slot
+  const res = calcDay(day);
+  const mine = [];
+  dayEntries(day).forEach((e, i) => { if (e.slot === slot) mine.push(e); });
+  $("slotTitle").textContent = `${slotName(slot)} · ${day}`;
+  $("slotItems").innerHTML = mine.length ? mine.map(e => {
+    let r = null; try { r = E.computeEntry(engEntry(e)); } catch (ex) { r = null; }
+    const n = r ? r.nutrients : {};
+    return `<div class="item"><div class="main"><div class="name">${esc(shortName(e.food_id))}</div><div class="sub">${esc(e.amount)} ${esc(unitLabel(e.unit))}${r ? ` · ${Math.round(r.grams)} g` : ""}</div>
+      <div class="nums"><span>${fmt(n.energy_kcal)} kcal</span><span>P ${fmt(n.protein_g, 1)} g</span><span>Na ${fmt(n.sodium_mg)}</span><span>K ${fmt(n.potassium_mg)}</span><span>Phos ${fmt(n.phosphorus_mg)}</span></div></div>
+      <button class="link" data-uid="${esc(e.uid)}">${tr("remove", "Remove")}</button></div>`;
+  }).join("") : `<p class="muted small">${tr("nothing", "Nothing logged yet.")}</p>`;
+  $("slotPhotos").innerHTML = photoHtml(slotPhotos(day, slot)); bindPhotos($("slotPhotos"));
+  $("slotItems").querySelectorAll("[data-uid]").forEach(b => b.onclick = () => { S.entries = S.entries.filter(e => e.uid !== b.dataset.uid); save(); renderLog(); });
+}
+$("q").oninput = () => {
+  const q = $("q").value.trim();
+  $("quick").classList.toggle("hidden", !!q);
+  const ids = q ? E.search(q, 12) : [];
+  $("results").innerHTML = ids.map(id => foodRow(id, "+")).join("") || (q ? `<p class="muted small">No match. Try another spelling or the IFCT code.</p>` : "");
+  $("results").querySelectorAll("[data-pick]").forEach(b => b.onclick = () => openPortion(b.dataset.pick));
+};
+function foodRow(id, btn) {
+  const f = D.foods[id], r = D.recipes[id];
+  const sub = f ? `${f.h && f.h.toLowerCase() !== f.n.toLowerCase() ? esc(f.h) + " · " : ""}${esc(f.g)}${f.st === "raw" && !D.no_raw_warning_groups.includes(f.g) ? " · raw" : ""}` : `Recipe · ${esc(r.status)}`;
+  return `<div class="item"><div class="main"><div class="name">${esc(E.nameOf(id))}</div><div class="sub">${sub}</div>${f ? badges(id) : ""}</div><button class="go" data-pick="${esc(id)}">${btn}</button></div>`;
+}
+function unitLabel(u) {
+  if (u === "glass_usual") return `your glass (${S.kitchen.glass_ml || 100} mL)`;
+  if (u === "serving" && sheetState && sheetState.id === ROTI && S.kitchen.roti_g) return `roti (${S.kitchen.roti_g} g atta)`;
+  return ({ katori_large: "large katori (360 mL)", katori_medium: "medium katori (200 mL)", katori_small_155: "katori (155 mL)", katori_small: "small katori (115 mL)",
+    glass_small: "small glass (100 mL)", tsp: "tsp", tbsp: "tbsp", piece: "piece", serving: "serving", batch: "whole pot", ml: "mL", g: "g", cup: "cup (200 mL)", pinch: "pinch" })[u] || u;
+}
+function unitIcon(u) {
+  const bowl = (w, d) => `<svg width="40" height="24" viewBox="0 0 40 24"><path d="M${20 - w / 2} 6 h${w} a${w / 2} ${d} 0 0 1 -${w} 0z" fill="currentColor" opacity=".25" stroke="currentColor" stroke-width="1.5"/></svg>`;
+  return ({ katori_large: bowl(34, 16), katori_medium: bowl(28, 14), katori_small_155: bowl(24, 12), katori_small: bowl(20, 10),
+    glass_usual: `<svg width="40" height="24" viewBox="0 0 40 24"><path d="M13 2h14l-2 20h-10z" fill="currentColor" opacity=".35" stroke="currentColor" stroke-width="1.5"/></svg>`,
+    glass_small: `<svg width="40" height="24" viewBox="0 0 40 24"><path d="M14 3h12l-2 19h-8z" fill="currentColor" opacity=".25" stroke="currentColor" stroke-width="1.5"/></svg>`,
+    tsp: `<svg width="40" height="24" viewBox="0 0 40 24"><ellipse cx="12" cy="12" rx="6" ry="4" fill="currentColor" opacity=".3" stroke="currentColor"/><path d="M18 12h18" stroke="currentColor" stroke-width="2"/></svg>`,
+    tbsp: `<svg width="40" height="24" viewBox="0 0 40 24"><ellipse cx="12" cy="12" rx="9" ry="6" fill="currentColor" opacity=".3" stroke="currentColor"/><path d="M21 12h16" stroke="currentColor" stroke-width="2"/></svg>` })[u] || "";
+}
+
+let sheetState = null;
+function openPortion(id) {
+  const units = E.units(id);
+  const isFluid = (D.foods[id] && D.foods[id].fl) || (D.recipes[id] && D.recipes[id].fl);
+  const pref = [id === ROTI ? "serving" : null, isFluid && !D.recipes[id] ? "glass_usual" : null, "serving", "piece", S.kitchen.katori, "glass_usual", "katori_small", "katori_small_155", "katori_medium", "glass_small", "tsp", "ml", "g"].filter(Boolean).find(u => units.includes(u)) || units[0];
+  sheetState = { id, unit: pref, amount: pref === "g" ? 50 : pref === "ml" ? 100 : 1 };
+  renderSheet(); $("sheetBg").style.display = "block"; $("sheet").style.display = "block";
+}
+function closeSheet() { $("sheetBg").style.display = "none"; $("sheet").style.display = "none"; sheetState = null; }
+$("sheetBg").onclick = closeSheet;
+function renderSheet() {
+  const st = sheetState, id = st.id, f = D.foods[id], r = D.recipes[id];
+  const units = E.units(id);
+  let prev = "", err = "";
+  try {
+    const e = E.computeEntry(engEntry({ food_id: id, amount: st.amount, unit: st.unit, date: day, slot }));
+    const n = e.nutrients;
+    const pctOf = (k) => { const L = lim(k); return L && L.hi ? ` <span class="muted">(${Math.round(n[k] / L.hi * 100)}% ${tr("of_limit", "of day's limit")})</span>` : ""; };
+    prev = `<div class="preview"><b>${tr("this_portion", "This portion")}:</b> ${Math.round(e.grams)} g<br>
+      ${fmt(n.energy_kcal)} kcal · ${tr("protein", "Protein")} ${fmt(n.protein_g, 1)} g<br>
+      ${tr("sodium", "Sodium")} ${fmt(n.sodium_mg)} mg${pctOf("sodium_mg")}<br>
+      ${tr("potassium", "Potassium")} ${fmt(n.potassium_mg)} mg${pctOf("potassium_mg")}<br>
+      ${tr("phosphorus", "Phosphorus")} ${fmt(n.phosphorus_mg)} mg${pctOf("phosphorus_mg")}${e.fluid_ml ? `<br>${tr("fluid", "Fluid")} ${fmt(e.fluid_ml)} mL${pctOf("fluid_ml")}` : ""}</div>
+      ${e.warnings.length ? `<p class="small muted">${e.warnings.map(esc).join("<br>")}</p>` : ""}`;
+  } catch (ex) { err = `<div class="alert over">${esc(ex.message)}</div>`; }
+  const recipeNote = r ? `<p class="small muted">${esc(r.ingredients.join(", "))}; ${r.servings} serving${r.servings === 1 ? "" : "s"}${r.batch ? `, cooked pot ${r.batch} g` : ""}. ${esc(r.status)}.</p>` : "";
+  const presets = st.unit === "g" ? [25, 50, 100, 150] : st.unit === "ml" ? [50, 100, 150, 200] : [0.5, 1, 1.5, 2];
+  $("sheetBody").innerHTML = `
+    <div class="row between"><h2 style="margin:0">${esc(E.nameOf(id))}</h2><button class="link" id="shClose">✕</button></div>
+    ${f && f.h ? `<p class="small muted" style="margin:2px 0 0">${esc(f.h)}</p>` : ""}${recipeNote}
+    <p class="small muted" style="margin:12px 0 6px">${tr("portion", "Portion")}</p>
+    <div class="units">${units.map(u => `<button class="unit ${u === st.unit ? "on" : ""}" data-u="${u}">${unitIcon(u)}${esc(unitLabel(u).split(" (")[0])}<small>${unitLabel(u).includes("(") ? esc(unitLabel(u).split("(")[1].replace(")", "")) : ""}</small></button>`).join("")}</div>
+    <p class="small muted" style="margin:12px 0 6px">${tr("how_much", "How much?")}</p>
+    <div class="stepper"><button id="shMinus">−</button><input class="field" id="shAmt" type="number" step="any" inputmode="decimal" value="${st.amount}"><button id="shPlus">+</button></div>
+    <div class="chips" style="margin:10px 0">${presets.map(x => `<button class="chip ${Number(st.amount) === x ? "on" : ""}" data-a="${x}">${x}</button>`).join("")}</div>
+    ${err}${prev}
+    <button class="btn primary block" id="shAdd" style="margin-top:12px" ${err ? "disabled" : ""}>${tr("add", "Add")} · ${esc(slotName(slot))}</button>`;
+  $("shClose").onclick = closeSheet;
+  $("sheetBody").querySelectorAll("[data-u]").forEach(b => b.onclick = () => { st.unit = b.dataset.u; st.amount = st.unit === "g" ? 50 : st.unit === "ml" ? 100 : 1; renderSheet(); });
+  $("sheetBody").querySelectorAll("[data-a]").forEach(b => b.onclick = () => { st.amount = Number(b.dataset.a); renderSheet(); });
+  const stepv = st.unit === "g" || st.unit === "ml" ? 10 : 0.5;
+  $("shMinus").onclick = () => { st.amount = Math.max(0, Math.round((Number(st.amount) - stepv) * 100) / 100); renderSheet(); };
+  $("shPlus").onclick = () => { st.amount = Math.round((Number(st.amount) + stepv) * 100) / 100; renderSheet(); };
+  $("shAmt").onchange = () => { st.amount = Number($("shAmt").value) || 0; renderSheet(); };
+  $("shAdd").onclick = () => addEntry(id, st.amount, st.unit);
+}
+let uidc = 0;
+const uid = () => Date.now().toString(36) + (uidc++).toString(36);
+function addEntry(id, amount, unit, quiet) {
+  const e = { uid: uid(), date: day, slot, food_id: id, food: id, amount, unit };
+  let r; try { r = E.computeEntry(engEntry(e)); } catch (ex) { toast(esc(ex.message)); return; }
+  S.entries.push(e); save();
+  if (quiet) return;
+  closeSheet(); $("q").value = ""; $("q").oninput();
+  renderLog();
+  // swap suggestion
+  let msg = `${tr("added", "Added")}: ${esc(shortName(id))} · ${fmt(r.nutrients.energy_kcal)} kcal`;
+  const p = S.profile || {};
+  const big = (k, flag) => { const L = lim(k); return flag && L && L.hi && r.nutrients[k] != null && r.nutrients[k] >= 0.2 * L.hi; };
+  let swapKey = big("potassium_mg", p.k_restrict) ? "potassium_mg" : big("phosphorus_mg", p.p_restrict) ? "phosphorus_mg" : null;
+  if (!swapKey && big("sodium_mg", true) && id !== "CUSTOM:SALT") swapKey = null;
+  if (swapKey && D.foods[id]) msg += ` · <button class="link" id="tSwap">${tr("swap", "Lower options")}</button>`;
+  msg += ` · <button class="link" id="tUndo">${tr("undo", "Undo")}</button>`;
+  toast(msg, 6000);
+  const u = $("tUndo"); if (u) u.onclick = () => { S.entries = S.entries.filter(x => x.uid !== e.uid); save(); hideToast(); renderAll(); };
+  const s = $("tSwap"); if (s) s.onclick = () => { hideToast(); openSwap(id, swapKey); };
+}
+$("repeatBtn").onclick = () => {
+  const y = addDays(day, -1), src = S.entries.filter(e => e.date === y && e.slot === slot);
+  if (!src.length) { toast(S.lang === "hi" ? "कल इस समय कुछ दर्ज नहीं था।" : "Nothing logged for this meal yesterday."); return; }
+  src.forEach(e => addEntry(e.food_id, e.amount, e.unit, true));
+  toast((S.lang === "hi" ? "कल का भोजन जोड़ा: " : "Copied yesterday's meal: ") + src.length); renderLog();
+};
+
+// ---------- FOODS ----------
+function badges(id) {
+  const p = S.profile || {}, out = [];
+  const rows = [["potassium_mg", "K", p.k_restrict], ["phosphorus_mg", "P", p.p_restrict], ["sodium_mg", "Na", true]];
+  for (const [k, lab, active] of rows) {
+    const v = per100(id, k); if (v == null) continue;
+    const L = lim(k);
+    if (active && L && L.hi) {
+      const pc = v / L.hi * 100, cls = pc >= 35 ? "over" : pc >= 20 ? "near" : "ok";
+      out.push(`<span class="pill ${cls}">${lab} ${fmt(v)} mg · ${Math.round(pc)}%</span>`);
+    } else out.push(`<span class="pill neutral">${lab} ${fmt(v)} mg</span>`);
+  }
+  return `<div class="nums" style="margin-top:4px">${out.join("")}</div>`;
+}
+$("fq").oninput = () => {
+  const q = $("fq").value.trim(); const ids = q ? E.search(q, 20) : [];
+  $("fResults").innerHTML = ids.map(id => foodRow(id, "›")).join("");
+  $("fResults").querySelectorAll("[data-pick]").forEach(b => b.onclick = () => openFood(b.dataset.pick));
+};
+function renderFoods() {
+  const p = S.profile || {};
+  const act = [p.k_restrict && "potassium", p.p_restrict && "phosphate"].filter(Boolean);
+  $("foodsLegend").textContent = (S.lang === "hi" ? "मान प्रति 100 ग्राम। " : "Values per 100 g. ") +
+    (act.length ? (S.lang === "hi" ? "% = बच्चे की दैनिक सीमा का हिस्सा; पीला 20% से, लाल 35% से।" : `% = share of this child's daily limit; amber from 20%, red from 35% (${act.join(" and ")} restriction active).`)
+      : (S.lang === "hi" ? "पोटैशियम/फॉस्फेट पर कोई प्रतिबंध नहीं, इसलिए रंग नहीं।" : "No potassium or phosphate restriction set, so foods are not colour-flagged."));
+  $("fq").oninput();
+}
+function openFood(id) {
+  const f = D.foods[id], r = D.recipes[id];
+  let body = `<div class="row between"><h2 style="margin:0">${esc(E.nameOf(id))}</h2><button class="link" id="shClose">✕</button></div>`;
+  if (f) {
+    const v = n => f.v[NI[n]];
+    body += `<p class="small muted">${f.h ? esc(f.h) + " · " : ""}${esc(f.g)} · ${esc(id)}</p>
+      <div class="tw"><table><tbody>
+      ${[["energy_kcal", "Energy", "kcal", 0], ["protein_g", "Protein", "g", 1], ["fat_g", "Fat", "g", 1], ["carb_g", "Carbohydrate", "g", 1], ["fibre_g", "Fibre", "g", 1],
+        ["sodium_mg", "Sodium", "mg", 0], ["potassium_mg", "Potassium", "mg", 0], ["phosphorus_mg", "Phosphorus", "mg", 0], ["calcium_mg", "Calcium", "mg", 0], ["iron_mg", "Iron", "mg", 1]]
+        .map(([n, l, u, d]) => `<tr><td>${l}</td><td>${fmt(v(n), d)} ${u}</td></tr>`).join("")}
+      </tbody></table></div><p class="small muted">Per 100 g ${f.st === "raw" ? "raw" : "as eaten"}. ${f.der ? "Not analysed: " + esc(f.der) + "." : "IFCT 2017 analysed values."}</p>`;
+  } else body += `<p class="small muted">${esc(r.ingredients.join(", "))}</p>`;
+  body += `<div class="grid2"><button class="btn primary" id="fAdd">${tr("add_food", "+ Add food")}</button>${f ? `<button class="btn" id="fSwap">${tr("swap", "Lower options")}</button>` : ""}</div>`;
+  $("sheetBody").innerHTML = body; $("sheetBg").style.display = "block"; $("sheet").style.display = "block";
+  $("shClose").onclick = closeSheet;
+  $("fAdd").onclick = () => { closeSheet(); show("log"); openPortion(id); };
+  if ($("fSwap")) $("fSwap").onclick = () => openSwap(id, (S.profile || {}).p_restrict && !(S.profile || {}).k_restrict ? "phosphorus_mg" : "potassium_mg");
+}
+function openSwap(id, key) {
+  const f = D.foods[id], base = f.v[NI[key]], e0 = f.v[NI.energy_kcal] || 0;
+  const alts = Object.entries(D.foods).filter(([k, x]) => k !== id && x.g === f.g && x.v[NI[key]] != null && base != null && x.v[NI[key]] <= 0.6 * base)
+    .sort((a, b) => Math.abs((a[1].v[NI.energy_kcal] || 0) - e0) - Math.abs((b[1].v[NI.energy_kcal] || 0) - e0)).slice(0, 6);
+  const lab = key === "potassium_mg" ? tr("potassium", "Potassium") : tr("phosphorus", "Phosphorus");
+  $("sheetBody").innerHTML = `<div class="row between"><h2 style="margin:0">${tr("swap", "Lower options")}</h2><button class="link" id="shClose">✕</button></div>
+    <p class="small muted">${lab}: ${esc(f.n)} ${fmt(base)} mg / 100 g. ${S.lang === "hi" ? "उसी खाद्य समूह के विकल्प, कम से कम 40% कम।" : "Same food group, at least 40% lower, closest in energy. Check with your dietitian."}</p>
+    <div class="list">${alts.map(([k, x]) => `<div class="item"><div class="main"><div class="name">${esc(x.n)}</div><div class="sub">${x.h ? esc(x.h) + " · " : ""}${lab} ${fmt(x.v[NI[key]])} mg · ${fmt(x.v[NI.energy_kcal])} kcal / 100 g</div></div><button class="go" data-pick="${esc(k)}">+</button></div>`).join("") || `<p class="muted small">No lower option in this food group.</p>`}</div>`;
+  $("sheetBg").style.display = "block"; $("sheet").style.display = "block";
+  $("shClose").onclick = closeSheet;
+  $("sheetBody").querySelectorAll("[data-pick]").forEach(b => b.onclick = () => { closeSheet(); show("log"); openPortion(b.dataset.pick); });
+}
+// label checker
+const ADD = {
+  phosphate: { codes: ["338", "339", "340", "341", "343", "450", "451", "452", "1410", "1412", "1413", "1414", "442", "541"], words: ["phosphate", "phosphoric acid", "polyphosphate", "pyrophosphate"] },
+  potassium: { codes: ["508", "332", "501", "515", "525", "261", "202", "340"], words: ["potassium chloride", "potassium", "salt substitute", "low sodium salt", "lite salt"] },
+  sodium: { codes: ["621", "500", "211", "331", "250", "251", "281", "339", "450", "451", "452"], words: ["salt", "sodium", "msg", "monosodium glutamate", "baking soda", "baking powder"] },
+};
+$("ingr").oninput = () => {
+  const t = $("ingr").value.toLowerCase();
+  if (!t.trim()) { $("ingrOut").innerHTML = ""; return; }
+  const nums = (t.match(/(?:ins|e)\s*-?\s*(\d{3,4})/g) || []).map(x => x.replace(/\D/g, ""));
+  const found = {};
+  for (const [k, def] of Object.entries(ADD)) {
+    const hits = new Set();
+    def.codes.forEach(c => { if (nums.includes(c)) hits.add("INS " + c); });
+    def.words.forEach(w => { if (new RegExp("\\b" + w.replace(/ /g, "\\s+") + "\\b").test(t)) hits.add(w); });
+    if (hits.size) found[k] = [...hits];
+  }
+  const lab = { phosphate: [S.lang === "hi" ? "फॉस्फेट योजक" : "Phosphate additives", "over"], potassium: [S.lang === "hi" ? "पोटैशियम योजक" : "Potassium additives", "over"], sodium: [S.lang === "hi" ? "नमक / सोडियम" : "Salt / sodium", "near"] };
+  $("ingrOut").innerHTML = Object.keys(found).length ? Object.entries(found).map(([k, h]) => `<div class="alert ${lab[k][1]}" style="margin-bottom:6px"><b>${lab[k][0]}:</b> ${h.map(esc).join(", ")}</div>`).join("")
+    + `<p class="small muted">${S.lang === "hi" ? "यह सूची पूरी नहीं है। डायटीशियन से पूछें।" : "Additive absorption: phosphate up to 100%. List is not exhaustive; check with your dietitian."}</p>`
+    : `<div class="alert info">${S.lang === "hi" ? "कोई ज्ञात फॉस्फेट, पोटैशियम या सोडियम योजक नहीं मिला।" : "No known phosphate, potassium or sodium additive found in this text."}</div>`;
+};
+
+// ---------- REPORT ----------
+function weekData() {
+  const days = []; for (let i = 6; i >= 0; i--) days.push(addDays(day, -i));
+  const all = E.compute(S.entries.filter(e => days.includes(e.date)).map(engEntry), child());
+  return { days, all };
+}
+function renderReport() {
+  const { days, all } = weekData();
+  $("weekRange").textContent = `${days[0]} to ${days[6]}`;
+  const cols = [["energy_kcal", "kcal"], ["protein_g", "Prot g"], ["sodium_mg", "Na"], ["potassium_mg", "K"], ["phosphorus_mg", "P"], ["fluid_ml", "Fluid"]];
+  let logged = 0, overDays = 0, eSum = 0;
+  let h = `<table><thead><tr><th>Day</th>${cols.map(c => `<th>${c[1]}</th>`).join("")}</tr></thead><tbody>`;
+  for (const d of days) {
+    const t = all.days[d] && all.days[d].total;
+    if (t) { logged++; eSum += t.energy_kcal; }
+    let anyOver = false;
+    h += `<tr><td>${d.slice(5)}</td>${cols.map(([n]) => { if (!t) return `<td class="muted">–</td>`; const st = status(n, t[n]); if (st === "over") anyOver = true; return `<td class="c-${st === "none" ? "" : st}">${fmt(t[n], n === "protein_g" ? 1 : 0)}</td>`; }).join("")}</tr>`;
+    if (anyOver) overDays++;
+  }
+  h += `</tbody></table>`;
+  $("weekTable").innerHTML = h;
+  $("weekKpi").innerHTML = `<div><b>${logged}/7</b><span>${tr("days_logged", "days logged")}</span></div><div><b>${overDays}</b><span>${tr("days_over", "days over a limit")}</span></div><div><b>${logged ? fmt(eSum / logged) : "–"}</b><span>${tr("avg_energy", "avg kcal")}</span></div>`;
+  // top sources
+  const src = { sodium_mg: {}, potassium_mg: {}, phosphorus_mg: {} };
+  for (const r of all.entries) for (const k of Object.keys(src)) if (r.nutrients[k]) src[k][r.food_id] = (src[k][r.food_id] || 0) + r.nutrients[k];
+  $("topSrc").innerHTML = [["sodium_mg", tr("sodium", "Sodium")], ["potassium_mg", tr("potassium", "Potassium")], ["phosphorus_mg", tr("phosphorus", "Phosphorus")]].map(([k, l]) => {
+    const top = Object.entries(src[k]).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    const tot = Object.values(src[k]).reduce((a, b) => a + b, 0);
+    return `<div class="item"><div class="main"><div class="name">${l}</div><div class="sub">${top.length ? top.map(([id, v]) => `${esc(shortName(id))} ${Math.round(v / tot * 100)}%`).join(" · ") : "–"}</div></div></div>`;
+  }).join("");
+  // checks
+  const rows = days.map(d => { const c = S.daily[d] || {}; return c.weight || c.dip || (c.sym || []).length ? `<tr><td>${d.slice(5)}</td><td>${c.weight ? c.weight + " kg" : "–"}</td><td>${esc(c.dip || "–")}</td><td style="white-space:normal;text-align:left">${(c.sym || []).map(k => esc(tr(SYMS.find(s => s[0] === k)[1], SYMS.find(s => s[0] === k)[2]))).join(", ") || "–"}</td></tr>` : ""; }).join("");
+  const wp = (S.photos || []).filter(ph => days.includes(ph.date));
+  $("weekPhotos").innerHTML = wp.length ? photoHtml(wp) : `<p class="muted small">–</p>`; bindPhotos($("weekPhotos"));
+  $("checkList").innerHTML = rows ? `<div class="tw"><table><thead><tr><th>Day</th><th>Weight</th><th>Dipstick</th><th style="text-align:left">Symptoms</th></tr></thead><tbody>${rows}</tbody></table></div>` : `<p class="muted small">–</p>`;
+}
+$("shareBtn").onclick = () => {
+  const { days, all } = weekData(); const p = S.profile || {};
+  let txt = `KidneyCare diet summary ${p.id ? "(" + p.id + ") " : ""}${days[0]} to ${days[6]}\n`;
+  for (const d of days) { const t = all.days[d] && all.days[d].total; if (t) txt += `${d.slice(5)}: ${fmt(t.energy_kcal)} kcal, protein ${fmt(t.protein_g, 1)} g, Na ${fmt(t.sodium_mg)} mg, K ${fmt(t.potassium_mg)} mg, P ${fmt(t.phosphorus_mg)} mg, fluid ${fmt(t.fluid_ml)} mL\n`; }
+  const c = days.map(d => [d, S.daily[d] || {}]).filter(([, c]) => c.weight || c.dip || (c.sym || []).length);
+  if (c.length) txt += "Checks: " + c.map(([d, x]) => `${d.slice(5)} ${x.weight ? x.weight + "kg " : ""}${x.dip ? "dip " + x.dip + " " : ""}${(x.sym || []).join("/")}`).join("; ");
+  window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank", "noopener");
+};
+$("csvBtn").onclick = () => {
+  const q = v => /[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v);
+  const csv = ["date,slot,food,amount,unit,leached"].concat(S.entries.map(e => { const x = engEntry(e); const g = x.unit === "glass_usual" ? ["ml", x.amount * (S.kitchen.glass_ml || 100)] : [x.unit, x.amount]; return [e.date, e.slot, e.food_id, g[1], g[0], ""].map(q).join(","); })).join("\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+  a.download = `kidneycare_${(S.profile && S.profile.id) || "log"}.csv`; a.click();
+};
+$("csvIn").onchange = ev => {
+  const file = ev.target.files[0]; if (!file) return;
+  file.text().then(t => {
+    const lines = t.trim().split(/\r?\n/), hdr = lines.shift().split(",").map(x => x.trim().toLowerCase()); let n = 0, bad = 0;
+    for (const l of lines) {
+      const v = l.split(","), o = {}; hdr.forEach((k, i) => o[k] = (v[i] || "").trim());
+      try { const id = E.resolve(o.food); E.computeEntry({ food_id: id, amount: o.amount, unit: o.unit }); S.entries.push({ uid: uid(), date: o.date, slot: o.slot, food_id: id, food: id, amount: Number(o.amount), unit: o.unit }); n++; } catch (e) { bad++; }
+    }
+    save(); toast(`Imported ${n}${bad ? `, skipped ${bad}` : ""}`); renderAll();
+  }); ev.target.value = "";
+};
+
+// ---------- CLINICIAN ----------
+let docOpen = false;
+$("docBtn").onclick = () => { show("doc"); };
+function renderDoc() {
+  $("pinCard").classList.toggle("hidden", docOpen); $("docBody").classList.toggle("hidden", !docOpen);
+  $("pinMsg").textContent = S.pin ? "Enter the clinician PIN." : "Set a 4 to 6 digit PIN for this phone.";
+  if (!docOpen) return;
+  const p = S.profile || { limits: {} }, L = p.limits || {};
+  const setv = (id, v) => { $(id).value = v == null ? "" : v; };
+  setv("p_id", p.id); setv("p_sex", p.sex); setv("p_dob", p.dob); setv("p_ht", p.ht); setv("p_wt", p.wt); $("p_age").value = ageText(p.dob); setv("p_cond", p.cond || "ns_rem");
+  setv("x_elo", L.energy_kcal && L.energy_kcal.per_kg[0]); setv("x_ehi", L.energy_kcal && L.energy_kcal.per_kg[1]);
+  setv("x_plo", L.protein_g && L.protein_g.per_kg[0]); setv("x_phi", L.protein_g && L.protein_g.per_kg[1]);
+  setv("x_na", L.sodium_mg && L.sodium_mg.max); setv("x_fl", L.fluid_ml && L.fluid_ml.max); setv("x_k", L.potassium_mg && L.potassium_mg.max);
+  setv("x_ph", L.phosphorus_mg && L.phosphorus_mg.max); setv("x_ca", L.calcium_mg && L.calcium_mg.min);
+  $("x_krest").checked = !!p.k_restrict; $("x_prest").checked = !!p.p_restrict; setv("x_note", p.note);
+  $("lb_d").value = day;
+  $("labTable").innerHTML = S.labs.length ? `<table><thead><tr><th>Date</th><th>K</th><th>P</th><th>Na</th><th>Alb</th><th>Hb</th></tr></thead><tbody>${S.labs.slice().sort((a, b) => a.d < b.d ? 1 : -1).map(l => `<tr><td>${esc(l.d)}</td><td class="${l.k >= 5.3 ? "c-over" : ""}">${l.k ?? "–"}</td><td>${l.p ?? "–"}</td><td>${l.na ?? "–"}</td><td>${l.alb ?? "–"}</td><td>${l.hb ?? "–"}</td></tr>`).join("")}</tbody></table>` : "";
+  // flags
+  const { days, all } = weekData(), f = [];
+  const overCount = {}; for (const d of days) { const t = all.days[d] && all.days[d].total; if (!t) continue; for (const [n] of NUT_SHOW) if (status(n, t[n]) === "over") overCount[n] = (overCount[n] || 0) + 1; }
+  for (const [n, c] of Object.entries(overCount)) f.push(["over", `${KCEngine.LABELS[n][0]} over the limit on ${c} of the last 7 days.`]);
+  const logged = days.filter(d => all.days[d]).length; if (logged < 4) f.push(["near", `Only ${logged} of 7 days logged; totals may be incomplete.`]);
+  const lastLab = S.labs.slice().sort((a, b) => a.d < b.d ? 1 : -1)[0];
+  if (lastLab && lastLab.k >= 5.3 && !p.k_restrict) f.push(["over", `Latest K ${lastLab.k} mmol/L (${lastLab.d}) and no potassium restriction set. Check non-dietary causes first (spec section 3).`]);
+  for (const d of days) { const c = S.daily[d] || {}; if (["3+", "4+"].includes(c.dip)) f.push(["over", `Dipstick ${c.dip} on ${d}. Relapse rules are not switched automatically.`]); if (c.weight && p.wt && c.weight > p.wt * 1.07) f.push(["over", `Weight ${c.weight} kg on ${d}, more than 7% above dry weight.`]); if ((c.sym || []).length) f.push(["near", `Symptoms on ${d}: ${c.sym.join(", ")}.`]); }
+  const missing = all.entries.filter(r => Object.values(r.nutrients).some(v => v == null)).length; if (missing) f.push(["info", `${missing} entries have a missing nutrient value (not counted as zero).`]);
+  const proxies = [...new Set(all.entries.flatMap(r => r.provenance))]; if (proxies.length) f.push(["info", `Estimated or proxy values used: ${proxies.length} (curd, rice flour, recipes, oils).`]);
+  $("flags").innerHTML = f.length ? f.map(([c, m]) => `<div class="alert ${c}" style="margin-bottom:6px">${esc(m)}</div>`).join("") : `<p class="small muted">No flags for the last 7 days.</p>`;
+}
+$("pinGo").onclick = () => {
+  const v = $("pin").value.trim();
+  if (!S.pin) { if (!/^\d{4,6}$/.test(v)) { $("pinMsg").textContent = "Use 4 to 6 digits."; return; } S.pin = v; save(); }
+  if (v !== S.pin) { $("pinMsg").textContent = "Wrong PIN."; return; }
+  docOpen = true; $("pin").value = ""; renderDoc();
+};
+$("p_dob").onchange = () => $("p_age").value = ageText($("p_dob").value);
+const nv = id => $(id).value === "" ? null : Number($(id).value);
+$("saveRx").onclick = () => {
+  const lim = {};
+  if (nv("x_elo") != null || nv("x_ehi") != null) lim.energy_kcal = { per_kg: [nv("x_elo"), nv("x_ehi")] };
+  if (nv("x_plo") != null || nv("x_phi") != null) lim.protein_g = { per_kg: [nv("x_plo"), nv("x_phi")] };
+  if (nv("x_na") != null) lim.sodium_mg = { max: nv("x_na") };
+  if (nv("x_fl") != null) lim.fluid_ml = { max: nv("x_fl") };
+  if (nv("x_k") != null) lim.potassium_mg = { max: nv("x_k") };
+  if (nv("x_ph") != null) lim.phosphorus_mg = { max: nv("x_ph") };
+  if (nv("x_ca") != null) lim.calcium_mg = { min: nv("x_ca") };
+  S.profile = { id: $("p_id").value.trim(), sex: $("p_sex").value, dob: $("p_dob").value, ht: nv("p_ht"), wt: nv("p_wt"), cond: $("p_cond").value,
+    limits: lim, k_restrict: $("x_krest").checked, p_restrict: $("x_prest").checked, note: $("x_note").value.trim(), updated: iso(new Date()) };
+  save(); toast("Prescription saved. The family view now uses it."); renderAll();
+};
+$("addLab").onclick = () => {
+  const l = { d: $("lb_d").value || day, k: nv("lb_k"), p: nv("lb_p"), na: nv("lb_na"), alb: nv("lb_alb"), hb: nv("lb_hb") };
+  if ([l.k, l.p, l.na, l.alb, l.hb].every(x => x == null)) return;
+  S.labs.push(l); save(); ["lb_k", "lb_p", "lb_na", "lb_alb", "lb_hb"].forEach(i => $(i).value = ""); renderDoc();
+};
+$("lockDoc").onclick = () => { docOpen = false; show("today"); };
+$("changePin").onclick = () => { S.pin = null; save(); docOpen = false; renderDoc(); };
+let wipeArmed = false;
+$("wipe").onclick = () => {
+  if (!wipeArmed) { wipeArmed = true; $("wipe").textContent = "Tap again to delete everything"; setTimeout(() => { wipeArmed = false; $("wipe").textContent = "Delete all data"; }, 4000); return; }
+  S = { profile: null, pin: null, entries: [], daily: {}, labs: [], lang: S.lang, onboarded: false, spoken: [], who: "", kitchen: {}, consent: null, reminders: {}, photos: [], seenTips: false }; save(); docOpen = false; show("today"); openOnb(0);
+};
+$("loadDemo").onclick = () => {
+  S.profile = { id: "DEMO-01", sex: "M", dob: addDays(day, -Math.round(7.5 * 365)), ht: 122, wt: 21.4, cond: "ns_rel",
+    limits: { energy_kcal: { per_kg: [60, 77] }, protein_g: { per_kg: [0.9, 0.95] }, sodium_mg: { max: 1200 }, fluid_ml: { max: 1200 }, potassium_mg: { max: 1500 }, phosphorus_mg: { max: 800 } },
+    k_restrict: false, p_restrict: false, note: "Demo values only. Not a prescription.", updated: iso(new Date()) };
+  const plan = [["early morning", "IFCT:L002", 150, "ml"], ["breakfast", "IFCT:A011", 30, "g"], ["breakfast", "IFCT:H012", 10, "piece"], ["breakfast", "IFCT:T006", 1, "tsp"],
+    ["lunch", "RECIPE:ROTI_EXAMPLE", 2, "serving"], ["lunch", "RECIPE:MOONG_DAL_EXAMPLE", 150, "g"], ["lunch", "IFCT:A015", 40, "g"], ["lunch", "CUSTOM:CURD", 100, "ml"],
+    ["lunch", "CUSTOM:SALT", 0.5, "tsp"], ["evening", "IFCT:E012", 1, "piece"], ["evening", "IFCT:K002", 100, "ml"], ["dinner", "RECIPE:ROTI_EXAMPLE", 2, "serving"],
+    ["dinner", "IFCT:C033", 1, "katori_medium"], ["dinner", "IFCT:T013", 1, "tsp"], ["dinner", "CUSTOM:WATER", 500, "ml"]];
+  S.entries = S.entries.filter(e => e.food_id && !String(e.uid || "").startsWith("demo"));
+  for (let i = 0; i < 7; i++) {
+    const d = addDays(day, -i);
+    plan.forEach(([s, id, a, u], j) => {
+      if (i % 3 === 2 && j === 10) return;
+      const amt = id === "CUSTOM:SALT" && i % 2 ? 1 : id === "CUSTOM:WATER" ? 400 + 100 * (i % 4) : a;
+      S.entries.push({ uid: `demo${i}_${j}`, date: d, slot: s, food_id: id, food: id, amount: amt, unit: u });
+    });
+    S.daily[d] = { weight: Number((21.4 + (i === 1 ? 1.8 : 0.3)).toFixed(1)), dip: i === 1 ? "3+" : i < 3 ? "1+" : "Trace", sym: i === 2 ? ["swelling"] : [] };
+  }
+  S.labs = [{ d: addDays(day, -5), k: 4.6, p: 4.8, na: 137, alb: 2.1, hb: 11.2 }];
+  save(); toast("Demo child and 7 days loaded."); renderAll();
+};
+
+// ---------- toast ----------
+let tTimer;
+function toast(html, ms) { const t = $("toast"); t.innerHTML = html; t.style.display = "block"; clearTimeout(tTimer); tTimer = setTimeout(hideToast, ms || 3000); }
+function hideToast() { $("toast").style.display = "none"; }
+
+
+// ---------- photos ----------
+function slotPhotos(d, s) { return (S.photos || []).filter(ph => ph.date === d && (!s || ph.slot === s)); }
+function photoHtml(list) { return list.map(ph => `<img src="${ph.src}" alt="${esc(slotName(ph.slot))} ${esc(ph.date)}" data-pid="${esc(ph.id)}">`).join(""); }
+function bindPhotos(el) {
+  el.querySelectorAll("img[data-pid]").forEach(img => img.onclick = () => {
+    const ph = S.photos.find(x => x.id === img.dataset.pid); if (!ph) return;
+    $("sheetBody").innerHTML = `<div class="row between"><h2 style="margin:0">${esc(slotName(ph.slot))} · ${esc(ph.date)}</h2><button class="link" id="shClose">✕</button></div>
+      <img src="${ph.src}" style="width:100%;border-radius:12px;margin-top:10px" alt=""><button class="btn danger" id="phDel" style="margin-top:10px">${L("Delete photo", "फ़ोटो हटाएँ")}</button>`;
+    $("sheetBg").style.display = "block"; $("sheet").style.display = "block";
+    $("shClose").onclick = closeSheet;
+    $("phDel").onclick = () => { S.photos = S.photos.filter(x => x.id !== ph.id); save(); closeSheet(); renderAll(); };
+  });
+}
+$("photoIn").onchange = ev => {
+  const f = ev.target.files[0]; ev.target.value = ""; if (!f) return;
+  const img = new Image(), url = URL.createObjectURL(f);
+  img.onload = () => {
+    const k = Math.min(1, 640 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+    c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+    S.photos = (S.photos || []).concat([{ id: uid(), date: day, slot, src: c.toDataURL("image/jpeg", 0.6) }]).slice(-60);
+    try { localStorage.setItem(KEY, JSON.stringify(S)); toast(L("Photo saved", "फ़ोटो सहेजी गई")); }
+    catch (e) { S.photos.pop(); toast(L("Phone storage is full. Delete some old photos.", "फ़ोन की जगह भर गई है। पुरानी फ़ोटो हटाएँ।")); }
+    renderLog();
+  };
+  img.src = url;
+};
+$("photoIn").onclick = ev => { if (!S.seenTips) { ev.preventDefault(); openTips(true); } };
+$("photoTips").onclick = () => openTips(false);
+
+// ---------- photo tips (adapted for Indian meals) ----------
+const thali = (opts) => {
+  const o = Object.assign({ katori: true, glass: true, side: true, cut: false }, opts);
+  const ry = o.side ? 34 : 60;
+  return `<svg viewBox="0 0 200 150" role="img" aria-hidden="true">
+    <ellipse cx="${o.cut ? 130 : 100}" cy="${o.side ? 92 : 78}" rx="${o.cut ? 95 : 80}" ry="${ry}" fill="#d9d4c7" stroke="#9a937f" stroke-width="2"/>
+    <ellipse cx="${o.cut ? 110 : 80}" cy="${o.side ? 90 : 76}" rx="34" ry="${o.side ? 14 : 24}" fill="#f2efe6"/>
+    <circle cx="${o.cut ? 104 : 74}" cy="${o.side ? 87 : 72}" r="${o.side ? 9 : 14}" fill="#d9a441"/>
+    ${o.katori ? `<path d="M${o.cut ? 150 : 118} ${o.side ? 80 : 60} h36 a18 ${o.side ? 12 : 18} 0 0 1 -36 0z" fill="#b8bfc4" stroke="#7d868c" stroke-width="2"/><ellipse cx="${o.cut ? 168 : 136}" cy="${o.side ? 80 : 60}" rx="18" ry="${o.side ? 5 : 9}" fill="#e3b04b"/>` : ""}
+    ${o.glass ? `<path d="M160 ${o.side ? 40 : 30} h22 l-3 ${o.side ? 52 : 40} h-16z" fill="#cfe6f0" stroke="#7aa9bb" stroke-width="2"/>` : ""}
+  </svg>`;
+};
+const TIPS = [
+  { en: ["Whole thali in the photo", "Include every katori, roti and the drink."], hi: ["पूरी थाली फ़ोटो में", "हर कटोरी, रोटी और पेय शामिल करें।"], yes: thali({}), no: thali({ cut: true, glass: false }) },
+  { en: ["Keep your katori or steel glass in view", "It shows the size, so portions are easier to judge."], hi: ["अपनी कटोरी या स्टील गिलास दिखाएँ", "इससे मात्रा का अंदाज़ा लगाना आसान होता है।"], yes: thali({}), no: thali({ katori: false, glass: false }) },
+  { en: ["Take it from the side, not straight down", "A side angle shows how full the katori is."], hi: ["ऊपर से नहीं, थोड़ा तिरछा फ़ोटो लें", "तिरछे कोण से कटोरी कितनी भरी है, दिखता है।"], yes: thali({ side: true }), no: thali({ side: false }) },
+  { en: ["For packets, photograph the BACK label", "The ingredients list shows hidden salt, phosphate and potassium (INS numbers). Also type it in Foods › Check a packet label."], hi: ["पैकेट का पीछे वाला लेबल खींचें", "सामग्री सूची में छिपा नमक, फॉस्फेट और पोटैशियम (INS नंबर) दिखता है।"],
+    yes: `<svg viewBox="0 0 200 150"><rect x="55" y="15" width="90" height="120" rx="8" fill="#f2efe6" stroke="#9a937f" stroke-width="2"/>${[35, 47, 59, 71, 83, 95, 107].map(y => `<rect x="65" y="${y}" width="${y % 24 ? 70 : 52}" height="5" rx="2" fill="#9a937f"/>`).join("")}<text x="100" y="128" font-size="10" text-anchor="middle" fill="#b13a22" font-family="sans-serif">INS 451 · INS 508</text></svg>`,
+    no: `<svg viewBox="0 0 200 150"><rect x="55" y="15" width="90" height="120" rx="8" fill="#e8a33d" stroke="#9a6a1f" stroke-width="2"/><circle cx="100" cy="65" r="26" fill="#f6d27a"/><text x="100" y="118" font-size="14" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="700">CHIPS</text></svg>` },
+];
+let tipI = 0, tipThenCamera = false;
+function openTips(thenCamera) { tipI = 0; tipThenCamera = thenCamera; renderTip(); $("sheetBg").style.display = "block"; $("sheet").style.display = "block"; }
+function renderTip() {
+  const t = TIPS[tipI], txt = S.lang === "hi" ? t.hi : t.en, last = tipI === TIPS.length - 1;
+  $("sheetBody").innerHTML = `<div class="row between"><span class="small muted">${L("TIPS FOR BETTER PHOTOS", "बेहतर फ़ोटो के सुझाव")} · ${tipI + 1}/${TIPS.length}</span><button class="link" id="shClose">✕</button></div>
+    <h2 style="margin:8px 0 2px">${esc(txt[0])}</h2><p class="small muted" style="margin:0 0 10px">${esc(txt[1])}</p>
+    <div class="tipgrid tip"><figure>${t.yes}<figcaption class="yes">✓ ${L("Like this", "ऐसे")}</figcaption></figure><figure>${t.no}<figcaption class="no">✕ ${L("Not like this", "ऐसे नहीं")}</figcaption></figure></div>
+    <div class="grid2" style="margin-top:14px"><button class="btn" id="tipBack" ${tipI ? "" : "disabled"}>${L("Back", "पीछे")}</button>
+    <button class="btn primary" id="tipNext">${last ? (tipThenCamera ? L("📷 Take photo", "📷 फ़ोटो लें") : L("Done", "ठीक है")) : L("Next", "आगे")}</button></div>`;
+  $("shClose").onclick = closeSheet;
+  $("tipBack").onclick = () => { tipI = Math.max(0, tipI - 1); renderTip(); };
+  $("tipNext").onclick = () => {
+    if (!last) { tipI++; renderTip(); return; }
+    S.seenTips = true; save(); closeSheet(); if (tipThenCamera) $("photoIn").click();
+  };
+}
+
+// ---------- doctor's code (prescription sharing without a server) ----------
+function encodePlan(p) {
+  const o = { v: 1, id: p.id, sex: p.sex, dob: p.dob, ht: p.ht, wt: p.wt, cond: p.cond, limits: p.limits, k: p.k_restrict, p: p.p_restrict, note: p.note, updated: p.updated };
+  return "KC1-" + btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+function decodePlan(code) {
+  const c = String(code || "").trim().replace(/\s+/g, "");
+  if (!c.startsWith("KC1-")) throw new Error(L("This is not a KidneyCare code.", "यह किडनीकेयर कोड नहीं है।"));
+  let b = c.slice(4).replace(/-/g, "+").replace(/_/g, "/"); while (b.length % 4) b += "=";
+  let o; try { o = JSON.parse(decodeURIComponent(escape(atob(b)))); } catch (e) { throw new Error(L("The code is incomplete. Ask the doctor to send it again.", "कोड अधूरा है। डॉक्टर से दोबारा भेजने को कहें।")); }
+  if (o.v !== 1 || typeof o.limits !== "object") throw new Error(L("Unknown code version.", "अज्ञात कोड।"));
+  return { id: o.id, sex: o.sex, dob: o.dob, ht: o.ht, wt: o.wt, cond: o.cond, limits: o.limits, k_restrict: !!o.k, p_restrict: !!o.p, note: o.note, updated: o.updated };
+}
+function openCodeEntry(after) {
+  $("sheetBody").innerHTML = `<div class="row between"><h2 style="margin:0">${L("Doctor's code", "डॉक्टर का कोड")}</h2><button class="link" id="shClose">✕</button></div>
+    <p class="small muted">${L("Paste the code the doctor sent you on WhatsApp. It starts with KC1-.", "डॉक्टर ने व्हाट्सऐप पर जो कोड भेजा है, उसे यहाँ चिपकाएँ। यह KC1- से शुरू होता है।")}</p>
+    <textarea class="field" id="codeIn" rows="4" placeholder="KC1-..."></textarea><div id="codeErr" class="small" style="color:var(--over);margin-top:6px"></div>
+    <button class="btn primary block" id="codeGo" style="margin-top:10px">${L("Use this plan", "यह योजना लगाएँ")}</button>`;
+  $("sheetBg").style.display = "block"; $("sheet").style.display = "block";
+  $("shClose").onclick = closeSheet;
+  $("codeGo").onclick = () => {
+    try { S.profile = decodePlan($("codeIn").value); save(); closeSheet(); toast(L("Doctor's plan added.", "डॉक्टर की योजना जुड़ गई।")); renderAll(); if (after) after(); }
+    catch (e) { $("codeErr").textContent = e.message; }
+  };
+}
+$("enterCode").onclick = () => openCodeEntry();
+$("sharePlan").onclick = () => {
+  if (!S.profile) { toast("Save the prescription first."); return; }
+  const code = encodePlan(S.profile);
+  const msg = `KidneyCare diet plan for ${S.profile.id || "your child"}. Open the KidneyCare app, tap "Enter the doctor's code" and paste:\n${code}`;
+  $("sheetBody").innerHTML = `<div class="row between"><h2 style="margin:0">Share plan with family</h2><button class="link" id="shClose">✕</button></div>
+    <p class="small muted">The code holds the child ID, details and limits shown on the clinician screen, but no PIN, meal log or labs. Anyone with the code can read it, so send it only to the family.</p>
+    <div class="codebox" id="codeTxt">${esc(code)}</div>
+    <div class="grid2" style="margin-top:10px"><button class="btn" id="codeCopy">Copy code</button><button class="btn primary" id="codeWa">Send on WhatsApp</button></div>`;
+  $("sheetBg").style.display = "block"; $("sheet").style.display = "block";
+  $("shClose").onclick = closeSheet;
+  $("codeCopy").onclick = () => { (navigator.clipboard ? navigator.clipboard.writeText(code) : Promise.reject()).then(() => toast("Copied"), () => toast("Select the code and copy it")); };
+  $("codeWa").onclick = () => window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank", "noopener");
+};
+$("redoSetup").onclick = () => openOnb(0);
+
+// ---------- onboarding ----------
+const L = (en, hi) => S.lang === "hi" ? hi : en;
+const toMin = t => { const [h, m] = String(t).split(":").map(Number); return h * 60 + (m || 0); };
+const SPOKEN = [["hi", "Hindi", "हिन्दी"], ["bho", "Bhojpuri", "भोजपुरी"], ["mai", "Maithili", "मैथिली"], ["mag", "Magahi", "मगही"], ["ang", "Angika", "अंगिका"], ["ur", "Urdu", "اردو"], ["bn", "Bengali", "বাংলা"], ["en", "English", "English"], ["other", "Other", "अन्य"]];
+let onbStep = 0;
+const ONB_STEPS = 6;
+function openOnb(i) { onbStep = i || 0; $("onb").style.display = "block"; renderOnb(); }
+function closeOnb() { S.onboarded = true; applyKitchen(); save(); $("onb").style.display = "none"; applyLang(); renderAll(); }
+function opt(key, val, cur, icon, title, sub, multi) {
+  const on = multi ? (cur || []).includes(val) : cur === val;
+  return `<button class="opt ${on ? "on" : ""}" data-k="${key}" data-v="${esc(val)}" ${multi ? 'data-multi="1"' : ""}><span class="ic">${icon}</span><span><b>${esc(title)}</b>${sub ? `<span>${esc(sub)}</span>` : ""}</span></button>`;
+}
+function renderOnb() {
+  const k = S.kitchen || (S.kitchen = {});
+  let title = "", lead = "", body = "", canNext = true;
+  if (onbStep === 0) {
+    title = L("Choose your language", "अपनी भाषा चुनें"); lead = L("For reading the app", "ऐप पढ़ने के लिए");
+    body = `<div class="grid2">${opt("lang", "en", S.lang, "Aa", "English", "")}${opt("lang", "hi", S.lang, "अ", "हिंदी", "")}</div>
+      <p class="subh">${L("Which language do you speak at home?", "घर में कौन सी भाषा बोलते हैं?")}</p>
+      <p class="small muted" style="margin:0">${L("Used for spoken tips later. It does not change the app language.", "बाद में बोलकर दिए सुझावों के लिए। ऐप की भाषा नहीं बदलेगी।")}</p>
+      <div class="chips">${SPOKEN.map(([v, en, hi]) => `<button class="chip ${(S.spoken || []).includes(v) ? "on" : ""}" data-sp="${v}">${esc(S.lang === "hi" ? hi : en)}</button>`).join("")}</div>`;
+  } else if (onbStep === 1) {
+    title = L("Who is using the app?", "ऐप कौन इस्तेमाल कर रहा है?"); lead = L("So we can word things for you", "ताकि बातें आपके हिसाब से लिखी जाएँ");
+    body = [["parent", "👪", L("Parent", "माता-पिता"), L("Mother or father of the child", "बच्चे की माँ या पिता")],
+      ["grand", "🧓", L("Grandparent or relative", "दादा-दादी या रिश्तेदार"), L("Looks after meals at home", "घर पर खाने का ध्यान रखते हैं")],
+      ["child", "🧒", L("The child (12 years or older)", "बच्चा स्वयं (12 वर्ष या अधिक)"), L("With a parent's help", "माता-पिता की मदद से")],
+      ["clin", "🩺", L("Doctor or dietitian", "डॉक्टर या डायटीशियन"), L("Set up the child's plan", "बच्चे की योजना बनाएँ")]]
+      .map(([v, i, t, s]) => opt("who", v, S.who, i, t, s)).join("");
+    canNext = !!S.who;
+  } else if (onbStep === 2) {
+    title = L("Link to your doctor", "अपने डॉक्टर से जोड़ें"); lead = L("The doctor's plan sets your child's limits. You do not need to type any targets.", "डॉक्टर की योजना से बच्चे की सीमाएँ तय होती हैं। आपको कुछ भरना नहीं है।");
+    body = S.profile ? `<div class="alert info">✓ ${L("Plan linked", "योजना जुड़ी")}: ${esc(S.profile.id || "")} · ${esc(ageText(S.profile.dob))} · ${esc(S.profile.wt || "")} kg</div><button class="btn" id="onbCode">${L("Enter a new code", "नया कोड डालें")}</button>`
+      : `<button class="opt" id="onbCode"><span class="ic">🔑</span><span><b>${L("Enter the doctor's code", "डॉक्टर का कोड डालें")}</b><span>${L("Sent to you on WhatsApp, starts with KC1-", "व्हाट्सऐप पर मिला, KC1- से शुरू")}</span></span></button>
+         <p class="small muted">${L("No code yet? Tap Next. You can log meals now and add the code later from the Today screen.", "अभी कोड नहीं है? आगे दबाएँ। आप अभी भोजन दर्ज कर सकते हैं और बाद में कोड डाल सकते हैं।")}</p>`;
+  } else if (onbStep === 3) {
+    title = L("Your kitchen", "आपकी रसोई"); lead = L("We show the foods you eat first", "आपके खाने वाले भोजन पहले दिखेंगे");
+    body = `<p class="subh">${L("Food at home", "घर का खाना")}</p><div class="pick3">
+      ${opt("diet", "veg", k.diet, "🥦", L("Vegetarian", "शाकाहारी"), "")}${opt("diet", "egg", k.diet, "🥚", L("With egg", "अंडा सहित"), "")}${opt("diet", "nonveg", k.diet, "🍗", L("Non-veg", "मांसाहारी"), "")}</div>
+      <p class="subh">${L("Main staple", "मुख्य अनाज")}</p><div class="pick3">
+      ${opt("staple", "rice", k.staple, "🍚", L("Rice", "चावल"), "")}${opt("staple", "roti", k.staple, "🫓", L("Roti", "रोटी"), "")}${opt("staple", "both", k.staple, "🍽️", L("Both", "दोनों"), "")}</div>
+      <p class="subh">${L("District or village (optional)", "ज़िला या गाँव (वैकल्पिक)")}</p><input class="field" id="onbPlace" value="${esc(k.place || "")}" placeholder="${L("e.g. Patna, Gaya, Darbhanga", "जैसे पटना, गया, दरभंगा")}">`;
+    canNext = !!(k.diet && k.staple);
+  } else if (onbStep === 4) {
+    title = L("Your measures", "आपके बर्तन"); lead = L("Pick what you use most. This makes portions more accurate.", "जो सबसे ज़्यादा इस्तेमाल करते हैं, वो चुनें। इससे मात्रा सही आती है।");
+    const bowl = (w, d) => `<svg width="56" height="30" viewBox="0 0 56 30"><path d="M${28 - w / 2} 6 h${w} a${w / 2} ${d} 0 0 1 -${w} 0z" fill="currentColor" opacity=".25" stroke="currentColor" stroke-width="1.5"/></svg>`;
+    const glass = h => `<svg width="40" height="40" viewBox="0 0 40 40"><path d="M12 ${38 - h}h16l-2 ${h}h-12z" fill="currentColor" opacity=".25" stroke="currentColor" stroke-width="1.5"/></svg>`;
+    const roti = r => `<svg width="56" height="40" viewBox="0 0 56 40"><circle cx="28" cy="20" r="${r}" fill="#d9a441" opacity=".7" stroke="#9a6a1f"/></svg>`;
+    body = `<p class="subh">${L("Usual katori", "आम कटोरी")}</p><div class="pick3">
+      ${opt("katori", "katori_small", k.katori, bowl(26, 12), L("Small", "छोटी"), "115 mL")}${opt("katori", "katori_small_155", k.katori, bowl(32, 14), L("Medium-small", "मझोली"), "155 mL")}
+      ${opt("katori", "katori_medium", k.katori, bowl(40, 16), L("Medium", "मध्यम"), "200 mL")}${opt("katori", "katori_large", k.katori, bowl(50, 20), L("Large", "बड़ी"), "360 mL")}</div>
+      <p class="subh">${L("Usual glass", "आम गिलास")}</p><div class="pick3">
+      ${opt("glass", "100", String(k.glass_ml || ""), glass(18), L("Small steel", "छोटा स्टील"), "100 mL")}${opt("glass", "200", String(k.glass_ml || ""), glass(26), L("Regular", "सामान्य"), "200 mL")}${opt("glass", "250", String(k.glass_ml || ""), glass(32), L("Tall", "लंबा"), "250 mL")}</div>
+      <p class="subh">${L("Usual roti size", "आम रोटी का आकार")}</p><div class="pick3">
+      ${opt("roti", "20", String(k.roti_g || ""), roti(11), L("Small", "छोटी"), L("about 20 g atta", "लगभग 20 ग्रा. आटा"))}${opt("roti", "25", String(k.roti_g || ""), roti(14), L("Medium", "मध्यम"), L("about 25 g atta", "लगभग 25 ग्रा. आटा"))}${opt("roti", "35", String(k.roti_g || ""), roti(18), L("Large", "बड़ी"), L("about 35 g atta", "लगभग 35 ग्रा. आटा"))}</div>
+      <p class="small muted">${L("Most accurate: weigh the atta for 5 rotis once and tell the dietitian.", "सबसे सही: एक बार 5 रोटियों का आटा तौलें और डायटीशियन को बताएँ।")}</p>`;
+    canNext = !!(k.katori && k.glass_ml && k.roti_g);
+  } else if (onbStep === 5) {
+    const r = S.reminders || {};
+    title = L("Consent and reminders", "सहमति और याद दिलाना"); lead = "";
+    body = `<div class="card" style="padding:12px">
+        <p class="small" style="margin:0 0 8px">${L("The meals, weight, urine test results and photos you enter are about your child's health. They stay on this phone. They are shared with the clinic only when you press Share. You can delete everything at any time.", "आप जो भोजन, वज़न, पेशाब जाँच और फ़ोटो दर्ज करेंगे, वह आपके बच्चे के स्वास्थ्य की जानकारी है। यह इसी फ़ोन में रहती है। आप शेयर दबाएँगे तभी क्लिनिक को जाएगी। आप कभी भी सब मिटा सकते हैं।")}</p>
+        <label class="row" style="align-items:flex-start;gap:10px"><input type="checkbox" id="onbConsent" ${S.consent ? "checked" : ""} style="width:22px;height:22px;margin-top:2px"><span>${L("I am the parent or guardian of this child and I agree.", "मैं इस बच्चे का माता-पिता या अभिभावक हूँ और मैं सहमत हूँ।")}</span></label></div>
+      <p class="subh">${L("Remind me if a meal is not logged", "भोजन दर्ज न हो तो याद दिलाएँ")}</p>
+      <div class="grid2">${[["breakfast", L("Breakfast", "नाश्ता"), "08:30"], ["lunch", L("Lunch", "दोपहर का खाना"), "13:30"], ["dinner", L("Dinner", "रात का खाना"), "20:30"]]
+        .map(([s, l, d]) => `<div><label class="f">${l}</label><input class="field" type="time" data-rem="${s}" value="${esc(r[s] === undefined ? d : r[s])}"></div>`).join("")}</div>
+      <p class="small muted">${L("Reminders show on the Today screen. WhatsApp reminders start once your clinic switches them on.", "याद दिलाना आज वाली स्क्रीन पर दिखेगा। व्हाट्सऐप पर याद दिलाना क्लिनिक के चालू करने के बाद शुरू होगा।")}</p>`;
+    canNext = !!S.consent;
+  }
+  const last = onbStep === ONB_STEPS - 1;
+  $("onbIn").innerHTML = `<div class="dots">${Array.from({ length: ONB_STEPS }, (_, i) => `<i class="${i <= onbStep ? "on" : ""}"></i>`).join("")}</div>
+    <h2>${esc(title)}</h2>${lead ? `<p class="lead">${esc(lead)}</p>` : ""}<div class="body">${body}</div>
+    <div class="navrow"><button id="onbBack" ${onbStep ? "" : "disabled"}>‹ ${L("BACK", "पीछे")}</button><button id="onbNext" ${canNext ? "" : "disabled"}>${last ? L("START", "शुरू करें") : L("NEXT", "आगे")} ›</button></div>`;
+  // bindings
+  $("onbIn").querySelectorAll("[data-sp]").forEach(b => b.onclick = () => { S.spoken = S.spoken || []; const i = S.spoken.indexOf(b.dataset.sp); if (i >= 0) S.spoken.splice(i, 1); else S.spoken.push(b.dataset.sp); save(); renderOnb(); });
+  $("onbIn").querySelectorAll(".opt[data-k]").forEach(b => b.onclick = () => {
+    const key = b.dataset.k, v = b.dataset.v;
+    if (key === "lang") { S.lang = v; applyLang(); }
+    else if (key === "who") S.who = v;
+    else if (key === "glass") k.glass_ml = Number(v);
+    else if (key === "roti") k.roti_g = Number(v);
+    else k[key] = v;
+    save(); renderOnb();
+  });
+  const pl = $("onbPlace"); if (pl) pl.oninput = () => { k.place = pl.value; save(); };
+  const oc = $("onbCode"); if (oc) oc.onclick = () => openCodeEntry(() => renderOnb());
+  const cs = $("onbConsent"); if (cs) cs.onchange = () => { S.consent = cs.checked ? { by: S.who, on: new Date().toISOString() } : null; save(); renderOnb(); };
+  $("onbIn").querySelectorAll("[data-rem]").forEach(inp => inp.onchange = () => { S.reminders = S.reminders || {}; S.reminders[inp.dataset.rem] = inp.value; save(); });
+  $("onbBack").onclick = () => { onbStep = Math.max(0, onbStep - 1); renderOnb(); };
+  $("onbNext").onclick = () => {
+    if (onbStep === 1 && S.who === "clin") { S.onboarded = true; save(); $("onb").style.display = "none"; applyLang(); show("doc"); return; }
+    if (last) {
+      S.reminders = S.reminders || {};
+      $("onbIn").querySelectorAll("[data-rem]").forEach(inp => S.reminders[inp.dataset.rem] = inp.value);
+      closeOnb(); return;
+    }
+    onbStep++; renderOnb();
+  };
+}
+// apply kitchen preferences: the household glass as a unit
+function applyKitchen() {
+  if (S.kitchen && S.kitchen.glass_ml) D.measures["_"].glass_usual = { g: null, ml: S.kitchen.glass_ml, src: "Household glass chosen at setup" };
+}
+
+// ---------- render ----------
+function renderAll() {
+  const p = S.profile;
+  $("who").textContent = p ? `${p.id || "Child"}${p.dob ? " · " + ageText(p.dob) : ""}${p.wt ? " · " + p.wt + " kg" : ""}` : (S.lang === "hi" ? "बच्चे का प्रोफ़ाइल नहीं" : "No child profile yet");
+  if (view === "today") renderToday(); else if (view === "log") renderLog(); else if (view === "foods") renderFoods();
+  else if (view === "report") renderReport(); else if (view === "doc") renderDoc();
+}
+S.entries.forEach(e => { if (!e.uid) e.uid = uid(); });
+applyKitchen(); applyLang(); renderAll();
+if (!S.onboarded) openOnb(0);
+})();
+</script>
+</body>
+</html>
