@@ -1,15 +1,20 @@
 {
-  "name": "app",
+  "name": "kidney-care-app-ns",
   "version": "1.0.0",
-  "description": "**Division of Pediatric Nephrology, Department of Pediatrics**   *In-charge / Contact: Dr. Swarnim (डॉ. स्वर्णिम)*",
+  "description": "KidneyCare AI - Pediatric Nephrology OPD Application - AIIMS Patna",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "pediatric-nephrology",
+    "aiims-patna",
+    "nephrotic-syndrome",
+    "telemetry",
+    "nutrition"
+  ],
+  "author": "Dr. Swarnim, Division of Pediatric Nephrology, AIIMS Patna",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "@capacitor/android": "^8.5.3",
     "@capacitor/cli": "^8.5.3",

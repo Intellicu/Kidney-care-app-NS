@@ -4,26 +4,35 @@ __pycache__/
 *$py.class
 *.so
 .env
+.env*
 venv/
 env/
 ENV/
 *.sqlite3
 *.db-journal
 
-# Node / Web
+# Dependencies
 node_modules/
+/node_modules
+
+# Next.js / Vite / React builds
+.next/
+/.next/
+dist/
+/out/
+build/
+/build
+.vite/
+.vercel
+
+# Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-dist/
-build/
-.vite/
-.next/
 
 # Android
 .gradle/
-build/
 captures/
 *.apk
 *.aab
@@ -32,3 +41,7 @@ local.properties
 *.iml
 .DS_Store
 Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
