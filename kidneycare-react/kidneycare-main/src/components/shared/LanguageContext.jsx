@@ -232,7 +232,16 @@ export function LanguageProvider({ children }) {
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (!context) throw new Error('useLanguage must be used within a LanguageProvider');
+  if (!context) {
+    const fallbackLang = (typeof localStorage !== 'undefined' && localStorage.getItem('kidneycare_language')) || 'en';
+    return {
+      language: fallbackLang,
+      changeLanguage: (l) => {
+        if (typeof localStorage !== 'undefined') localStorage.setItem('kidneycare_language', l);
+      },
+      t: (key) => translations[fallbackLang]?.[key] || translations['en']?.[key] || key
+    };
+  }
   return context;
 }
 

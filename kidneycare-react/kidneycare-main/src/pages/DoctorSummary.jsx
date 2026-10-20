@@ -293,7 +293,16 @@ function SummaryContent() {
         {nextAppt && (
           <div className="bg-blue-50 border border-blue-100 rounded-2xl px-4 py-3">
             <p className="text-xs font-bold text-blue-500 uppercase tracking-wide mb-1">{hi ? 'अगली अपॉइंटमेंट' : 'Next Appointment'}</p>
-            <p className="text-sm font-bold text-blue-800">{format(new Date(nextAppt.appointment_date), 'EEEE, dd MMM yyyy')}</p>
+            <p className="text-sm font-bold text-blue-800">
+              {nextAppt.appointment_date ? (() => {
+                try {
+                  const d = new Date(nextAppt.appointment_date);
+                  return isNaN(d.getTime()) ? nextAppt.appointment_date : format(d, 'EEEE, dd MMM yyyy');
+                } catch {
+                  return nextAppt.appointment_date;
+                }
+              })() : 'Scheduled Visit'}
+            </p>
             {nextAppt.appointment_time && <p className="text-xs text-blue-600">{nextAppt.appointment_time} · {nextAppt.type || 'In-Person'}</p>}
             {nextAppt.reason && <p className="text-xs text-blue-500 mt-0.5">{nextAppt.reason}</p>}
           </div>

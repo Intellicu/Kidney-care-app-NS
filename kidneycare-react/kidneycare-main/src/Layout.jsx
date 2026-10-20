@@ -91,51 +91,49 @@ export default function Layout({ children, currentPageName }) {
   const showNav = !noNavPages.includes(currentPageName);
 
   return (
-    <ThemeProvider>
-      <LanguageProvider>
-        <style>{`
-          :root {
-            --color-primary: #2563eb;
-            --color-primary-dark: #1d4ed8;
-            --color-secondary: #64748b;
-            --color-background: #f8fafc;
-            --color-surface: #ffffff;
-            --color-text: #0f172a;
-          }
-          
-          body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--color-background);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            font-size: 15px;
-            letter-spacing: -0.01em;
-          }
-
-          /* Enhanced Mobile Card Typography & Legibility */
-          .text-xs {
-            font-size: 0.8125rem !important; /* 13px */
-            line-height: 1.25rem !important;
-          }
-          .text-\[10px\] {
-            font-size: 0.72rem !important; /* ~11.5px */
-            line-height: 1rem !important;
-          }
-          .text-\[9px\] {
-            font-size: 0.68rem !important; /* ~11px */
-            line-height: 0.95rem !important;
-          }
-
-          * {
-            -webkit-tap-highlight-color: transparent;
-          }
-        `}</style>
+    <>
+      <style>{`
+        :root {
+          --color-primary: #2563eb;
+          --color-primary-dark: #1d4ed8;
+          --color-secondary: #64748b;
+          --color-background: #f8fafc;
+          --color-surface: #ffffff;
+          --color-text: #0f172a;
+        }
         
-        <div className="min-h-screen bg-slate-50 text-slate-900 pb-16">
-          {children}
-          {showNav && <BottomNav currentPageName={currentPageName} />}
-        </div>
-      </LanguageProvider>
-    </ThemeProvider>
+        body {
+          font-family: 'Inter', system-ui, -apple-system, sans-serif;
+          background-color: var(--color-background);
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          font-size: 15px;
+          letter-spacing: -0.01em;
+        }
+
+        /* Enhanced Mobile Card Typography & Legibility */
+        .text-xs {
+          font-size: 0.8125rem !important; /* 13px */
+          line-height: 1.25rem !important;
+        }
+        .text-\[10px\] {
+          font-size: 0.72rem !important; /* ~11.5px */
+          line-height: 1rem !important;
+        }
+        .text-\[9px\] {
+          font-size: 0.68rem !important; /* ~11px */
+          line-height: 0.95rem !important;
+        }
+
+        * {
+          -webkit-tap-highlight-color: transparent;
+        }
+      `}</style>
+      
+      <div className="min-h-screen bg-slate-50 text-slate-900 pb-16">
+        {children}
+        {showNav && <BottomNav currentPageName={currentPageName} />}
+      </div>
+    </>
   );
 }

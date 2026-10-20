@@ -577,11 +577,17 @@ export default function NutritionHub({ isStandalone = false }) {
     queryKey: ['nutritionLogs', selectedDate, activePatientCr],
     queryFn: async () => {
       try {
-        const res = await fetch(`/api/nutrition?cr_number=${encodeURIComponent(activePatientCr)}&date=${selectedDate}`);
+        const res = await fetch(`/api/nutrition?cr_number=${encodeURIComponent(activePatientCr || '')}&date=${selectedDate}`);
         if (res.ok) return await res.json();
       } catch (e) {}
-      const saved = localStorage.getItem('kc_nutrition_logs');
-      return saved ? JSON.parse(saved).filter(m => m.date === selectedDate) : [];
+      try {
+        const saved = localStorage.getItem('kc_nutrition_logs');
+        if (!saved) return [];
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed.filter(m => m && m.date === selectedDate) : [];
+      } catch {
+        return [];
+      }
     }
   });
 
@@ -1073,10 +1079,15 @@ export default function NutritionHub({ isStandalone = false }) {
         body: JSON.stringify(payload)
       });
       // Also cache locally
-      const saved = localStorage.getItem('kc_nutrition_logs');
-      const list = saved ? JSON.parse(saved) : [];
-      list.unshift({ ...payload, id: Date.now() });
-      localStorage.setItem('kc_nutrition_logs', JSON.stringify(list));
+      try {
+        const saved = localStorage.getItem('kc_nutrition_logs');
+        const list = saved ? JSON.parse(saved) : [];
+        const safeList = Array.isArray(list) ? list : [];
+        safeList.unshift({ ...payload, id: Date.now() });
+        localStorage.setItem('kc_nutrition_logs', JSON.stringify(safeList));
+      } catch (cacheErr) {
+        console.warn('Could not cache nutrition log locally:', cacheErr);
+      }
 
       refetchLogs();
       setShowSuccessToast(true);

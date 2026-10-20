@@ -14,16 +14,32 @@ const TYPE_CONFIG = {
   Alert:          { label: 'Alert',    emoji: '🔔', color: 'bg-amber-50 border-amber-100',  dot: 'bg-amber-500' },
 };
 
+function safeFormat(dateVal, fmtStr, fallback = '') {
+  try {
+    if (!dateVal) return fallback;
+    const d = new Date(dateVal);
+    if (isNaN(d.getTime())) return fallback;
+    return format(d, fmtStr);
+  } catch (e) {
+    return fallback;
+  }
+}
+
 function groupByDate(items) {
   const groups = {};
-  for (const item of items) {
-    const d = new Date(item.date);
+  for (const item of (items || [])) {
+    let d = new Date(item.date);
+    if (isNaN(d.getTime())) d = new Date();
     let label;
-    if (isToday(d))          label = 'Today';
-    else if (isYesterday(d)) label = 'Yesterday';
-    else if (isThisWeek(d))  label = format(d, 'EEEE');
-    else if (isThisMonth(d)) label = format(d, 'dd MMM');
-    else                     label = format(d, 'MMM yyyy');
+    try {
+      if (isToday(d))          label = 'Today';
+      else if (isYesterday(d)) label = 'Yesterday';
+      else if (isThisWeek(d))  label = format(d, 'EEEE');
+      else if (isThisMonth(d)) label = format(d, 'dd MMM');
+      else                     label = format(d, 'MMM yyyy');
+    } catch (e) {
+      label = 'Previous';
+    }
     (groups[label] = groups[label] || []).push(item);
   }
   return groups;
@@ -48,7 +64,7 @@ function TimelineItem({ item }) {
             <span className="text-base">{cfg.emoji}</span>
             <div className="min-w-0">
               <p className="text-sm font-semibold text-gray-900 truncate">{item.title}</p>
-              <p className="text-xs text-gray-400">{format(new Date(item.date), 'h:mm a')}</p>
+              <p className="text-xs text-gray-400">{safeFormat(item.date, 'h:mm a', '')}</p>
             </div>
           </div>
           <div className="flex items-center gap-1 shrink-0">

@@ -281,7 +281,14 @@ function DailyLogContent() {
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-gray-900 dark:text-white text-sm">{med.drug_name}</p>
                         <p className="text-xs text-gray-400">{med.dose} · {med.frequency} · {med.schedule || '08:00'}</p>
-                        {log?.taken_at && <p className="text-xs text-green-600 mt-0.5">✓ {format(new Date(log.taken_at), 'h:mm a')}</p>}
+                        {log?.taken_at && <p className="text-xs text-green-600 mt-0.5">✓ {(() => {
+                          try {
+                            const d = new Date(log.taken_at);
+                            return isNaN(d.getTime()) ? log.taken_at : format(d, 'h:mm a');
+                          } catch {
+                            return log.taken_at;
+                          }
+                        })()}</p>}
                       </div>
                       {!taken ? (
                         <button onClick={() => tapMedTaken(med)}
