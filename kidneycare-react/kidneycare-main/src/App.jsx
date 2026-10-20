@@ -180,13 +180,18 @@ function ClinicianView() {
 
 function NutritionView() {
   const { setRole } = useUserRole();
+  const isNutritionFlavor = typeof window !== 'undefined' && window.KIDNEYCARE_APP_FLAVOR === 'nutrition';
+
   React.useEffect(() => {
-    setRole('nutrition');
-    if (typeof localStorage !== 'undefined') localStorage.setItem('kidneycare_selected_app', 'nutrition');
-  }, []);
+    if (isNutritionFlavor) {
+      setRole('nutrition');
+      if (typeof localStorage !== 'undefined') localStorage.setItem('kidneycare_selected_app', 'nutrition');
+    }
+  }, [isNutritionFlavor]);
+
   return (
     <LayoutWrapper currentPageName="NutritionHub">
-      <NutritionHub isStandalone={true} />
+      <NutritionHub isStandalone={isNutritionFlavor} />
     </LayoutWrapper>
   );
 }

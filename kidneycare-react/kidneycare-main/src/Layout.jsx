@@ -13,7 +13,8 @@ function BottomNav({ currentPageName }) {
   const hi = language === 'hi';
 
   // Standalone Nutrition App has its own self-contained navigation tabs
-  if (isNutrition || currentPageName === 'NutritionHub' || currentPath.includes('/nutrition')) {
+  const isStandaloneNutrition = typeof window !== 'undefined' && window.KIDNEYCARE_APP_FLAVOR === 'nutrition';
+  if (isStandaloneNutrition) {
     return null;
   }
 

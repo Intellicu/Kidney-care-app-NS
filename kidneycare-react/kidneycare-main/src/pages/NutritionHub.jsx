@@ -229,7 +229,8 @@ const RENAL_SWAPS_CATALOG = [
 export default function NutritionHub({ isStandalone = false }) {
   const queryClient = useQueryClient();
   const { activePatientCr, role, isNutrition, setRole, isClinician, isCaregiver } = useUserRole();
-  const standalone = isStandalone || isNutrition || (typeof window !== 'undefined' && window.KIDNEYCARE_APP_FLAVOR === 'nutrition') || localStorage.getItem('kidneycare_selected_app') === 'nutrition';
+  const isNutritionFlavor = typeof window !== 'undefined' && window.KIDNEYCARE_APP_FLAVOR === 'nutrition';
+  const standalone = isStandalone || isNutritionFlavor || (!isClinician && !isCaregiver && role === 'nutrition');
   const { language, changeLanguage } = useLanguage();
   const hi = language === 'hi';
 
@@ -1140,9 +1141,9 @@ export default function NutritionHub({ isStandalone = false }) {
           <div className="flex items-center gap-2.5">
             {!standalone ? (
               <Link
-                to="/Dashboard"
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-                title="Back to Dashboard"
+                to={isClinician ? "/OPDWorkstation" : "/Dashboard"}
+                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer"
+                title={isClinician ? "Back to OPD Workstation" : "Back to Dashboard"}
               >
                 <ChevronLeft className="w-5 h-5 text-white" />
               </Link>
